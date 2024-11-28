@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -24,7 +23,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useCreateUserMutation } from "../mutations/useCreateUserMutation";
-import { useToast } from "@/hooks/use-toast";
 
 export function RegisterForm() {
   const form = useForm<CreateUserInput>({
@@ -36,8 +34,6 @@ export function RegisterForm() {
       confirmPassword: "",
     },
   });
-  const router = useRouter();
-  const { toast } = useToast();
   const { mutate } = useCreateUserMutation();
 
   function onSubmit(data: CreateUserInput) {
@@ -47,20 +43,7 @@ export function RegisterForm() {
       password: data.password,
     };
 
-    mutate(mutationData, {
-      onSuccess: () => {
-        toast({
-          description: "Conta criada com sucesso",
-        });
-        router.push("/login");
-      },
-      onError: () => {
-        toast({
-          variant: "destructive",
-          description: "Erro inesperado ao criar conta",
-        });
-      },
-    });
+    mutate(mutationData)
   }
 
   return (
