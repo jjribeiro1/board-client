@@ -8,24 +8,15 @@ type MutationProps = {
   password: string;
 };
 
-type MutationFnResponse = {
-  accessToken: string;
-};
-
 export function useLoginMutation() {
   const router = useRouter();
   const { toast } = useToast();
   return useMutation({
     mutationFn: async (data: MutationProps) => {
-      const res = await apiClient.post<MutationFnResponse>(
-        "/auth/sign-in",
-        data
-      );
+      const res = await apiClient.post("/auth/sign-in", data);
       return res;
     },
-    onSuccess(data) {
-      const accessToken = data.data.accessToken;
-      localStorage.setItem("token", accessToken);
+    onSuccess() {
       toast({
         description: "Usuário logado com sucesso",
       });
