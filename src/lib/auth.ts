@@ -40,7 +40,7 @@ export async function refreshToken() {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "lax",
-      maxAge: 60 * 4 * 1000, // 15 minutes in milisseconds
+      maxAge: 60 * 15 * 1000, // 15 minutes in milisseconds
     });
   } catch (error) {
     console.error(error);
