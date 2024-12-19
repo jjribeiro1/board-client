@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useLoggedUserInfo } from "@/hooks/useLoggedUserInfo";
+import { useLoggedUserInfo } from "@/hooks/use-logged-user-info";
 import { useOrganizationsFromUser } from "../hooks/use-organizations-from-user";
 import { selectOrganizationAction } from "../actions/select-organization-action";
 
