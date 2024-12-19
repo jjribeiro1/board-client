@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreateOrganizationInput } from "../schemas/create-organization-schema";
-import { selectOrgAction } from "../actions/selectOrgAction";
+import { selectOrganizationAction } from "../actions/select-organization-action";
 
 export function useCreateOrganizationMutation() {
   const { toast } = useToast();
@@ -16,7 +16,7 @@ export function useCreateOrganizationMutation() {
         variant: "default",
         description: "Organização criada com sucesso",
       });
-      selectOrgAction(data);
+      selectOrganizationAction(data);
     },
     onError() {
       toast({

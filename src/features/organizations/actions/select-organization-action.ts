@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function selectOrgAction(orgId: string) {
+export async function selectOrganizationAction(orgId: string) {
   const cookieStore = await cookies();
   cookieStore.set("orgId", orgId, {
     httpOnly: true,

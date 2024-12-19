@@ -1,5 +1,5 @@
-import { apiClient } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "@/lib/axios";
 
 type OrganizationsFromUser = {
   data: Array<{
@@ -12,7 +12,7 @@ type OrganizationsFromUser = {
   }>;
 };
 
-export function useGetOrganizationsFromUser(userId: string | undefined) {
+export function useOrganizationsFromUser(userId: string | undefined) {
   return useQuery({
     queryKey: ["org-from-user", userId],
     queryFn: async () => {

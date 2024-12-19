@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 
-type MutationProps = {
+type MutationFnProps = {
   email: string;
   password: string;
 };
@@ -12,7 +12,7 @@ export function useLoginMutation() {
   const router = useRouter();
   const { toast } = useToast();
   return useMutation({
-    mutationFn: async (data: MutationProps) => {
+    mutationFn: async (data: MutationFnProps) => {
       const res = await apiClient.post("/auth/sign-in", data);
       return res;
     },

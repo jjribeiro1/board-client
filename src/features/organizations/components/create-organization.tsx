@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateOrganizationMutation } from "../mutations/useCreateOrganizationMutation";
+import { useCreateOrganizationMutation } from "../mutations/use-create-organization-mutation";
 import {
   CreateOrganizationInput,
   createOrganizationSchema,

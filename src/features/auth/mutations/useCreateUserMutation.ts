@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 
-type MutationProps = {
+type MutationFnProps = {
   name: string;
   email: string;
   password: string;
@@ -14,7 +14,7 @@ export function useCreateUserMutation() {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: (data: MutationProps) => {
+    mutationFn: (data: MutationFnProps) => {
       return apiClient.post("/users", data);
     },
     onSuccess() {

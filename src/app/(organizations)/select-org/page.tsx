@@ -1,6 +1,6 @@
 import { OrganizationSelect } from "@/features/organizations/components/organization-select";
 
-export default function SelectOrg() {
+export default function SelectOrganizationPage() {
   return (
     <main className="h-screen flex flex-col items-center justify-center">
       <div className="flex flex-col gap-8 w-96">
