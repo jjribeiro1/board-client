@@ -20,7 +20,7 @@ export function useLoginMutation() {
       toast({
         description: "Usuário logado com sucesso",
       });
-      router.replace("/");
+      router.replace("/select-org");
     },
     onError() {
       toast({
