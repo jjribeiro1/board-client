@@ -1,0 +1,51 @@
+"use client";
+import { Tag, Calendar } from "lucide-react";
+import {
+  Card,
+  CardFooter,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { usePostsFromOrganization } from "../hooks/use-posts-from-organization";
+
+type Props = {
+  orgId: string;
+};
+
+export function PostList(props: Props) {
+  const { data } = usePostsFromOrganization(props.orgId);
+
+  return (
+    <section className="flex flex-col gap-4">
+      {data?.map((post) => (
+        <Card key={post.id}>
+          <CardHeader>
+            <CardTitle>{post.title}</CardTitle>
+            <CardDescription>{post.status.name}</CardDescription>
+          </CardHeader>
+          <CardFooter className="justify-between">
+            <div className="flex items-center gap-6 w-full">
+              <div className="flex items-center gap-2">
+                <Tag className="w-4 h-4" /> <span>{post.board.title}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {post.tags.map(({ tag }) => (
+                <Badge key={tag.id} className="text-nowrap">
+                  {tag.name}
+                </Badge>
+              ))}
+            </div>
+          </CardFooter>
+        </Card>
+      ))}
+    </section>
+  );
+}
