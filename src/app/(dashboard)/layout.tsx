@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      {children}
+      <main className="w-full px-4 py-2">{children}</main>
     </SidebarProvider>
   );
 }
