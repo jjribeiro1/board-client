@@ -11,5 +11,5 @@ export async function selectOrganizationAction(orgId: string) {
     maxAge: 60 * 60 * 24 * 30,
   });
 
-  redirect("/");
+  redirect("/dashboard");
 }
