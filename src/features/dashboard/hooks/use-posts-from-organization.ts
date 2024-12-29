@@ -30,7 +30,7 @@ export function usePostsFromOrganization(orgId: string) {
     queryKey: ["posts-from-organization", orgId],
     queryFn: async () => {
       const res = await apiClient.get<PostsFromOrganization>(
-        `/posts/organization`
+        `/organizations/${orgId}/posts`
       );
       return res.data.data;
     },
