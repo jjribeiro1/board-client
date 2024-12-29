@@ -1,18 +1,14 @@
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 import { StatusGroup } from "./status-group";
+import { SidebarHeader } from "./header";
+import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 
-export function AppSidebar() {
+export async function AppSidebar() {
+  const orgId = await getOrganizationId();
+
   return (
     <Sidebar>
-      <SidebarHeader>
-        <p className="text-xl font-semibold tracking-tight text-center">
-          Organization
-        </p>
-      </SidebarHeader>
+      <SidebarHeader organizationId={orgId!} />
       <SidebarContent>
         <StatusGroup />
       </SidebarContent>
