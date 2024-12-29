@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 export async function selectOrganizationAction(orgId: string) {
   const cookieStore = await cookies();
-  cookieStore.set("orgId", orgId, {
+  cookieStore.set("org-id", orgId, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "lax",
