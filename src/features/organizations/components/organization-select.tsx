@@ -1,9 +1,9 @@
 "use client";
 import { LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLoggedUserInfo } from "@/hooks/use-logged-user-info";
 import { useOrganizationsFromUser } from "../hooks/use-organizations-from-user";
 import { selectOrganizationAction } from "../actions/select-organization-action";
+import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
 
 export function OrganizationSelect() {
   const { data: userInfo } = useLoggedUserInfo();
