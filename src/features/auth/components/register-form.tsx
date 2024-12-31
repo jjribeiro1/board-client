@@ -22,7 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useCreateUserMutation } from "../mutations/useCreateUserMutation";
+import { useCreateUserMutation } from "../mutations/use-create-user-mutation";
 
 export function RegisterForm() {
   const form = useForm<CreateUserInput>({

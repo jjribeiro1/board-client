@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { LoginInput, loginSchema } from "../schemas/login-schema";
-import { useLoginMutation } from "../mutations/useLoginMutation";
+import { useLoginMutation } from "../mutations/use-login-mutation";
 
 export function LoginForm() {
   const form = useForm<LoginInput>({
