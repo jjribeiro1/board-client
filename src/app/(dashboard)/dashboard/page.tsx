@@ -1,4 +1,4 @@
-import { PostList } from "@/features/dashboard/components/post-list";
+import { PostList } from "@/features/posts/components/post-list";
 import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 
 export default async function DashboardPage() {

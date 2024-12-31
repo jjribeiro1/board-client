@@ -9,14 +9,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PostStatusDropdown } from "./post-status-dropdown";
-import { usePostsFromOrganization } from "../hooks/use-posts-from-organization";
+import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
 
 type Props = {
   orgId: string;
 };
 
 export function PostList(props: Props) {
-  const { data } = usePostsFromOrganization(props.orgId);
+  const { data } = useOrganizationPosts(props.orgId);
 
   return (
     <section className="flex flex-col gap-4">

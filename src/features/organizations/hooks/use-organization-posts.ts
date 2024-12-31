@@ -1,7 +1,7 @@
-import { apiClient } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "@/lib/axios";
 
-type PostsFromOrganization = {
+type OrganizationPostsResponse = {
   data: Array<{
     id: string;
     title: string;
@@ -26,11 +26,11 @@ type PostsFromOrganization = {
   }>;
 };
 
-export function usePostsFromOrganization(orgId: string) {
+export function useOrganizationPosts(orgId: string) {
   return useQuery({
-    queryKey: ["posts-from-organization", orgId],
+    queryKey: ["organization-posts", orgId],
     queryFn: async () => {
-      const res = await apiClient.get<PostsFromOrganization>(
+      const res = await apiClient.get<OrganizationPostsResponse>(
         `/organizations/${orgId}/posts`
       );
       return res.data.data;
