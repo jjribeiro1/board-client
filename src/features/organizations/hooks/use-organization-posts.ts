@@ -1,21 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
+import { Status } from "@/types/status";
+import { Board } from "@/types/board";
 
 type OrganizationPostsResponse = {
   data: Array<{
     id: string;
     title: string;
     createdAt: string;
-    board: {
-      id: string;
-      title: string;
-    };
-    status: {
-      id: string;
-      name: string;
-      color: string;
-      order: number;
-    };
+    board: Board;
+    status: Status;
     tags: Array<{
       tag: {
         id: string;
