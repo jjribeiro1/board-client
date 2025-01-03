@@ -33,16 +33,8 @@ export function PostStatusDropdown(props: Props) {
   const { data } = useSystemDefaultStatus();
   const { mutate } = useUpdatePostStatusMutation(props.post.id, props.orgId);
 
-  function filterStatus(status: {
-    id: string;
-    name: string;
-    order: number | null;
-  }) {
-    if (
-      status.order === null ||
-      status.order <= 1 ||
-      status.name === props.post.status.name
-    ) {
+  function filterStatus(status: { id: string; name: string; order: number | null }) {
+    if (status.order === null || status.order <= 1 || status.name === props.post.status.name) {
       return false;
     }
 
@@ -56,19 +48,13 @@ export function PostStatusDropdown(props: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          size={"sm"}
-          className={`${statusColors[props.post.status.order]} py-1 h-max`}
-        >
+        <Button size={"sm"} className={`${statusColors[props.post.status.order]} py-1 h-max`}>
           {props.post.status.name}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {data?.filter(filterStatus).map((status) => (
-          <DropdownMenuItem
-            key={status.id}
-            onClick={() => handlePostStatusChange(status.id)}
-          >
+          <DropdownMenuItem key={status.id} onClick={() => handlePostStatusChange(status.id)}>
             {status.name}
           </DropdownMenuItem>
         ))}

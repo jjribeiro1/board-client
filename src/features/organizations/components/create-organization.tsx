@@ -1,21 +1,11 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateOrganizationMutation } from "../mutations/use-create-organization-mutation";
-import {
-  CreateOrganizationInput,
-  createOrganizationSchema,
-} from "../schemas/create-organization-schema";
+import { CreateOrganizationInput, createOrganizationSchema } from "../schemas/create-organization-schema";
 
 export function CreateOrganization() {
   const form = useForm<CreateOrganizationInput>({
@@ -33,10 +23,7 @@ export function CreateOrganization() {
 
   return (
     <Form {...form}>
-      <form
-        className="flex flex-col w-full gap-8"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
+      <form className="flex flex-col w-full gap-8" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="name"

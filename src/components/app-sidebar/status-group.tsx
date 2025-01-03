@@ -1,12 +1,5 @@
 "use client";
-import {
-  Circle,
-  CircleCheck,
-  CircleX,
-  Loader,
-  CircleAlert,
-  CircleDot,
-} from "lucide-react";
+import { Circle, CircleCheck, CircleX, Loader, CircleAlert, CircleDot } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupLabel,

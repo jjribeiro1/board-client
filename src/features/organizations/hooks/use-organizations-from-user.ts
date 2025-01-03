@@ -10,9 +10,7 @@ export function useOrganizationsFromUser(userId: string | undefined) {
   return useQuery({
     queryKey: ["org-from-user", userId],
     queryFn: async () => {
-      const res = await apiClient.get<OrganizationsFromUserResponse>(
-        `/users/${userId}/organizations`
-      );
+      const res = await apiClient.get<OrganizationsFromUserResponse>(`/users/${userId}/organizations`);
       return res.data.data;
     },
     enabled: !!userId,

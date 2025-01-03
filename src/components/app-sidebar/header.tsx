@@ -10,9 +10,7 @@ export function SidebarHeader(props: Props) {
   const { data } = useOrganizationInfo(props.organizationId);
   return (
     <SidebarHeaderUI>
-      <p className="text-xl font-semibold tracking-tight text-center">
-        {data?.name}
-      </p>
+      <p className="text-xl font-semibold tracking-tight text-center">{data?.name}</p>
     </SidebarHeaderUI>
   );
 }

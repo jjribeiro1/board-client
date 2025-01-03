@@ -1,27 +1,11 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  CreateUserInput,
-  createUserSchema,
-} from "../schemas/create-user-schema";
+import { CreateUserInput, createUserSchema } from "../schemas/create-user-schema";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCreateUserMutation } from "../mutations/use-create-user-mutation";
 
 export function RegisterForm() {
@@ -43,7 +27,7 @@ export function RegisterForm() {
       password: data.password,
     };
 
-    mutate(mutationData)
+    mutate(mutationData);
   }
 
   return (

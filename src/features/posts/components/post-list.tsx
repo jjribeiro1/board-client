@@ -1,12 +1,6 @@
 "use client";
 import { Tag, Calendar } from "lucide-react";
-import {
-  Card,
-  CardFooter,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PostStatusDropdown } from "./post-status-dropdown";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
@@ -41,11 +35,7 @@ export function PostList(props: Props) {
 
             <div className="flex items-center gap-2">
               {post.tags.map(({ tag }) => (
-                <Badge
-                  key={tag.id}
-                  variant={"secondary"}
-                  className="text-nowrap"
-                >
+                <Badge key={tag.id} variant={"secondary"} className="text-nowrap">
                   {tag.name}
                 </Badge>
               ))}

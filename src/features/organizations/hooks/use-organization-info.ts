@@ -10,9 +10,7 @@ export function useOrganizationInfo(organizationId: string) {
   return useQuery({
     queryKey: ["organization", organizationId],
     queryFn: async () => {
-      const res = await apiClient.get<OrganizationInfoResponse>(
-        `organizations/${organizationId}`
-      );
+      const res = await apiClient.get<OrganizationInfoResponse>(`organizations/${organizationId}`);
       return res.data.data;
     },
   });

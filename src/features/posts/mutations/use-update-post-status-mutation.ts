@@ -36,27 +36,21 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
 
   return useMutation({
     mutationFn: async (data: MutationFnProps) => {
-      const res = await apiClient.patch<MutationResponse>(
-        `posts/${postId}`,
-        data
-      );
+      const res = await apiClient.patch<MutationResponse>(`posts/${postId}`, data);
       return res.data.data;
     },
     async onSuccess(data) {
-      queryClient.setQueryData(
-        ["organization-posts", orgId],
-        (old: { id: string; status: { name: string } }[]) => {
-          return old.map((post) => {
-            if (post.id === data.post.id) {
-              return {
-                ...post,
-                status: data.post.status,
-              };
-            }
-            return post;
-          });
-        }
-      );
+      queryClient.setQueryData(["organization-posts", orgId], (old: { id: string; status: { name: string } }[]) => {
+        return old.map((post) => {
+          if (post.id === data.post.id) {
+            return {
+              ...post,
+              status: data.post.status,
+            };
+          }
+          return post;
+        });
+      });
     },
     onError() {
       toast({
