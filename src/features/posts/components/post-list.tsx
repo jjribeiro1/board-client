@@ -25,7 +25,7 @@ export function PostList(props: Props) {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>{post.title}</CardTitle>
             <CardDescription>
-              <PostStatusDropdown post={post} />
+              <PostStatusDropdown post={post} orgId={props.orgId} />
             </CardDescription>
           </CardHeader>
           <CardFooter className="justify-between">

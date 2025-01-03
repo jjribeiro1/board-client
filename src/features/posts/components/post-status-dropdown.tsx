@@ -18,6 +18,7 @@ const statusColors: { [key in number]: string } = {
 };
 
 type Props = {
+  orgId: string;
   post: {
     id: string;
     status: {
@@ -30,7 +31,7 @@ type Props = {
 
 export function PostStatusDropdown(props: Props) {
   const { data } = useSystemDefaultStatus();
-  const { mutate } = useUpdatePostStatusMutation(props.post.id);
+  const { mutate } = useUpdatePostStatusMutation(props.post.id, props.orgId);
 
   function filterStatus(status: {
     id: string;
