@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { Post } from "@/types/post";
 
 type MutationFnProps = {
   statusId: string;
@@ -8,25 +9,7 @@ type MutationFnProps = {
 
 type MutationResponse = {
   data: {
-    post: {
-      id: string;
-      title: string;
-      description: string;
-      isPrivate: false;
-      isPinned: false;
-      isLocked: false;
-      createdAt: string;
-      updatedAt: string;
-      deletedAt: string | null;
-      boardId: string;
-      authorId: string;
-      statusId: string;
-      status: {
-        id: string;
-        name: string;
-        order: number;
-      };
-    };
+    post: Post;
   };
 };
 
@@ -40,7 +23,7 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
       return res.data.data;
     },
     async onSuccess(data) {
-      queryClient.setQueryData(["organization-posts", orgId], (old: { id: string; status: { name: string } }[]) => {
+      queryClient.setQueryData(["organization-posts", orgId], (old: Post[]) => {
         return old.map((post) => {
           if (post.id === data.post.id) {
             return {
