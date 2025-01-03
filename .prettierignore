@@ -22,3 +22,7 @@ postcss.config.js
 .eslintignore
 public/*
 static/*
+.yaml
+components.json
+pnpm-lock.yaml
+next.config.ts
