@@ -1,6 +1,7 @@
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 import { StatusGroup } from "./status-group";
 import { SidebarHeader } from "./header";
+import { BoardGroup } from "./board-group";
 import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 
 export async function AppSidebar() {
@@ -11,6 +12,7 @@ export async function AppSidebar() {
       <SidebarHeader organizationId={orgId!} />
       <SidebarContent>
         <StatusGroup />
+        <BoardGroup organizationId={orgId!} />
       </SidebarContent>
     </Sidebar>
   );
