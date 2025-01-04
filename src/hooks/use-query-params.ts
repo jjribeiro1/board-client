@@ -32,10 +32,25 @@ export function useQueryParams() {
     router.push(pathname);
   }, [router, pathname]);
 
+  const createQueryString = () => {
+    let queryString = "";
+    const params = new URLSearchParams(searchParams.toString());
+    params.entries().forEach(([k, v], i) => {
+      if (i === 0) {
+        queryString += `?${k}=${v}`;
+      } else {
+        queryString += `&${k}=${v}`;
+      }
+    });
+
+    return queryString;
+  };
+
   return {
     getQueryParam,
     setQueryParam,
     hasQueryParam,
     clearAllQueryParams,
+    createQueryString,
   };
 }
