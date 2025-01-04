@@ -9,6 +9,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 const icons: { [key: number]: React.ReactNode } = {
   1: <Circle />,
@@ -21,6 +22,7 @@ const icons: { [key: number]: React.ReactNode } = {
 
 export function StatusGroup() {
   const { data } = useSystemDefaultStatus();
+  const { setQueryParam } = useQueryParams();
 
   return (
     <SidebarGroup>
@@ -29,7 +31,7 @@ export function StatusGroup() {
         <SidebarMenu>
           {data?.map((status) => (
             <SidebarMenuItem key={status.id}>
-              <SidebarMenuButton className="flex items-center">
+              <SidebarMenuButton onClick={() => setQueryParam("status", status.id)} className="flex items-center">
                 {icons[status.order!]}
                 {status.name}
               </SidebarMenuButton>

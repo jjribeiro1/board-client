@@ -4,13 +4,18 @@ import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/comp
 import { Badge } from "@/components/ui/badge";
 import { PostStatusDropdown } from "./post-status-dropdown";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 type Props = {
   orgId: string;
 };
 
 export function PostList(props: Props) {
-  const { data } = useOrganizationPosts(props.orgId);
+  const { getQueryParam } = useQueryParams();
+  const { data } = useOrganizationPosts({
+    orgId: props.orgId,
+    filters: { status: getQueryParam("status") as string },
+  });
 
   return (
     <section className="flex flex-col gap-4">

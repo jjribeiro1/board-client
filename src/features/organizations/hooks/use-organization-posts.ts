@@ -20,11 +20,19 @@ type OrganizationPostsResponse = {
   data: Array<Data>;
 };
 
-export function useOrganizationPosts(orgId: string) {
+type Props = {
+  orgId: string;
+  filters: {
+    status: string;
+  };
+};
+
+export function useOrganizationPosts(props: Props) {
+  const queryString = props.filters.status ? `?status=${props.filters.status}` : "";
   return useQuery({
-    queryKey: ["organization-posts", orgId],
+    queryKey: ["organization-posts", props.orgId, props.filters.status],
     queryFn: async () => {
-      const res = await apiClient.get<OrganizationPostsResponse>(`/organizations/${orgId}/posts`);
+      const res = await apiClient.get<OrganizationPostsResponse>(`/organizations/${props.orgId}/posts${queryString}`);
       return res.data.data;
     },
   });
