@@ -24,7 +24,7 @@ export function PostList(props: Props) {
     <section className="flex flex-col gap-4">
       <div className="flex items-center gap-1">
         <h1 className="text-xl font-semibold">Posts</h1>
-        <span className="text-xl font-bold">{`(${data?.length})`}</span>
+        <span className="text-xl font-bold">{`(${data?.length ?? 0})`}</span>
       </div>
       {data?.map((post) => (
         <Card key={post.id}>
