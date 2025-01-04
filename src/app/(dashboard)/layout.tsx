@@ -5,7 +5,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="w-full px-4 py-2">{children}</main>
+      <main className="w-full px-8 py-6">{children}</main>
     </SidebarProvider>
   );
 }

@@ -9,11 +9,13 @@ export async function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader organizationId={orgId!} />
-      <SidebarContent>
-        <StatusGroup />
-        <BoardGroup organizationId={orgId!} />
-      </SidebarContent>
+      <div className="py-6">
+        <SidebarHeader organizationId={orgId!} />
+        <SidebarContent>
+          <StatusGroup />
+          <BoardGroup organizationId={orgId!} />
+        </SidebarContent>
+      </div>
     </Sidebar>
   );
 }
