@@ -19,31 +19,27 @@ export function useQueryParams() {
       params.set(name, value);
 
       router.push(`${pathname}?${params.toString()}`);
-      return params.toString();
     },
     [router, pathname, searchParams],
   );
 
-  const hasQueryParam = useCallback(() => {
-    return searchParams.size > 0;
-  }, [searchParams]);
+  const hasQueryParam = useCallback(
+    (name?: string) => {
+      if (name) {
+        return searchParams.has(name);
+      }
+      return searchParams.size > 0;
+    },
+    [searchParams],
+  );
 
   const clearAllQueryParams = useCallback(() => {
     router.push(pathname);
   }, [router, pathname]);
 
   const createQueryString = () => {
-    let queryString = "";
     const params = new URLSearchParams(searchParams.toString());
-    params.entries().forEach(([k, v], i) => {
-      if (i === 0) {
-        queryString += `?${k}=${v}`;
-      } else {
-        queryString += `&${k}=${v}`;
-      }
-    });
-
-    return queryString;
+    return params.toString() ? `?${params.toString()}` : "";
   };
 
   return {
