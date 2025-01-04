@@ -11,7 +11,7 @@ export function ResetFilters() {
       <SidebarMenuItem>
         <SidebarMenuButton onClick={clearAllQueryParams} className="">
           <Undo2 />
-          Reset Filters
+          Limpar filtros
         </SidebarMenuButton>
       </SidebarMenuItem>
     )
