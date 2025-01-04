@@ -2,22 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { Status } from "@/types/status";
 import { Board } from "@/types/board";
+import { Post } from "@/types/post";
+
+interface Data extends Post {
+  board: Board;
+  status: Status;
+  tags: Array<{
+    tag: {
+      id: string;
+      name: string;
+      color: string;
+    };
+  }>;
+}
 
 type OrganizationPostsResponse = {
-  data: Array<{
-    id: string;
-    title: string;
-    createdAt: string;
-    board: Board;
-    status: Status;
-    tags: Array<{
-      tag: {
-        id: string;
-        name: string;
-        color: string;
-      };
-    }>;
-  }>;
+  data: Array<Data>;
 };
 
 export function useOrganizationPosts(orgId: string) {

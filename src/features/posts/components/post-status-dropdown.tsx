@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
 import { useUpdatePostStatusMutation } from "@/features/posts/mutations/use-update-post-status-mutation";
+import { Post } from "@/types/post";
 
 const statusColors: { [key in number]: string } = {
   1: "bg-primary-foreground text-white hover:bg-primary-foreground/85",
@@ -19,14 +20,7 @@ const statusColors: { [key in number]: string } = {
 
 type Props = {
   orgId: string;
-  post: {
-    id: string;
-    status: {
-      id: string;
-      name: string;
-      order: number;
-    };
-  };
+  post: Post;
 };
 
 export function PostStatusDropdown(props: Props) {
@@ -48,7 +42,7 @@ export function PostStatusDropdown(props: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size={"sm"} className={`${statusColors[props.post.status.order]} py-1 h-max`}>
+        <Button size={"sm"} className={`${statusColors[props.post.status.order!]} py-1 h-max`}>
           {props.post.status.name}
         </Button>
       </DropdownMenuTrigger>
