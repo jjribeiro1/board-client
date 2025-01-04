@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 type Props = {
   organizationId: string;
@@ -22,6 +23,7 @@ type Props = {
 export function BoardGroup(props: Props) {
   const [openCollapsible, setOpenCollapsible] = useState(false);
   const { data } = useOrganizationBoards(props.organizationId);
+  const { setQueryParam } = useQueryParams();
 
   return (
     <SidebarGroup>
@@ -40,7 +42,9 @@ export function BoardGroup(props: Props) {
                 <SidebarMenuSub>
                   {data?.map((board) => (
                     <SidebarMenuSubItem key={board.id}>
-                      <SidebarMenuButton>{board.title}</SidebarMenuButton>
+                      <SidebarMenuButton onClick={() => setQueryParam("board", board.id)}>
+                        {board.title}
+                      </SidebarMenuButton>
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>

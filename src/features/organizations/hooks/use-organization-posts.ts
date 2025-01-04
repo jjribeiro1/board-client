@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
+import { useQueryParams } from "@/hooks/use-query-params";
 import { Status } from "@/types/status";
 import { Board } from "@/types/board";
 import { Post } from "@/types/post";
@@ -24,13 +25,16 @@ type Props = {
   orgId: string;
   filters: {
     status: string;
+    board: string;
   };
 };
 
 export function useOrganizationPosts(props: Props) {
-  const queryString = props.filters.status ? `?status=${props.filters.status}` : "";
+  const { createQueryString } = useQueryParams();
+  const queryString = createQueryString();
+
   return useQuery({
-    queryKey: ["organization-posts", props.orgId, props.filters.status],
+    queryKey: ["organization-posts", props.orgId, props.filters],
     queryFn: async () => {
       const res = await apiClient.get<OrganizationPostsResponse>(`/organizations/${props.orgId}/posts${queryString}`);
       return res.data.data;

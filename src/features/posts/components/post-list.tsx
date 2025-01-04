@@ -14,7 +14,10 @@ export function PostList(props: Props) {
   const { getQueryParam } = useQueryParams();
   const { data } = useOrganizationPosts({
     orgId: props.orgId,
-    filters: { status: getQueryParam("status") as string },
+    filters: {
+      status: getQueryParam("status") as string,
+      board: getQueryParam("board") as string,
+    },
   });
 
   return (
