@@ -24,8 +24,18 @@ export function useQueryParams() {
     [router, pathname, searchParams],
   );
 
+  const hasQueryParam = useCallback(() => {
+    return searchParams.size > 0;
+  }, [searchParams]);
+
+  const clearAllQueryParams = useCallback(() => {
+    router.push(pathname);
+  }, [router, pathname]);
+
   return {
     getQueryParam,
     setQueryParam,
+    hasQueryParam,
+    clearAllQueryParams,
   };
 }

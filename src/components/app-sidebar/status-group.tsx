@@ -8,6 +8,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { ResetFilters } from "./reset-filters";
 import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
 import { useQueryParams } from "@/hooks/use-query-params";
 
@@ -37,6 +38,7 @@ export function StatusGroup() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          <ResetFilters />
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
