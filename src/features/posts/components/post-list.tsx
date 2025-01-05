@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { PostStatusDropdown } from "./post-status-dropdown";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
 import { useQueryParams } from "@/hooks/use-query-params";
+import { CreatePost } from "./create-post";
 
 type Props = {
   orgId: string;
@@ -21,10 +22,14 @@ export function PostList(props: Props) {
   });
 
   return (
-    <section className="flex flex-col gap-4">
-      <div className="flex items-center gap-1">
-        <h1 className="text-xl font-semibold">Posts</h1>
-        <span className="text-xl font-bold">{`(${data?.length ?? 0})`}</span>
+    <section className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-1">
+          <h1 className="text-xl font-semibold">Posts</h1>
+          <span className="text-xl font-bold">{`(${data?.length ?? 0})`}</span>
+        </div>
+
+        <CreatePost />
       </div>
       {data?.map((post) => (
         <Card key={post.id}>
