@@ -29,7 +29,7 @@ export function PostList(props: Props) {
           <span className="text-xl font-bold">{`(${data?.length ?? 0})`}</span>
         </div>
 
-        <CreatePost />
+        <CreatePost organizationId={props.orgId} />
       </div>
       {data?.map((post) => (
         <Card key={post.id}>
