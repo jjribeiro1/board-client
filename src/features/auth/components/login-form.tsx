@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -63,10 +64,17 @@ export function LoginForm() {
               )}
             />
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-y-6">
             <Button className="w-full" type="submit">
               Entrar
             </Button>
+
+            <div className="flex items-center gap-1 text-center">
+              <span>Não tem uma conta?</span>
+              <Link href={"/register"} className="text-secondary-foreground font-medium hover:underline">
+                Registre-se
+              </Link>
+            </div>
           </CardFooter>
         </Card>
       </form>
