@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CreateUserInput, createUserSchema } from "../schemas/create-user-schema";
@@ -94,10 +95,17 @@ export function RegisterForm() {
               )}
             />
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-y-6">
             <Button className="w-full" type="submit">
               Registrar
             </Button>
+
+            <div className="flex items-center gap-1 text-center">
+              <span>Já tem uma conta?</span>
+              <Link href={"/login"} className="text-secondary-foreground font-medium hover:underline">
+                Faça seu login
+              </Link>
+            </div>
           </CardFooter>
         </Card>
       </form>
