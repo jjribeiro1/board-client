@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { AxiosError } from "axios";
 
 type MutationFnProps = {
   name: string;
@@ -23,10 +24,10 @@ export function useCreateUserMutation() {
       });
       router.push("/login");
     },
-    onError() {
+    onError(err: AxiosError<{ message: string }>) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao criar conta",
+        description: err.response?.data ? err.response.data.message : "Erro ao criar conta",
       });
     },
   });
