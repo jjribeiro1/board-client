@@ -17,6 +17,7 @@ import { useCreatePostMutation } from "../mutations/use-create-post-mutation";
 
 type Props = {
   organizationId: string;
+  title?: string;
 };
 
 export function CreatePost(props: Props) {
@@ -54,7 +55,7 @@ export function CreatePost(props: Props) {
       <DialogTrigger asChild>
         <Button variant={"secondary"} size={"sm"}>
           <Plus />
-          Novo Post
+          {props.title || "Novo Post"}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-screen-md">
