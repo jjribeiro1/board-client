@@ -1,16 +1,18 @@
-import { DialogContent, DialogHeader, DialogFooter, DialogTitle } from "@/components/ui/dialog";
 import { Modal } from "@/components/ui/modal";
+import { PostDetails } from "@/features/posts/components/post-details";
 
-export default function PostDetailsModal() {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function PostDetailsModal(props: Props) {
+  const postId = (await props.params).id;
+
   return (
     <Modal>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Title</DialogTitle>
-        </DialogHeader>
-        <div>Content</div>
-        <DialogFooter>Footer</DialogFooter>
-      </DialogContent>
+      <PostDetails postId={postId} />
     </Modal>
   );
 }
