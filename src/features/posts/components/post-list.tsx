@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { Tag, Calendar } from "lucide-react";
 import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export function PostList(props: Props) {
+  const router = useRouter();
   const { getQueryParam } = useQueryParams();
   const { data, isPending, error } = useOrganizationPosts({
     orgId: props.orgId,
@@ -45,7 +47,9 @@ export function PostList(props: Props) {
         data.map((post) => (
           <Card key={post.id}>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>{post.title}</CardTitle>
+              <CardTitle className="cursor-pointer" onClick={() => router.push(`/dashboard/posts/${post.id}`)}>
+                {post.title}
+              </CardTitle>
               <CardDescription>
                 <PostStatusDropdown post={post} orgId={props.orgId} />
               </CardDescription>
