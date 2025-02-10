@@ -1,5 +1,4 @@
-"use client"
-import { useState } from "react";
+"use client";
 import { useRouter } from "next/navigation";
 import { Dialog } from "./dialog";
 
@@ -7,14 +6,13 @@ type Props = {
   children: React.ReactNode;
 };
 export function Modal(props: Props) {
-  const [open, setOpen] = useState(true);
   const router = useRouter();
   return (
     <Dialog
-      open={open}
-      onOpenChange={(open) => {
+      open={true}
+      defaultOpen={true}
+      onOpenChange={() => {
         router.back();
-        setOpen(open);
       }}
       modal={true}
     >
