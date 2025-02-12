@@ -25,7 +25,11 @@ export function CreateComment(props: Props) {
   const commentLengthLimit = 1000;
 
   function onSubmit(data: CreateCommentInput) {
-    mutate(data);
+    mutate(data, {
+      onSuccess() {
+        form.reset();
+      },
+    });
   }
 
   return (
