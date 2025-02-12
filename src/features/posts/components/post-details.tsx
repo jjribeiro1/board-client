@@ -1,6 +1,7 @@
 "use client";
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { CreateComment } from "@/features/comments/components/create-comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
 
@@ -26,6 +27,7 @@ export function PostDetails(props: Props) {
         <DialogTitle>{post.title}</DialogTitle>
         <DialogDescription>{post.description}</DialogDescription>
       </DialogHeader>
+      <CreateComment postId={post.id} />
       <div className="flex flex-col gap-y-8">
         <p className="font-medium leading-6 underline underline-offset-8 decoration-1 decoration-gray-200">
           {`Comentários (${comments.length})`}
