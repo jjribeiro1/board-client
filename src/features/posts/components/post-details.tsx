@@ -2,9 +2,9 @@
 import { useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { CreateComment } from "@/features/comments/components/create-comment";
+import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
 
@@ -47,15 +47,7 @@ export function PostDetails(props: Props) {
         </p>
         <div className="flex flex-col gap-y-10">
           {comments.map((comment) => (
-            <div key={comment.id} className="flex flex-col gap-y-2 border-b pb-4">
-              <div className="flex items-center gap-x-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback>{comment.authorName.at(0)}</AvatarFallback>
-                </Avatar>
-                <span>{comment.authorName}</span>
-              </div>
-              <p className="pl-2 text-sm text-accent-foreground">{comment.content}</p>
-            </div>
+            <Comment key={comment.id} comment={comment} />
           ))}
         </div>
       </div>
