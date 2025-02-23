@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pencil } from "lucide-react";
+import { Pencil, CornerUpLeft } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { UpdateComment } from "./update-comment";
@@ -17,6 +17,10 @@ export function Comment(props: Props) {
     setOpenUpdateComment(false);
   }
 
+  function cancelUpdateComment() {
+    setOpenUpdateComment(false);
+  }
+
   return (
     <div className="flex flex-col gap-y-2 border-b pb-4">
       <div className="flex w-full justify-between">
@@ -27,12 +31,18 @@ export function Comment(props: Props) {
           <span>{props.comment.authorName}</span>
         </div>
 
-        <div className="flex items-center gap-x-2">
-          <Button onClick={() => setOpenUpdateComment(true)} className="h-6 w-6" variant={"ghost"} size={"icon"}>
-            <Pencil className="w-3.5 h-3.5" />
+        {openUpdateComment ? (
+          <Button onClick={cancelUpdateComment} className="h-6 w-6" variant={"ghost"} size={"icon"}>
+            <CornerUpLeft className="w-3.5 h-3.5" />
           </Button>
-          <DeleteComment commentId={props.comment.id} />
-        </div>
+        ) : (
+          <div className="flex items-center gap-x-2">
+            <Button onClick={() => setOpenUpdateComment(true)} className="h-6 w-6" variant={"ghost"} size={"icon"}>
+              <Pencil className="w-3.5 h-3.5" />
+            </Button>
+            <DeleteComment commentId={props.comment.id} />
+          </div>
+        )}
       </div>
       {openUpdateComment ? (
         <UpdateComment comment={props.comment} onCommentUpdate={onCommentUpdate} />
