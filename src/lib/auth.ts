@@ -14,7 +14,6 @@ export async function verifyAccessToken() {
     const { payload } = await jwtVerify(accessToken, publicKey, {
       algorithms: [alg],
     });
-
     return payload;
   } catch (error) {
     console.error(error);
@@ -29,19 +28,28 @@ export async function refreshToken() {
     const res = await fetch(`${process.env.API_BASE_URL}/auth/refresh`, {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Cookie: `refresh-token=${refreshToken}`,
       },
       credentials: "include",
     });
     const data = await res.json();
-    const newToken = data.accessToken;
-
-    cookieStore.set("access-token", newToken, {
+    cookieStore.set("access-token", data.accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production" ? true : false,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 15, // 15 minutes in seconds
+      maxAge: 60 * 60,
+      path: "/",
     });
+
+    cookieStore.set("refresh-token", data.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+    return;
   } catch (error) {
     console.error(error);
   }
