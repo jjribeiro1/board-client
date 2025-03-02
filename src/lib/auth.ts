@@ -1,5 +1,10 @@
 import { cookies } from "next/headers";
-import { jwtVerify, importSPKI } from "jose";
+import { jwtVerify, importSPKI, type JWTPayload } from "jose";
+import { Role } from "@/types/user";
+
+interface Payload extends JWTPayload {
+  organizations: Array<{ organizationId: string; role: Role }>;
+}
 
 export async function verifyAccessToken() {
   try {
@@ -14,7 +19,7 @@ export async function verifyAccessToken() {
     const { payload } = await jwtVerify(accessToken, publicKey, {
       algorithms: [alg],
     });
-    return payload;
+    return payload as Payload;
   } catch (error) {
     console.error(error);
     return null;
