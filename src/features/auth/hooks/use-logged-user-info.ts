@@ -1,11 +1,12 @@
 import { apiClient } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+import { Role } from "@/types/user";
 
 type LoggedUserInfo = {
   id: string;
   name: string;
   email: string;
-  organizationsIds: string[];
+  organizations: Array<{ organizationId: string; role: Role }>;
   createdAt: Date;
   updatedAt: Date;
 };
