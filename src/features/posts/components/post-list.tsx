@@ -47,7 +47,7 @@ export function PostList(props: Props) {
         data.map((post) => (
           <Card key={post.id}>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="cursor-pointer" onClick={() => router.push(`/dashboard/posts/${post.id}`)}>
+              <CardTitle className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
                 {post.title}
               </CardTitle>
               <CardDescription>
