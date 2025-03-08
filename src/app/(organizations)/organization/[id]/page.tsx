@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
+import { Board } from "@/features/board/components/board/board";
 
 export default function PublicOrganizationPage() {
   const params = useParams<{ id: string }>();
@@ -26,8 +27,8 @@ export default function PublicOrganizationPage() {
           ))}
         </TabsList>
         {boards.map((board) => (
-          <TabsContent key={board.id} value={board.id}>
-            {board.title}
+          <TabsContent key={board.id} value={board.id} className="flex justify-center">
+            <Board board={board} />
           </TabsContent>
         ))}
       </Tabs>
