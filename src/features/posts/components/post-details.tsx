@@ -7,6 +7,7 @@ import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   postId: string;
@@ -41,6 +42,7 @@ export function PostDetails(props: Props) {
         <DialogDescription>{post.description}</DialogDescription>
       </DialogHeader>
       <CreateComment postId={post.id} />
+      <Separator className="my-4" />
       <div className="flex flex-col gap-y-8">
         <p className="font-medium leading-6 underline underline-offset-8 decoration-1 decoration-gray-200">
           {`Comentários (${comments.length})`}
