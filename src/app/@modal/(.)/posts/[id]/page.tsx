@@ -1,18 +1,19 @@
 import { Modal } from "@/components/ui/modal";
+import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 import { PostDetails } from "@/features/posts/components/post-details";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
 export default async function PostDetailsModal(props: Props) {
-  const postId = (await props.params).id;
+  const params = await props.params;
+  const postId = params.id;
+  const orgId = await getOrganizationId();
 
   return (
     <Modal>
-      <PostDetails postId={postId} />
+      <PostDetails postId={postId} orgId={orgId!} />
     </Modal>
   );
 }
