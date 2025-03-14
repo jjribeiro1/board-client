@@ -13,5 +13,6 @@ export function usePostComments(postId: string) {
       const res = await apiClient.get<PostCommentsResponse>(`/posts/${postId}/comments`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

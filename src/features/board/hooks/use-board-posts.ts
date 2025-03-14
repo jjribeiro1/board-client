@@ -30,5 +30,6 @@ export function useBoardPosts(boardId: string) {
       const res = await apiClient.get<BoardPostsResponse>(`/boards/${boardId}/posts`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

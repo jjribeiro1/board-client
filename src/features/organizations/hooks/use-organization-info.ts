@@ -13,5 +13,6 @@ export function useOrganizationInfo(organizationId: string) {
       const res = await apiClient.get<OrganizationInfoResponse>(`organizations/${organizationId}`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

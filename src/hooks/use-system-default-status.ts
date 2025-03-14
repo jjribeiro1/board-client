@@ -13,5 +13,6 @@ export function useSystemDefaultStatus() {
       const res = await apiClient.get<SystemDefaultStatusResponse>("/status?fromOrg=0");
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

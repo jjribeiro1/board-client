@@ -13,5 +13,6 @@ export function usePostInfo(postId: string) {
       const res = await apiClient.get<PostInfoResponse>(`posts/${postId}`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

@@ -19,5 +19,6 @@ export function useLoggedUserInfo() {
       const data = res.data;
       return data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }

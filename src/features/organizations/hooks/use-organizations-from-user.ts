@@ -13,6 +13,7 @@ export function useOrganizationsFromUser(userId: string | undefined) {
       const res = await apiClient.get<OrganizationsFromUserResponse>(`/users/${userId}/organizations`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
     enabled: !!userId,
   });
 }

@@ -39,6 +39,7 @@ export function useOrganizationPosts(props: Props) {
       const res = await apiClient.get<OrganizationPostsResponse>(`/organizations/${props.orgId}/posts${queryString}`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
     placeholderData: (prev) => prev
   });
 }

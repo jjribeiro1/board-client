@@ -13,5 +13,6 @@ export function useOrganizationBoards(organizationId: string) {
       const res = await apiClient.get<OrganizationBoardsResponse>(`/organizations/${organizationId}/boards`);
       return res.data.data;
     },
+    staleTime: 1000 * 60 * 5,
   });
 }
