@@ -9,7 +9,7 @@ export function ResetFilters() {
   return (
     hasQueryParam() && (
       <SidebarMenuItem>
-        <SidebarMenuButton onClick={clearAllQueryParams} className="">
+        <SidebarMenuButton onClick={clearAllQueryParams}>
           <Undo2 />
           Limpar filtros
         </SidebarMenuButton>
