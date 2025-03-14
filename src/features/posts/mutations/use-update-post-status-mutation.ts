@@ -40,12 +40,18 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
           return post;
         });
       });
+
+      queryClient.setQueryData(["post", postId], (old: Post) => {
+        return {
+          ...old,
+          status: data.post.status,
+        };
+      });
     },
-    onError(err) {
-      console.error(err);
+    onError() {
       toast({
         variant: "destructive",
-        description: `Erro inesperado ao mudar status do post ${err.message}`,
+        description: "Erro inesperado ao mudar status do post",
       });
     },
   });
