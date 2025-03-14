@@ -1,16 +1,18 @@
 "use client";
 import { useRef } from "react";
-import { ArrowUp } from "lucide-react";
-import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ArrowUp, Link, Pin, Trash } from "lucide-react";
+import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { PostStatusDropdown } from "./post-status-dropdown";
 import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
-import { Separator } from "@/components/ui/separator";
 
 type Props = {
   postId: string;
+  orgId: string;
 };
 
 export function PostDetails(props: Props) {
@@ -36,28 +38,62 @@ export function PostDetails(props: Props) {
   }
 
   return (
-    <DialogContent ref={dialogRef} className="max-h-[85dvh] max-w-5xl w-[1024px] overflow-y-scroll">
-      <DialogHeader>
-        <DialogTitle>{post.title}</DialogTitle>
-        <DialogDescription>{post.description}</DialogDescription>
-      </DialogHeader>
-      <CreateComment postId={post.id} />
-      <Separator className="my-4" />
-      <div className="flex flex-col gap-y-8">
-        <p className="font-medium leading-6 underline underline-offset-8 decoration-1 decoration-gray-200">
-          {`Comentários (${comments.length})`}
-        </p>
-        <div className="flex flex-col gap-y-10">
-          {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
+    <DialogContent
+      withCloseButton={false}
+      ref={dialogRef}
+      className="max-h-[90dvh] max-w-6xl w-[1152px] overflow-y-scroll flex p-0 gap-0"
+    >
+      <section className="w-[75%] h-full space-y-8 border-r p-6">
+        <div>
+          <DialogTitle>{post.title}</DialogTitle>
+          <DialogDescription>{post.description}</DialogDescription>
         </div>
-      </div>
-      <DialogFooter>
-        <Button size={"icon"} variant={"ghost"} onClick={backToTop}>
-          <ArrowUp />
-        </Button>
-      </DialogFooter>
+
+        <CreateComment postId={post.id} />
+
+        <Separator className="my-4" />
+
+        <div className="flex flex-col gap-y-8">
+          <p className="font-medium leading-6 underline underline-offset-8 decoration-1 decoration-gray-200">
+            {`Comentários (${comments.length})`}
+          </p>
+          <div className="flex flex-col gap-y-10">
+            {comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} />
+            ))}
+          </div>
+        </div>
+
+        <div className="justify-self-end">
+          <Button size={"icon"} variant={"ghost"} onClick={backToTop}>
+            <ArrowUp />
+          </Button>
+        </div>
+      </section>
+
+      <section className="w-[25%]">
+        <div className="flex items-center justify-between pt-4 px-4">
+          <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
+
+          <div className="flex items-center gap-x-1">
+            <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
+              <Pin className="h-3 w-3" />
+            </Button>
+            <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
+              <Link className="h-3 w-3" />
+            </Button>
+            <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
+              <Trash className="h-3 w-3" />
+            </Button>
+          </div>
+        </div>
+        <Separator className=" my-4 mb-6" />
+
+        <div className="flex items-center justify-between px-4">
+          <p>Status</p>
+          <PostStatusDropdown post={post} orgId={props.orgId} />
+        </div>
+      </section>
     </DialogContent>
   );
 }
