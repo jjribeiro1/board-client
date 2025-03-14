@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { useQueryParams } from "@/hooks/use-query-params";
 import { Post } from "@/types/post";
 
 type MutationFnProps = {
@@ -16,6 +17,11 @@ type MutationResponse = {
 export function useUpdatePostStatusMutation(postId: string, orgId: string) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { getQueryParam } = useQueryParams();
+  const filters = {
+    status: getQueryParam("status"),
+    board: getQueryParam("board"),
+  };
 
   return useMutation({
     mutationFn: async (data: MutationFnProps) => {
@@ -23,7 +29,7 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
       return res.data.data;
     },
     async onSuccess(data) {
-      queryClient.setQueryData(["organization-posts", orgId], (old: Post[]) => {
+      queryClient.setQueryData(["organization-posts", orgId, filters], (old: Post[]) => {
         return old.map((post) => {
           if (post.id === data.post.id) {
             return {
@@ -35,10 +41,11 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
         });
       });
     },
-    onError() {
+    onError(err) {
+      console.error(err);
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao mudar status do post",
+        description: `Erro inesperado ao mudar status do post ${err.message}`,
       });
     },
   });
