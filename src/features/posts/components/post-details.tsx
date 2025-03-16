@@ -4,11 +4,13 @@ import { ArrowUp, Link, Pin, Trash } from "lucide-react";
 import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { PostStatusDropdown } from "./post-status-dropdown";
 import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
+import dayjs from "@/lib/dayjs";
 
 type Props = {
   postId: string;
@@ -43,7 +45,7 @@ export function PostDetails(props: Props) {
       ref={dialogRef}
       className="max-h-[90dvh] max-w-6xl w-[1152px] overflow-y-scroll flex p-0 gap-0"
     >
-      <section className="w-[75%] h-full space-y-8 border-r p-6">
+      <section className="w-[70%] h-full space-y-8 border-r p-6">
         <div>
           <DialogTitle>{post.title}</DialogTitle>
           <DialogDescription>{post.description}</DialogDescription>
@@ -71,7 +73,7 @@ export function PostDetails(props: Props) {
         </div>
       </section>
 
-      <section className="w-[25%]">
+      <section className="w-[30%]">
         <div className="flex items-center justify-between pt-4 px-4">
           <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
 
@@ -89,9 +91,26 @@ export function PostDetails(props: Props) {
         </div>
         <Separator className=" my-4 mb-6" />
 
-        <div className="flex items-center justify-between px-4">
-          <p>Status</p>
-          <PostStatusDropdown post={post} orgId={props.orgId} />
+        <div className="flex flex-col gap-y-6 px-4">
+          <div className="flex items-center justify-between">
+            <p>Status</p>
+            <PostStatusDropdown post={post} orgId={props.orgId} />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <p>Criado por</p>
+            <div className="flex items-center gap-x-2">
+              <Avatar className="h-7 w-7">
+                <AvatarFallback>{post.author.name.at(0)}</AvatarFallback>
+              </Avatar>
+              <p className="text-sm text-muted-foreground">{post.author.name}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <p>Data</p>
+            <p className="text-sm text-muted-foreground">{`${dayjs(post.createdAt).fromNow()}`}</p>
+          </div>
         </div>
       </section>
     </DialogContent>

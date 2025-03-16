@@ -8,7 +8,10 @@ export type Post = {
   isPinned: boolean;
   isLocked: boolean;
   boardId: string;
-  authorId: string;
+  author: {
+    id: string;
+    name: string;
+  };
   statusId: string;
   tagsId: string[];
   status: Status;
