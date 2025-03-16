@@ -3,11 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-
-type Board = {
-  id: string;
-  title: string;
-};
+import { Board } from "@/types/board";
 
 type Props = {
   boards: Board[] | undefined;
