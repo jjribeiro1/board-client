@@ -11,6 +11,7 @@ import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
 import dayjs from "@/lib/dayjs";
+import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
 
 type Props = {
   postId: string;
@@ -20,6 +21,7 @@ type Props = {
 export function PostDetails(props: Props) {
   const { data: post, isPending: postIsPending, error: postError } = usePostInfo(props.postId);
   const { data: comments, isPending: commentsIsPending, error: commentsError } = usePostComments(props.postId);
+  const { mutate: deletePostMutation, isPending } = useDeletePostMutation(props.postId);
 
   const dialogRef = useRef<HTMLDivElement | null>(null);
   function backToTop() {
@@ -84,7 +86,13 @@ export function PostDetails(props: Props) {
             <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
               <Link className="h-3 w-3" />
             </Button>
-            <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
+            <Button
+              disabled={isPending}
+              onClick={() => deletePostMutation()}
+              size={"icon"}
+              variant={"ghost"}
+              className="h-7 w-7"
+            >
               <Trash className="h-3 w-3" />
             </Button>
           </div>
