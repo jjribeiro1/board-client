@@ -28,7 +28,7 @@ export function useUpdatePostStatusMutation(postId: string, orgId: string) {
       const res = await apiClient.patch<MutationResponse>(`posts/${postId}`, data);
       return res.data.data;
     },
-    async onSuccess(data) {
+    onSuccess(data) {
       queryClient.setQueryData(["organization-posts", orgId, filters], (old: Post[]) => {
         return old.map((post) => {
           if (post.id === data.post.id) {
