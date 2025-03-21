@@ -5,6 +5,7 @@ import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/d
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { PostStatusDropdown } from "./post-status-dropdown";
 import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
@@ -82,14 +83,23 @@ export function PostDetails(props: Props) {
           <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
 
           <div className="flex items-center gap-x-1">
-            <Button
-              onClick={() => updatePostMutation({ isPinned: post.isPinned ? false : true })}
-              size={"icon"}
-              variant={"ghost"}
-              className={`h-7 w-7 ${post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}
-            >
-              <Pin className="h-3 w-3" />
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={() => updatePostMutation({ isPinned: post.isPinned ? false : true })}
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`h-7 w-7 ${post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}
+                  >
+                    <Pin className="h-3 w-3" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {post.isPinned ? "Remover destaque do post" : "Fixar post no topo do seu feed"}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
               <Link className="h-3 w-3" />
             </Button>
