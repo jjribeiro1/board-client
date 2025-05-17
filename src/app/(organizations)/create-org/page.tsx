@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function CreateOrganizationPage() {
   return (
-    <main className="relative h-[100dvh] w-[100dvw]">
+    <main className="relative h-dvh w-dvw">
       <div className="flex w-full justify-end">
         <Link
           href={"/select-org"}

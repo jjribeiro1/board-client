@@ -57,7 +57,7 @@ export function CreatePost(props: Props) {
           {props.title || "Novo Post"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-screen-md">
+      <DialogContent className="max-w-(--breakpoint-md)">
         <DialogHeader>
           <DialogTitle>Novo Post</DialogTitle>
         </DialogHeader>
