@@ -35,11 +35,7 @@ export function StatusSelector(props: Props) {
             <CommandEmpty>Nenhum status encontrado</CommandEmpty>
             <CommandGroup>
               {props.statuses?.map((status) => (
-                <CommandItem
-                  value={status.name}
-                  key={status.id}
-                  onSelect={() => props.onChange(status.id)}
-                >
+                <CommandItem value={status.name} key={status.id} onSelect={() => props.onChange(status.id)}>
                   {status.name}
                   <Check className={cn("ml-auto", status.id === props.value ? "opacity-100" : "opacity-0")} />
                 </CommandItem>

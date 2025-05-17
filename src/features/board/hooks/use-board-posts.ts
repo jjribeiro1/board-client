@@ -9,7 +9,7 @@ type BoardPostsResponse = {
     isPrivate: boolean;
     isPinned: boolean;
     isLocked: boolean;
-    createdAt: string
+    createdAt: string;
     author: {
       id: string;
       name: string;

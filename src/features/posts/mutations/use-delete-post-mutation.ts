@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 
 export function useDeletePostMutation(postId: string) {
   const { toast } = useToast();
-  const router = useRouter()
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -15,7 +15,7 @@ export function useDeletePostMutation(postId: string) {
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["board-posts"] });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
-      router.back()
+      router.back();
     },
     onError() {
       toast({

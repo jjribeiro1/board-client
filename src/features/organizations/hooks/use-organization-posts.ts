@@ -40,6 +40,6 @@ export function useOrganizationPosts(props: Props) {
       return res.data.data;
     },
     staleTime: 1000 * 60 * 5,
-    placeholderData: (prev) => prev
+    placeholderData: (prev) => prev,
   });
 }

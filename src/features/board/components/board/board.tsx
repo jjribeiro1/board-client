@@ -10,7 +10,7 @@ type Props = {
 };
 
 export function Board(props: Props) {
-  const router = useRouter()
+  const router = useRouter();
   const { data: posts, isPending, error } = useBoardPosts(props.board.id);
 
   if (isPending) {
@@ -41,7 +41,7 @@ export function Board(props: Props) {
                 </Avatar>
                 <div className="flex items-center gap-x-2">
                   <p>{post.author.name}</p>
-                  <p className="text-muted-foreground">{`- ${dayjs(post.createdAt).fromNow()}`}</p> 
+                  <p className="text-muted-foreground">{`- ${dayjs(post.createdAt).fromNow()}`}</p>
                 </div>
               </div>
             </CardContent>

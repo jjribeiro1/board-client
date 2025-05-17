@@ -19,7 +19,11 @@ export function SidebarHeader(props: Props) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link href={`/organization/${data?.id}`} target="_blank" className={buttonVariants({ size: "icon", variant: "ghost" })}>
+              <Link
+                href={`/organization/${data?.id}`}
+                target="_blank"
+                className={buttonVariants({ size: "icon", variant: "ghost" })}
+              >
                 <CircleArrowOutUpRight className="w-3.5 h-3.5" />
               </Link>
             </TooltipTrigger>

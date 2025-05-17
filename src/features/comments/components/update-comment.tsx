@@ -11,7 +11,7 @@ import { useUpdateCommentMutation } from "../mutations/use-update-comment-mutati
 
 type Props = {
   comment: Comment;
-  onCommentUpdate: () => void
+  onCommentUpdate: () => void;
 };
 
 export function UpdateComment(props: Props) {
@@ -28,7 +28,7 @@ export function UpdateComment(props: Props) {
     mutate(data, {
       onSuccess() {
         form.reset();
-        props.onCommentUpdate()
+        props.onCommentUpdate();
       },
     });
   }

@@ -2,7 +2,7 @@ export type Comment = {
   id: string;
   content: string;
   authorId: string;
-  authorName: string
+  authorName: string;
   postId: string;
   createdAt: Date;
   updatedAt: Date;
