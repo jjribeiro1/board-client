@@ -21,7 +21,7 @@ export function OrganizationSelect() {
             key={organization.id}
             onClick={() => selectOrganizationAction(organization.id)}
             className="w-full"
-            variant={"outline-solid"}
+            variant={"outline"}
             size={"lg"}
           >
             {organization.name}
