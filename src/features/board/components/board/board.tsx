@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useBoardPosts } from "../../hooks/use-board-posts";
 import type { Board } from "@/types/board";
 import dayjs from "@/lib/dayjs";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
   board: Board;
@@ -22,17 +24,26 @@ export function Board(props: Props) {
   }
 
   return (
-    <section className="flex flex-col gap-y-6 p-6 w-[768px] bg-card text-card-foreground border">
-      <div className="flex flex-col gap-y-1">
-        <p className="text-2xl font-semibold leading-none tracking-tight">{props.board.title}</p>
-        <p className="text-sm text-muted-foreground">{props.board.description}</p>
+    <section className="flex flex-col gap-y-10 container p-6 border-x">
+      <div className="flex justify-between p-6 shadow-gray-700 shadow-md border transition-shadow">
+        <div className="flex flex-col gap-y-2">
+          <p className="text-2xl font-bold">{props.board.title}</p>
+          <p className="text-sm font-medium text-muted-foreground">{props.board.description}</p>
+        </div>
+
+        <Button>Novo post</Button>
       </div>
-      <div className="flex flex-col gap-y-8 p-6">
+
+      <div className="flex flex-col gap-y-8">
         {posts.map((post) => (
-          <Card key={post.id} className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
-            <CardHeader>
-              <CardTitle>{post.title}</CardTitle>
-              <CardDescription>{post.description}</CardDescription>
+          <Card key={post.id} className="cursor-pointer border w-full" onClick={() => router.push(`/posts/${post.id}`)}>
+            <CardHeader className="flex flex-row justify-between">
+              <div className="flex flex-col gap-y-2">
+                <CardTitle>{post.title}</CardTitle>
+                <CardDescription>{post.description}</CardDescription>
+              </div>
+
+              <Badge className="h-max" variant={"secondary"}>{post.status.name}</Badge>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-x-2">
