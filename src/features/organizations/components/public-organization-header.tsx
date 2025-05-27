@@ -10,7 +10,7 @@ export function PublicOrganizationHeader() {
   const { data: loggedUser } = useLoggedUserInfo();
 
   return (
-    <header className="flex justify-between items-center px-8 py-6 border">
+    <header className="flex items-center justify-between border px-8 py-6">
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">{organization?.name}</h1>
       </div>

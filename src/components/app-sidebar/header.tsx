@@ -15,7 +15,7 @@ export function SidebarHeader(props: Props) {
   return (
     <SidebarHeaderUI>
       <div className="flex items-center justify-between px-2">
-        <p className="text-xl font-semibold tracking-tight text-center">{data?.name}</p>
+        <p className="text-center text-xl font-semibold tracking-tight">{data?.name}</p>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -24,7 +24,7 @@ export function SidebarHeader(props: Props) {
                 target="_blank"
                 className={buttonVariants({ size: "icon", variant: "ghost" })}
               >
-                <CircleArrowOutUpRight className="w-3.5 h-3.5" />
+                <CircleArrowOutUpRight className="h-3.5 w-3.5" />
               </Link>
             </TooltipTrigger>
             <TooltipContent>Veja a página da sua organização</TooltipContent>

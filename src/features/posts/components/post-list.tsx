@@ -24,7 +24,7 @@ export function PostList(props: Props) {
   });
 
   if (isPending) {
-    return <div className="font-semibold leading-none tracking-tight">Carregando posts...</div>;
+    return <div className="leading-none font-semibold tracking-tight">Carregando posts...</div>;
   }
 
   if (error) {
@@ -55,12 +55,12 @@ export function PostList(props: Props) {
               </CardDescription>
             </CardHeader>
             <CardFooter className="justify-between">
-              <div className="flex items-center gap-6 w-full">
+              <div className="flex w-full items-center gap-6">
                 <div className="flex items-center gap-2">
-                  <Tag className="w-4 h-4" /> <span>{post.board.title}</span>
+                  <Tag className="h-4 w-4" /> <span>{post.board.title}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="h-4 w-4" />
                   <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
               </div>
@@ -76,10 +76,10 @@ export function PostList(props: Props) {
           </Card>
         ))
       ) : (
-        <div className="flex flex-col items-center justify-center gap-y-8 h-96">
+        <div className="flex h-96 flex-col items-center justify-center gap-y-8">
           <div>
             <p className="text-2xl font-semibold tracking-tight">Parece que você não tem nenhum post criado</p>
-            <p className="font-medium text-muted-foreground">
+            <p className="text-muted-foreground font-medium">
               Aqui você consegue gerenciar todos os Posts da sua organização
             </p>
           </div>

@@ -19,7 +19,7 @@ export default function PublicOrganizationPage() {
   return (
     <main>
       <Tabs defaultValue={boards[0].id}>
-        <TabsList className="bg-sidebar text-sidebar-foreground w-full gap-x-6 rounded-none py-8 border">
+        <TabsList className="bg-sidebar text-sidebar-foreground w-full gap-x-6 rounded-none border py-8">
           {boards.map((board) => (
             <TabsTrigger key={board.id} value={board.id} className="p-3">
               {board.title}

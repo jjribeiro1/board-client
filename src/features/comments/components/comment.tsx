@@ -33,12 +33,12 @@ export function Comment(props: Props) {
 
         {openUpdateComment ? (
           <Button onClick={cancelUpdateComment} className="h-6 w-6" variant={"ghost"} size={"icon"}>
-            <CornerUpLeft className="w-3.5 h-3.5" />
+            <CornerUpLeft className="h-3.5 w-3.5" />
           </Button>
         ) : (
           <div className="flex items-center gap-x-2">
             <Button onClick={() => setOpenUpdateComment(true)} className="h-6 w-6" variant={"ghost"} size={"icon"}>
-              <Pencil className="w-3.5 h-3.5" />
+              <Pencil className="h-3.5 w-3.5" />
             </Button>
             <DeleteComment commentId={props.comment.id} />
           </div>
@@ -47,7 +47,7 @@ export function Comment(props: Props) {
       {openUpdateComment ? (
         <UpdateComment comment={props.comment} onCommentUpdate={onCommentUpdate} />
       ) : (
-        <p className="pl-2 text-sm text-accent-foreground">{props.comment.content}</p>
+        <p className="text-accent-foreground pl-2 text-sm">{props.comment.content}</p>
       )}
     </div>
   );

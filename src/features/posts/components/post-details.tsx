@@ -48,9 +48,9 @@ export function PostDetails(props: Props) {
     <DialogContent
       withCloseButton={false}
       ref={dialogRef}
-      className="max-h-[90dvh] max-w-6xl w-[1152px] overflow-y-scroll flex p-0 gap-0"
+      className="flex max-h-[90dvh] w-[1152px] max-w-6xl gap-0 overflow-y-scroll p-0"
     >
-      <section className="w-[70%] h-full space-y-8 border-r p-6">
+      <section className="h-full w-[70%] space-y-8 border-r p-6">
         <div>
           <DialogTitle>{post.title}</DialogTitle>
           <DialogDescription>{post.description}</DialogDescription>
@@ -61,7 +61,7 @@ export function PostDetails(props: Props) {
         <Separator className="my-4" />
 
         <div className="flex flex-col gap-y-8">
-          <p className="font-medium leading-6 underline underline-offset-8 decoration-1 decoration-gray-200">
+          <p className="leading-6 font-medium underline decoration-gray-200 decoration-1 underline-offset-8">
             {`Comentários (${comments.length})`}
           </p>
           <div className="flex flex-col gap-y-10">
@@ -79,7 +79,7 @@ export function PostDetails(props: Props) {
       </section>
 
       <section className="w-[30%]">
-        <div className="flex items-center justify-between pt-4 px-4">
+        <div className="flex items-center justify-between px-4 pt-4">
           <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
 
           <div className="flex items-center gap-x-1">
@@ -114,7 +114,7 @@ export function PostDetails(props: Props) {
             </Button>
           </div>
         </div>
-        <Separator className=" my-4 mb-6" />
+        <Separator className="my-4 mb-6" />
 
         <div className="flex flex-col gap-y-6 px-4">
           <div className="flex items-center justify-between">
@@ -128,13 +128,13 @@ export function PostDetails(props: Props) {
               <Avatar className="h-7 w-7">
                 <AvatarFallback>{post.author.name.at(0)}</AvatarFallback>
               </Avatar>
-              <p className="text-sm text-muted-foreground">{post.author.name}</p>
+              <p className="text-muted-foreground text-sm">{post.author.name}</p>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
             <p>Data</p>
-            <p className="text-sm text-muted-foreground">{`${dayjs(post.createdAt).fromNow()}`}</p>
+            <p className="text-muted-foreground text-sm">{`${dayjs(post.createdAt).fromNow()}`}</p>
           </div>
         </div>
       </section>

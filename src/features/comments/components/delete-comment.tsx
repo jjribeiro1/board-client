@@ -15,7 +15,7 @@ export function DeleteComment(props: Props) {
 
   return (
     <Button onClick={onClick} className="h-6 w-6" variant={"ghost"} size={"icon"}>
-      <Trash className="w-3.5 h-3.5" />
+      <Trash className="h-3.5 w-3.5" />
     </Button>
   );
 }

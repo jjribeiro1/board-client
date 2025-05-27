@@ -24,11 +24,11 @@ export function Board(props: Props) {
   }
 
   return (
-    <section className="flex flex-col gap-y-10 container p-6 border-x">
-      <div className="flex justify-between p-6 shadow-gray-700 shadow-md border transition-shadow">
+    <section className="container flex flex-col gap-y-10 border-x p-6">
+      <div className="flex justify-between border p-6 shadow-md shadow-gray-700 transition-shadow">
         <div className="flex flex-col gap-y-2">
           <p className="text-2xl font-bold">{props.board.title}</p>
-          <p className="text-sm font-medium text-muted-foreground">{props.board.description}</p>
+          <p className="text-muted-foreground text-sm font-medium">{props.board.description}</p>
         </div>
 
         <Button>Novo post</Button>
@@ -36,14 +36,16 @@ export function Board(props: Props) {
 
       <div className="flex flex-col gap-y-8">
         {posts.map((post) => (
-          <Card key={post.id} className="cursor-pointer border w-full" onClick={() => router.push(`/posts/${post.id}`)}>
+          <Card key={post.id} className="w-full cursor-pointer border" onClick={() => router.push(`/posts/${post.id}`)}>
             <CardHeader className="flex flex-row justify-between">
               <div className="flex flex-col gap-y-2">
                 <CardTitle>{post.title}</CardTitle>
                 <CardDescription>{post.description}</CardDescription>
               </div>
 
-              <Badge className="h-max" variant={"secondary"}>{post.status.name}</Badge>
+              <Badge className="h-max" variant={"secondary"}>
+                {post.status.name}
+              </Badge>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-x-2">

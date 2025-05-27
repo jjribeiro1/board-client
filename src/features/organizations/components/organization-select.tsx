@@ -12,7 +12,7 @@ export function OrganizationSelect() {
   return (
     <div className="flex flex-col gap-4">
       {isPending ? (
-        <div className="flex justify-center h-52">
+        <div className="flex h-52 justify-center">
           <LoaderCircle />
         </div>
       ) : (

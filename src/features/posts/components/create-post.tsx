@@ -62,7 +62,7 @@ export function CreatePost(props: Props) {
           <DialogTitle>Novo Post</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form id="create-post" onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
+          <form id="create-post" onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-6">
             <FormField
               control={form.control}
               name="title"

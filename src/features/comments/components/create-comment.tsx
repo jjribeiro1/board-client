@@ -43,7 +43,7 @@ export function CreateComment(props: Props) {
               <FormControl>
                 <Textarea placeholder="Escreva seu comentário" className="resize-none" rows={7} {...field} />
               </FormControl>
-              <div className="flex justify-between w-full">
+              <div className="flex w-full justify-between">
                 <FormDescription
                   className={`${field.value.length > commentLengthLimit ? "text-red-500" : "text-inherit"}`}
                 >

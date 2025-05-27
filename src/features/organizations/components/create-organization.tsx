@@ -23,7 +23,7 @@ export function CreateOrganization() {
 
   return (
     <Form {...form}>
-      <form className="flex flex-col w-full gap-8" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="flex w-full flex-col gap-8" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="name"
