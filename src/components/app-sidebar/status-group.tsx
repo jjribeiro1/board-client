@@ -1,5 +1,5 @@
 "use client";
-import { Circle, CircleCheck, CircleX, Loader, CircleAlert, CircleDot } from "lucide-react";
+import { Circle } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -9,20 +9,20 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { ResetFilters } from "./reset-filters";
-import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
+import { useOrganizationStatus } from "@/hooks/use-organization-status";
 import { useQueryParams } from "@/hooks/use-query-params";
 
 const icons: { [key: number]: React.ReactNode } = {
   1: <Circle />,
-  2: <CircleAlert className="text-purple-500" />,
-  3: <CircleDot className="text-yellow-500" />,
-  4: <Loader className="text-blue-500" />,
-  5: <CircleCheck className="text-green-500" />,
-  6: <CircleX className="text-red-500" />,
+  2: <Circle className="text-purple-500" />,
+  3: <Circle className="text-yellow-500" />,
+  4: <Circle className="text-blue-500" />,
+  5: <Circle className="text-green-500" />,
+  6: <Circle className="text-red-500" />,
 };
 
 export function StatusGroup() {
-  const { data } = useSystemDefaultStatus();
+  const { data } = useOrganizationStatus();
   const { setQueryParam } = useQueryParams();
 
   return (
@@ -30,10 +30,10 @@ export function StatusGroup() {
       <SidebarGroupLabel>Status</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {data?.map((status) => (
+          {data?.map((status, idx) => (
             <SidebarMenuItem key={status.id}>
               <SidebarMenuButton onClick={() => setQueryParam("status", status.id)} className="flex items-center">
-                {icons[status.order!]}
+                {icons[idx + 1]}
                 {status.name}
               </SidebarMenuButton>
             </SidebarMenuItem>

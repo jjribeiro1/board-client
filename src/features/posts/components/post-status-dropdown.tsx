@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
+import { useOrganizationStatus } from "@/hooks/use-organization-status";
 import { useUpdatePostStatusMutation } from "@/features/posts/mutations/use-update-post-status-mutation";
 import { Post } from "@/types/post";
 
@@ -24,7 +24,7 @@ type Props = {
 };
 
 export function PostStatusDropdown(props: Props) {
-  const { data } = useSystemDefaultStatus();
+  const { data } = useOrganizationStatus();
   const { mutate } = useUpdatePostStatusMutation(props.post.id, props.orgId);
 
   function filterStatus(status: { id: string; name: string; order: number | null }) {

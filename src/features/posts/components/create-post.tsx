@@ -11,7 +11,7 @@ import { BoardSelector } from "@/components/ui/board-selector";
 import { StatusSelector } from "@/components/ui/status-selector";
 import { CreatePostInput, createPostSchema } from "../schemas/create-post-schema";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
-import { useSystemDefaultStatus } from "@/hooks/use-system-default-status";
+import { useOrganizationStatus } from "@/hooks/use-organization-status";
 import { useCreatePostMutation } from "../mutations/use-create-post-mutation";
 
 type Props = {
@@ -35,7 +35,7 @@ export function CreatePost(props: Props) {
   });
 
   const { data: boards } = useOrganizationBoards(props.organizationId);
-  const { data: statuses } = useSystemDefaultStatus();
+  const { data: statuses } = useOrganizationStatus();
   const { mutate, isPending } = useCreatePostMutation();
 
   function onSubmit(values: CreatePostInput) {

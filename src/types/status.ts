@@ -2,9 +2,7 @@ export type Status = {
   id: string;
   name: string;
   color: string;
-  isSystemDefault: boolean;
-  order: number | null;
-  organizationId: string | null;
+  organizationId: StringConstructor
   createdAt: Date;
   updatedAt: Date;
 };

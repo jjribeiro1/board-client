@@ -6,11 +6,11 @@ type SystemDefaultStatusResponse = {
   data: Array<Status>;
 };
 
-export function useSystemDefaultStatus() {
+export function useOrganizationStatus() {
   return useQuery({
-    queryKey: ["system-default-status"],
+    queryKey: ["organization-status"],
     queryFn: async () => {
-      const res = await apiClient.get<SystemDefaultStatusResponse>("/status?fromOrg=0");
+      const res = await apiClient.get<SystemDefaultStatusResponse>("/status");
       return res.data.data;
     },
     staleTime: 1000 * 60 * 5,
