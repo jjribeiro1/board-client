@@ -1,18 +1,17 @@
 "use client";
 import { useRef } from "react";
-import { ArrowUp, Link, Pin, Trash } from "lucide-react";
+import { ArrowUp, Link, Trash } from "lucide-react";
 import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { PostStatusDropdown } from "./post-status-dropdown";
+import { PinPost } from "./pin-post";
 import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
 import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
-import { useUpdatePostMutation } from "../mutations/use-update-post-mutation";
 import dayjs from "@/lib/dayjs";
 
 type Props = {
@@ -24,7 +23,6 @@ export function PostDetails(props: Props) {
   const { data: post, isPending: postIsPending, error: postError } = usePostInfo(props.postId);
   const { data: comments, isPending: commentsIsPending, error: commentsError } = usePostComments(props.postId);
   const { mutate: deletePostMutation, isPending } = useDeletePostMutation(props.postId);
-  const { mutate: updatePostMutation } = useUpdatePostMutation(props.postId);
 
   const dialogRef = useRef<HTMLDivElement | null>(null);
   function backToTop() {
@@ -83,23 +81,7 @@ export function PostDetails(props: Props) {
           <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
 
           <div className="flex items-center gap-x-1">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={() => updatePostMutation({ isPinned: post.isPinned ? false : true })}
-                    size={"icon"}
-                    variant={"ghost"}
-                    className={`h-7 w-7 ${post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}
-                  >
-                    <Pin className="h-3 w-3" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {post.isPinned ? "Remover destaque do post" : "Fixar post no topo do seu feed"}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PinPost post={post} />
             <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
               <Link className="h-3 w-3" />
             </Button>

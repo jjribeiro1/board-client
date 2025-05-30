@@ -4,9 +4,10 @@ import { Tag, Calendar } from "lucide-react";
 import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PostStatusDropdown } from "./post-status-dropdown";
+import { CreatePost } from "./create-post";
+import { PinPost } from "./pin-post";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { CreatePost } from "./create-post";
 
 type Props = {
   orgId: string;
@@ -47,12 +48,15 @@ export function PostList(props: Props) {
         data.map((post) => (
           <Card key={post.id}>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
-                {post.title}
-              </CardTitle>
-              <CardDescription>
-                <PostStatusDropdown post={post} orgId={props.orgId} />
-              </CardDescription>
+              <div className="flex items-baseline gap-x-6">
+                <CardTitle className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
+                  {post.title}
+                </CardTitle>
+                <CardDescription>
+                  <PostStatusDropdown post={post} orgId={props.orgId} />
+                </CardDescription>
+              </div>
+              <PinPost post={post} />
             </CardHeader>
             <CardFooter className="justify-between">
               <div className="flex w-full items-center gap-6">

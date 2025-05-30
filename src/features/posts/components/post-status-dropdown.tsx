@@ -25,7 +25,7 @@ export function PostStatusDropdown(props: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size={"sm"} className={`h-max py-1`}>
+        <Button size={"sm"} variant={"outline"} className={`h-max py-1`}>
           {props.post.status.name}
         </Button>
       </DropdownMenuTrigger>
