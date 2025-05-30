@@ -23,21 +23,27 @@ const icons: { [key: number]: React.ReactNode } = {
 
 export function StatusGroup() {
   const { data } = useOrganizationStatus();
-  const { setQueryParam } = useQueryParams();
+  const { setQueryParam, getQueryParam } = useQueryParams();
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Status</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {data?.map((status, idx) => (
-            <SidebarMenuItem key={status.id}>
-              <SidebarMenuButton onClick={() => setQueryParam("status", status.id)} className="flex items-center">
-                {icons[idx + 1]}
-                {status.name}
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          {data?.map((status, idx) => {
+            const isActive = getQueryParam("status") === status.id;
+            return (
+              <SidebarMenuItem key={status.id}>
+                <SidebarMenuButton
+                  onClick={() => setQueryParam("status", status.id)}
+                  className={`flex items-center ${isActive ? "bg-sidebar-accent" : ""}`}
+                >
+                  {icons[idx + 1]}
+                  {status.name}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
           <ResetFilters />
         </SidebarMenu>
       </SidebarGroupContent>
