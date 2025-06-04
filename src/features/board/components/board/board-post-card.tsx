@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { MessageCircleMore } from "lucide-react";
+import { MessageCircleMore, Pin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -19,15 +19,21 @@ export function BoardPostCard(props: Props) {
       className="w-full cursor-pointer border"
       onClick={() => router.push(`/posts/${props.post.id}`)}
     >
-      <CardHeader className="flex flex-row justify-between">
+      <CardHeader>
         <div className="flex flex-col gap-y-2">
-          <CardTitle>{props.post.title}</CardTitle>
+          <div className="flex items-center gap-x-3">
+            {props.post.isPinned && <Pin className="size-4 text-amber-300" />}
+
+            <CardTitle>{props.post.title}</CardTitle>
+            <Badge className="h-max" variant={"secondary"}>
+              {props.post.status.name}
+            </Badge>
+
+            {props.post.isPinned && <Badge className="h-max bg-amber-300 hover:bg-amber-300">Fixado</Badge>}
+          </div>
+
           <CardDescription>{props.post.description}</CardDescription>
         </div>
-
-        <Badge className="h-max" variant={"secondary"}>
-          {props.post.status.name}
-        </Badge>
       </CardHeader>
       <CardContent className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
