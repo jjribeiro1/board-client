@@ -1,13 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Tag, Calendar } from "lucide-react";
-import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { MessageCircleMore, Tag } from "lucide-react";
+import { Card, CardFooter, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CreatePost } from "@/features/posts/components/create-post";
 import { PostStatusDropdown } from "@/features/posts/components/post-status-dropdown";
 import { PinPost } from "@/features/posts/components/pin-post";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
 import { useQueryParams } from "@/hooks/use-query-params";
+import dayjs from "@/lib/dayjs";
 
 type Props = {
   orgId: string;
@@ -47,34 +48,39 @@ export function OrganizationPosts(props: Props) {
       {hasPosts ? (
         data.map((post) => (
           <Card key={post.id}>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div className="flex items-baseline gap-x-6">
-                <CardTitle className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
-                  {post.title}
-                </CardTitle>
-                <CardDescription>
+            <CardHeader className="flex flex-row justify-between">
+              <div className="flex flex-col gap-y-2">
+                <div className="flex items-baseline gap-x-4">
+                  <CardTitle className="cursor-pointer" onClick={() => router.push(`/posts/${post.id}`)}>
+                    {post.title}
+                  </CardTitle>
                   <PostStatusDropdown post={post} orgId={props.orgId} />
-                </CardDescription>
+                </div>
+
+                <CardDescription>{post.description}</CardDescription>
               </div>
               <PinPost post={post} />
             </CardHeader>
-            <CardFooter className="justify-between">
-              <div className="flex w-full items-center gap-6">
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4" /> <span>{post.board.title}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-                </div>
-              </div>
-
+            <CardContent>
               <div className="flex items-center gap-2">
                 {post.tags.map(({ tag }) => (
                   <Badge key={tag.id} variant={"secondary"} className="text-nowrap">
                     {tag.name}
                   </Badge>
                 ))}
+              </div>
+            </CardContent>
+            <CardFooter className="justify-between">
+              <div className="flex items-center gap-x-3">
+                <div className="flex items-center gap-2">
+                  <Tag className="h-4 w-4" /> <span>{post.board.title}</span>
+                </div>
+                <p className="text-muted-foreground">{`- ${dayjs(post.createdAt).fromNow()}`}</p>
+              </div>
+
+              <div className="flex items-center gap-x-2">
+                <MessageCircleMore className="size-4" />
+                <span className="text-sm">{post._count.comments}</span>
               </div>
             </CardFooter>
           </Card>

@@ -15,6 +15,9 @@ interface Data extends Post {
       color: string;
     };
   }>;
+  _count: {
+    comments: number;
+  };
 }
 
 type OrganizationPostsResponse = {
