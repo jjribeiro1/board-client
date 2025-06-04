@@ -3,9 +3,9 @@ import { useRouter } from "next/navigation";
 import { Tag, Calendar } from "lucide-react";
 import { Card, CardFooter, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { PostStatusDropdown } from "./post-status-dropdown";
-import { CreatePost } from "./create-post";
-import { PinPost } from "./pin-post";
+import { CreatePost } from "@/features/posts/components/create-post";
+import { PostStatusDropdown } from "@/features/posts/components/post-status-dropdown";
+import { PinPost } from "@/features/posts/components/pin-post";
 import { useOrganizationPosts } from "../../organizations/hooks/use-organization-posts";
 import { useQueryParams } from "@/hooks/use-query-params";
 
@@ -13,7 +13,7 @@ type Props = {
   orgId: string;
 };
 
-export function PostList(props: Props) {
+export function OrganizationPosts(props: Props) {
   const router = useRouter();
   const { getQueryParam } = useQueryParams();
   const { data, isPending, error } = useOrganizationPosts({
