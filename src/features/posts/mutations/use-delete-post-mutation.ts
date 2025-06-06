@@ -13,6 +13,10 @@ export function useDeletePostMutation(postId: string) {
       await apiClient.delete(`posts/${postId}`);
     },
     onSuccess() {
+      toast({
+        variant: "default",
+        description: "Post removido com sucesso",
+      });
       queryClient.invalidateQueries({ queryKey: ["board-posts"] });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
       router.back();
