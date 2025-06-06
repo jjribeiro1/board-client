@@ -91,9 +91,9 @@ export function PostDetails(props: Props) {
             <p>Criado por</p>
             <div className="flex items-center gap-x-2">
               <Avatar className="h-7 w-7">
-                <AvatarFallback>{post.author.name.at(0)}</AvatarFallback>
+                <AvatarFallback>{post?.author?.name.at(0)}</AvatarFallback>
               </Avatar>
-              <p className="text-muted-foreground text-sm">{post.author.name}</p>
+              <p className="text-muted-foreground text-sm">{post?.author?.name}</p>
             </div>
           </div>
 
