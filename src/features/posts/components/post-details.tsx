@@ -1,17 +1,16 @@
 "use client";
 import { useRef } from "react";
-import { ArrowUp, Link, Trash } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { PostStatusDropdown } from "./post-status-dropdown";
-import { PinPost } from "./pin-post";
+import { PostActions } from "./post-actions";
 import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
-import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
 import dayjs from "@/lib/dayjs";
 
 type Props = {
@@ -22,7 +21,6 @@ type Props = {
 export function PostDetails(props: Props) {
   const { data: post, isPending: postIsPending, error: postError } = usePostInfo(props.postId);
   const { data: comments, isPending: commentsIsPending, error: commentsError } = usePostComments(props.postId);
-  const { mutate: deletePostMutation, isPending } = useDeletePostMutation(props.postId);
 
   const dialogRef = useRef<HTMLDivElement | null>(null);
   function backToTop() {
@@ -79,22 +77,7 @@ export function PostDetails(props: Props) {
       <section className="w-[30%]">
         <div className="flex items-center justify-between px-4 pt-4">
           <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
-
-          <div className="flex items-center gap-x-1">
-            <PinPost post={post} />
-            <Button size={"icon"} variant={"ghost"} className="h-7 w-7">
-              <Link className="h-3 w-3" />
-            </Button>
-            <Button
-              disabled={isPending}
-              onClick={() => deletePostMutation()}
-              size={"icon"}
-              variant={"ghost"}
-              className="h-7 w-7"
-            >
-              <Trash className="h-3 w-3" />
-            </Button>
-          </div>
+          <PostActions post={post} />
         </div>
         <Separator className="my-4 mb-6" />
 
