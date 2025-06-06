@@ -19,7 +19,9 @@ export function useDeletePostMutation(postId: string) {
       });
       queryClient.invalidateQueries({ queryKey: ["board-posts"] });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
-      router.back();
+      setTimeout(() => {
+        router.back();
+      }, 150);
     },
     onError() {
       toast({
