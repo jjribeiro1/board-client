@@ -18,7 +18,7 @@ export function useCreatePostMutation() {
         variant: "default",
         description: "Post criado com sucesso",
       });
-      queryClient.refetchQueries({ queryKey: ["organization-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
     },
     onError() {
       toast({
