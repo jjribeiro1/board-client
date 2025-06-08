@@ -19,7 +19,7 @@ export function PinPost(props: Props) {
             onClick={() => updatePostMutation({ isPinned: props.post.isPinned ? false : true })}
             size={"icon"}
             variant={"ghost"}
-            className={`h-7 w-7 ${props.post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}
+            className={`${props.post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}
           >
             <Pin className="h-3 w-3" />
           </Button>
