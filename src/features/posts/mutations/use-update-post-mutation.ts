@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type MutationFnProps = {
   isPinned?: boolean;
+  title?: string;
+  description?: string
 };
 
 export function useUpdatePostMutation(postId: string) {

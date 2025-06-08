@@ -1,4 +1,4 @@
-import { Link, Trash, Ellipsis } from "lucide-react";
+import { Link, Trash, Ellipsis, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { ActionAlert } from "@/components/ui/alert";
@@ -14,6 +14,7 @@ import { Post } from "@/types/post";
 
 type Props = {
   post: Post;
+  setEditPostIsEnabled: (value: boolean) => void;
 };
 
 export function PostActions(props: Props) {
@@ -41,6 +42,11 @@ export function PostActions(props: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          <DropdownMenuItem className="cursor-pointer" onClick={() => props.setEditPostIsEnabled(true)}>
+            <Pencil />
+            Editar título/descrição
+          </DropdownMenuItem>
+
           <DropdownMenuItem asChild>
             <ActionAlert
               title="Você tem certeza?"
@@ -48,10 +54,10 @@ export function PostActions(props: Props) {
               cancelText="Cancelar"
               actionText="Confirmar"
               trigger={
-                <Button size={"icon"} variant={"ghost"} className="flex w-full items-center">
+                <div className="hover:bg-secondary focus:bg-accent focus:text-accent-foreground relative flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0">
                   <Trash />
                   Remover post
-                </Button>
+                </div>
               }
               onAction={deletePostMutation}
             />
