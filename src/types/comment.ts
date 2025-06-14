@@ -1,9 +1,12 @@
 export type Comment = {
   id: string;
   content: string;
-  authorId: string;
-  authorName: string;
+  author: {
+    id: string;
+    name: string;
+  };
   postId: string;
+  organizationId: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
