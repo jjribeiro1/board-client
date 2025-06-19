@@ -1,12 +1,13 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useOrganizationInfo } from "../hooks/use-organization-info";
 import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
 
 export function PublicOrganizationHeader() {
   const params = useParams<{ id: string }>();
-  const { data: organization } = useOrganizationInfo(params.id);
+  const pathname = usePathname();
+  const { data: organization } = useOrganizationInfo(params.id, pathname.includes("/posts"));
   const { data: loggedUser } = useLoggedUserInfo();
 
   return (
