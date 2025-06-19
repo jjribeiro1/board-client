@@ -12,6 +12,7 @@ import { CreateComment } from "@/features/comments/components/create-comment";
 import { Comment } from "@/features/comments/components/comment";
 import { usePostInfo } from "../hooks/use-post-info";
 import { usePostComments } from "../hooks/use-post-comments";
+import { useUserPermission } from "@/hooks/use-user-permission";
 import dayjs from "@/lib/dayjs";
 
 type Props = {
@@ -23,6 +24,7 @@ export function PostDetails(props: Props) {
   const [editPostIsEnabled, setEditPostIsEnabled] = useState(false);
   const { data: post, isPending: postIsPending, error: postError } = usePostInfo(props.postId);
   const { data: comments, isPending: commentsIsPending, error: commentsError } = usePostComments(props.postId);
+  const { isAdminOrOwnerFromOrg } = useUserPermission(post?.organizationId as string);
 
   const dialogRef = useRef<HTMLDivElement | null>(null);
   function backToTop() {
@@ -81,16 +83,26 @@ export function PostDetails(props: Props) {
       </section>
 
       <section className="w-[30%]">
-        <div className="flex items-center justify-between px-4 pt-4">
-          <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
-          <PostActions post={post} setEditPostIsEnabled={setEditPostIsEnabled} />
-        </div>
-        <Separator className="my-4 mb-6" />
+        {isAdminOrOwnerFromOrg ? (
+          <>
+            <div className="flex items-center justify-between px-4 pt-4">
+              <p className="text-muted-foreground text-sm font-semibold tracking-wide">Gerenciar post</p>
+              <PostActions post={post} setEditPostIsEnabled={setEditPostIsEnabled} />
+            </div>
+            <Separator className="my-4 mb-6" />
+          </>
+        ) : null}
 
-        <div className="flex flex-col gap-y-6 px-4">
+        <div className="flex flex-col gap-y-6 px-4 pt-6">
           <div className="flex items-center justify-between">
             <p>Status</p>
-            <PostStatusDropdown post={post} orgId={props.orgId} />
+            {isAdminOrOwnerFromOrg ? (
+              <PostStatusDropdown post={post} orgId={props.orgId} />
+            ) : (
+              <Button type="button" size={"sm"} variant={"outline"} className={`h-max py-1`}>
+                {post.status.name}
+              </Button>
+            )}
           </div>
 
           <div className="flex items-center justify-between">

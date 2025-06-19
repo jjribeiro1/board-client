@@ -8,6 +8,7 @@ export type Post = {
   isPinned: boolean;
   isLocked: boolean;
   boardId: string;
+  organizationId: string;
   author: {
     id: string;
     name: string;
