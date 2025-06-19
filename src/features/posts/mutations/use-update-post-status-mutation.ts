@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
-import { useQueryParams } from "@/hooks/use-query-params";
 import { Post } from "@/types/post";
 
 type MutationFnProps = {
@@ -14,34 +13,31 @@ type MutationResponse = {
   };
 };
 
-export function useUpdatePostStatusMutation(postId: string, orgId: string) {
+export function useUpdatePostStatusMutation(post: Post) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { getQueryParam } = useQueryParams();
-  const filters = {
-    status: getQueryParam("status"),
-    board: getQueryParam("board"),
-  };
 
   return useMutation({
     mutationFn: async (data: MutationFnProps) => {
-      const res = await apiClient.patch<MutationResponse>(`posts/${postId}`, data);
+      const res = await apiClient.patch<MutationResponse>(`posts/${post.id}`, data);
       return res.data.data;
     },
     onSuccess(data) {
-      queryClient.setQueryData(["organization-posts", orgId, filters], (old: Post[]) => {
-        return old.map((post) => {
-          if (post.id === data.post.id) {
+      const oldBoardPosts = queryClient.getQueryData(["board-posts", post.boardId]);
+      console.log(oldBoardPosts);
+      queryClient.setQueryData(["board-posts", post.boardId], (old: Post[]) => {
+        return old.map((postItem) => {
+          if (postItem.id === data.post.id) {
             return {
-              ...post,
+              ...postItem,
               status: data.post.status,
             };
           }
-          return post;
+          return postItem;
         });
       });
 
-      queryClient.setQueryData(["post", postId], (old: Post) => {
+      queryClient.setQueryData(["post", post.id], (old: Post) => {
         return {
           ...old,
           status: data.post.status,

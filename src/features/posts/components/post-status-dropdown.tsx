@@ -16,7 +16,7 @@ type Props = {
 
 export function PostStatusDropdown(props: Props) {
   const { data } = useOrganizationStatus();
-  const { mutate } = useUpdatePostStatusMutation(props.post.id, props.orgId);
+  const { mutate } = useUpdatePostStatusMutation(props.post);
 
   function handlePostStatusChange(statusId: string) {
     mutate({ statusId });
