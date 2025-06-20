@@ -9,7 +9,7 @@ export async function AppSidebar() {
 
   return (
     <Sidebar>
-      <div className="py-6">
+      <div className="py-4">
         <SidebarHeader organizationId={orgId!} />
         <SidebarContent>
           <StatusGroup />
