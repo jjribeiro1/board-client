@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { CircleArrowOutUpRight } from "lucide-react";
-import { SidebarHeader as SidebarHeaderUI } from "@/components/ui/sidebar";
+import { SidebarHeader as SidebarHeaderUI, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { buttonVariants } from "@/components/ui/button";
 import { OrganizationSwitcher } from "@/features/organizations/components/organization-switcher";
@@ -18,26 +18,29 @@ export function SidebarHeader(props: Props) {
 
   return (
     <SidebarHeaderUI>
-      <div className="flex items-center justify-between px-2">
-        <p className="text-center text-xl font-semibold tracking-tighter">{activeOrganization?.name}</p>
-        <div className="flex items-center">
-          <OrganizationSwitcher organizations={organizations!} />
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href={`/organization/${activeOrganization?.organizationId}`}
-                  target="_blank"
-                  className={buttonVariants({ size: "icon", variant: "ghost" })}
-                >
-                  <CircleArrowOutUpRight className="h-3.5 w-3.5" />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>Veja a página da sua organização</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-      </div>
+      <SidebarMenu>
+        <SidebarMenuItem className="flex items-center justify-between">
+          <p className="text-center text-xl font-semibold tracking-tighter">{activeOrganization?.name}</p>
+
+          <div className="flex items-center">
+            <OrganizationSwitcher organizations={organizations!} />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={`/organization/${activeOrganization?.organizationId}`}
+                    target="_blank"
+                    className={buttonVariants({ size: "icon", variant: "ghost" })}
+                  >
+                    <CircleArrowOutUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>Veja a página da sua organização</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </SidebarHeaderUI>
   );
 }
