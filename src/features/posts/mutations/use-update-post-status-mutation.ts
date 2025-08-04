@@ -25,7 +25,7 @@ export function useUpdatePostStatusMutation(post: Post, orgId: string) {
 
   return useMutation({
     mutationFn: async (data: MutationFnProps) => {
-      const res = await apiClient.patch<MutationResponse>(`posts/${post.id}`, data);
+      const res = await apiClient.patch<MutationResponse>(`/posts/${post.id}/settings`, data);
       return res.data.data;
     },
     onSuccess(data) {
