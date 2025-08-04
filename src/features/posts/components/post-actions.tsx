@@ -1,4 +1,4 @@
-import { Link, Trash, Ellipsis, Pencil } from "lucide-react";
+import { Link, Trash, Ellipsis, Pencil, MessagesSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { ActionAlert } from "@/components/ui/alert";
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PinPost } from "./pin-post";
 import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
+import { useManagePostSettingsMutation } from "../mutations/use-manage-post-settings-mutation";
 import { Post } from "@/types/post";
 
 type Props = {
@@ -19,6 +20,7 @@ type Props = {
 
 export function PostActions(props: Props) {
   const { mutate: deletePostMutation } = useDeletePostMutation(props.post.id);
+  const { mutate: managePostSettingsMutation } = useManagePostSettingsMutation(props.post.id);
 
   return (
     <div className="flex items-center gap-x-1">
@@ -45,6 +47,14 @@ export function PostActions(props: Props) {
           <DropdownMenuItem className="cursor-pointer" onClick={() => props.setEditPostIsEnabled(true)}>
             <Pencil />
             Editar título/descrição
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onClick={() => managePostSettingsMutation({ isLocked: !props.post.isLocked })}
+          >
+            <MessagesSquare />
+            {props.post.isLocked ? "Habilitar comentários" : "Desabilitar comentários"}
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>

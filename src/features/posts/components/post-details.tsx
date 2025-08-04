@@ -60,7 +60,7 @@ export function PostDetails(props: Props) {
           </div>
         )}
 
-        <CreateComment postId={post.id} />
+        <CreateComment post={post} />
 
         <Separator className="my-4" />
 

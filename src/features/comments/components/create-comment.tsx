@@ -7,16 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { CreateCommentInput, createCommentSchema } from "../schemas/create-comment-schema";
 import { useCreateCommentMutation } from "../mutations/use-create-comment-mutation";
+import { Post } from "@/types/post";
 
 type Props = {
-  postId: string;
+  post: Post;
 };
 
 export function CreateComment(props: Props) {
   const form = useForm<CreateCommentInput>({
     defaultValues: {
       content: "",
-      postId: props.postId,
+      postId: props.post.id,
     },
     resolver: zodResolver(createCommentSchema),
   });
@@ -41,7 +42,13 @@ export function CreateComment(props: Props) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="Escreva seu comentário" className="resize-none" rows={7} {...field} />
+                <Textarea
+                  placeholder={props.post.isLocked ? "Comentários desabilitados" : "Escreva um comentário..."}
+                  className="resize-none"
+                  rows={7}
+                  {...field}
+                  disabled={props.post.isLocked}
+                />
               </FormControl>
               <div className="flex w-full justify-between">
                 <FormDescription
@@ -50,7 +57,7 @@ export function CreateComment(props: Props) {
                   {`${field.value.length}/${commentLengthLimit}`}
                 </FormDescription>
 
-                <Button type="submit" variant={"secondary"} size={"sm"}>
+                <Button type="submit" variant={"secondary"} size={"sm"} disabled={props.post.isLocked}>
                   <SendHorizonal />
                 </Button>
               </div>
