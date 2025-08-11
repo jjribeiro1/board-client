@@ -1,7 +1,7 @@
 import { Pin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { useUpdatePostMutation } from "../mutations/use-update-post-mutation";
+import { useManagePostSettingsMutation } from "../mutations/use-manage-post-settings-mutation";
 import { Post } from "@/types/post";
 
 type Props = {
@@ -9,14 +9,14 @@ type Props = {
 };
 
 export function PinPost(props: Props) {
-  const { mutate: updatePostMutation } = useUpdatePostMutation(props.post.id);
+  const { mutate: managePostSettingsMutation } = useManagePostSettingsMutation(props.post.id);
 
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            onClick={() => updatePostMutation({ isPinned: props.post.isPinned ? false : true })}
+            onClick={() => managePostSettingsMutation({ isPinned: props.post.isPinned ? false : true })}
             size={"icon"}
             variant={"ghost"}
             className={`${props.post.isPinned ? "text-yellow-500 hover:text-yellow-500" : ""}`}

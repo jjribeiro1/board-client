@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type MutationFnProps = {
   isLocked?: boolean;
+  isPinned?: boolean;
 };
 
 export function useManagePostSettingsMutation(postId: string) {
