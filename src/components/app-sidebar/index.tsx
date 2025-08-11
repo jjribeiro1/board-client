@@ -1,9 +1,8 @@
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
-import { StatusGroup } from "./status-group";
 import { SidebarHeader } from "./header";
-import { BoardGroup } from "./board-group";
-import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
+import { FiltersGroup } from "./filters-group";
 import { SidebarFooter } from "./footer";
+import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 
 export async function AppSidebar() {
   const orgId = await getOrganizationId();
@@ -12,8 +11,7 @@ export async function AppSidebar() {
     <Sidebar>
       <SidebarHeader organizationId={orgId!} />
       <SidebarContent>
-        <StatusGroup />
-        <BoardGroup organizationId={orgId!} />
+        <FiltersGroup organizationId={orgId!} />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
