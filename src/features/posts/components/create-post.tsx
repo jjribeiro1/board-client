@@ -36,11 +36,15 @@ export function CreatePost(props: Props) {
 
   const { data: boards } = useOrganizationBoards(props.organizationId);
   const { data: statuses } = useOrganizationStatus();
-  const { mutate, isPending } = useCreatePostMutation();
+  const { mutate: createPostMutation, isPending } = useCreatePostMutation();
 
   function onSubmit(values: CreatePostInput) {
-    mutate(values);
-    setOpenDialog(false);
+    createPostMutation(values, {
+      onSuccess: () => {
+        setOpenDialog(false);
+        form.reset();
+      },
+    });
   }
 
   return (
