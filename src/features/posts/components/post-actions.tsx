@@ -1,7 +1,6 @@
-import { Link, Trash, Ellipsis, Pencil, MessagesSquare } from "lucide-react";
+import { Link, Ellipsis, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { ActionAlert } from "@/components/ui/alert";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PinPost } from "./pin-post";
-import { useDeletePostMutation } from "../mutations/use-delete-post-mutation";
-import { useManagePostSettingsMutation } from "../mutations/use-manage-post-settings-mutation";
+import { PostCommentsLock } from "./posts-comments-lock";
+import { DeletePost } from "./delete-post";
 import { Post } from "@/types/post";
 
 type Props = {
@@ -19,8 +18,6 @@ type Props = {
 };
 
 export function PostActions(props: Props) {
-  const { mutate: deletePostMutation } = useDeletePostMutation(props.post.id);
-  const { mutate: managePostSettingsMutation } = useManagePostSettingsMutation(props.post.id);
 
   return (
     <div className="flex items-center gap-x-1">
@@ -49,28 +46,12 @@ export function PostActions(props: Props) {
             Editar título/descrição
           </DropdownMenuItem>
 
-          <DropdownMenuItem
-            className="cursor-pointer"
-            onClick={() => managePostSettingsMutation({ isLocked: !props.post.isLocked })}
-          >
-            <MessagesSquare />
-            {props.post.isLocked ? "Habilitar comentários" : "Desabilitar comentários"}
+          <DropdownMenuItem asChild>
+            <PostCommentsLock post={props.post} />
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
-            <ActionAlert
-              title="Você tem certeza?"
-              description="Essa ação não pode ser desfeita e o post será removido completamente."
-              cancelText="Cancelar"
-              actionText="Confirmar"
-              trigger={
-                <div className="hover:bg-secondary focus:bg-accent focus:text-accent-foreground relative flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0">
-                  <Trash />
-                  Remover post
-                </div>
-              }
-              onAction={deletePostMutation}
-            />
+            <DeletePost post={props.post} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
