@@ -39,7 +39,13 @@ export function CreateBoard(props: Props) {
   }
 
   return (
-    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+    <Dialog
+      open={openDialog}
+      onOpenChange={(open) => {
+        form.reset();
+        setOpenDialog(open);
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant={"secondary"} size={"sm"}>
           <Plus />
