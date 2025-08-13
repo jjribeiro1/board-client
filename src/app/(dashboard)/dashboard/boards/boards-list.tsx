@@ -24,7 +24,7 @@ export function BoardsList(props: Props) {
     <div className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold">Boards</h2>
 
-      <div>
+      <div className="flex flex-col gap-4">
         {boards.map((board) => (
           <Card key={board.id}>
             <CardHeader className="flex w-full flex-row justify-between">
