@@ -5,7 +5,7 @@ import { Status } from "@/types/status";
 import { Board } from "@/types/board";
 import { Post } from "@/types/post";
 
-interface Data extends Post {
+interface PostsData extends Post {
   board: Board;
   status: Status;
   tags: Array<{
@@ -21,7 +21,7 @@ interface Data extends Post {
 }
 
 type OrganizationPostsResponse = {
-  data: Array<Data>;
+  data: Array<PostsData>;
 };
 
 type Props = {
