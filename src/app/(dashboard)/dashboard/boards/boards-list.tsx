@@ -10,14 +10,22 @@ type Props = {
 };
 
 export function BoardsList(props: Props) {
-  const { data: boards } = useOrganizationBoards(props.orgId);
+  const { data: boards, isPending, error } = useOrganizationBoards(props.orgId);
+
+  if (isPending) {
+    return <div className="leading-none font-semibold tracking-tight">Carregando boards...</div>;
+  }
+
+  if (error) {
+    return <div>Erro ao carregar boards da sua organização</div>;
+  }
 
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold">Boards</h2>
 
       <div>
-        {boards?.map((board) => (
+        {boards.map((board) => (
           <Card key={board.id}>
             <CardHeader className="flex w-full flex-row justify-between">
               <div className="flex flex-col gap-1">
