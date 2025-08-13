@@ -8,4 +8,7 @@ export type Board = {
   authorId: string;
   createdAt: Date;
   updatedAt: Date;
+  _count: {
+    posts: number;
+  };
 };
