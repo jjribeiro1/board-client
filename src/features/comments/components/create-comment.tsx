@@ -21,12 +21,12 @@ export function CreateComment(props: Props) {
     },
     resolver: zodResolver(createCommentSchema),
   });
-  const { mutate } = useCreateCommentMutation();
+  const { mutate: createCommentMutation } = useCreateCommentMutation();
 
   const commentLengthLimit = 1000;
 
   function onSubmit(data: CreateCommentInput) {
-    mutate(data, {
+    createCommentMutation(data, {
       onSuccess() {
         form.reset();
       },

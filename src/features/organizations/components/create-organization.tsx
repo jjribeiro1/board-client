@@ -15,10 +15,10 @@ export function CreateOrganization() {
     resolver: zodResolver(createOrganizationSchema),
   });
 
-  const { mutate, isPending } = useCreateOrganizationMutation();
+  const { mutate: createOrganizationMutation, isPending } = useCreateOrganizationMutation();
 
   function onSubmit(data: CreateOrganizationInput) {
-    mutate(data);
+    createOrganizationMutation(data);
   }
 
   return (

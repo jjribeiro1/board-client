@@ -21,11 +21,11 @@ export function UpdateComment(props: Props) {
     },
     resolver: zodResolver(updateCommentSchema),
   });
-  const { mutate } = useUpdateCommentMutation(props.comment.id);
+  const { mutate: updateCommentMutation } = useUpdateCommentMutation(props.comment.id);
   const commentLengthLimit = 1000;
 
   function onSubmit(data: UpdateCommentInput) {
-    mutate(data, {
+    updateCommentMutation(data, {
       onSuccess() {
         form.reset();
         props.onCommentUpdate();
