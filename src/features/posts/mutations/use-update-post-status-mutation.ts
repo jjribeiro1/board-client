@@ -31,7 +31,8 @@ export function useUpdatePostStatusMutation(post: Post, orgId: string) {
         queryKey: ["board-posts", post.boardId],
       });
 
-      queryClient.setQueryData(["post", post.id], (old: Post) => {
+      queryClient.setQueryData(["post", post.id], (old: Post | undefined) => {
+        if (!old) return old;
         return {
           ...old,
           status: data.post.status,
