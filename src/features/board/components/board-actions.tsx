@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { UpdateBoard } from "./update-board";
 import { DeleteBoard } from "./delete-board";
 import { Board } from "@/types/board";
 
@@ -22,6 +23,9 @@ export function BoardActions(props: Props) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem asChild>
+          <UpdateBoard board={props.board} />
+        </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <DeleteBoard boardId={props.board.id} />
         </DropdownMenuItem>
