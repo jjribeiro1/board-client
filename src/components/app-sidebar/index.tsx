@@ -12,8 +12,8 @@ export async function AppSidebar() {
     <Sidebar>
       <SidebarHeader organizationId={orgId!} />
       <SidebarContent>
-        <FiltersGroup organizationId={orgId!} />
         <NavigationGroup />
+        <FiltersGroup organizationId={orgId!} />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ChevronRight, Circle } from "lucide-react";
 import {
@@ -32,6 +33,7 @@ const icons: { [key: number]: React.ReactNode } = {
 };
 
 export function FiltersGroup(props: Props) {
+  const pathName = usePathname();
   const [openBoardsCollapsible, setOpenBoardsCollapsible] = useState(false);
   const [openStatusCollapsible, setOpenStatusCollapsible] = useState(false);
 
@@ -42,6 +44,10 @@ export function FiltersGroup(props: Props) {
   function onResetFilters() {
     setOpenBoardsCollapsible(false);
     setOpenStatusCollapsible(false);
+  }
+
+  if (pathName !== "/dashboard/posts") {
+    return null;
   }
 
   return (
