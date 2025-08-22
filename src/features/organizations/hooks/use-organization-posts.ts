@@ -1,27 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { Status } from "@/types/status";
-import { Board } from "@/types/board";
-import { Post } from "@/types/post";
-
-interface PostsData extends Post {
-  board: Board;
-  status: Status;
-  tags: Array<{
-    tag: {
-      id: string;
-      name: string;
-      color: string;
-    };
-  }>;
-  _count: {
-    comments: number;
-  };
-}
+import { OrganizationPostsData } from "@/types/organization-posts";
 
 type OrganizationPostsResponse = {
-  data: Array<PostsData>;
+  data: Array<OrganizationPostsData>;
 };
 
 type Props = {
