@@ -8,19 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-const items = [
-  {
-    title: "Posts",
-    icon: <Rss />,
-    path: "/dashboard/posts",
-  },
-  {
-    title: "Boards",
-    icon: <Table />,
-    path: "/dashboard/boards",
-  },
-];
+import { OrganizationCollapsible } from "./organization-collapsible";
 
 export function NavigationGroup() {
   return (
@@ -28,16 +16,25 @@ export function NavigationGroup() {
       <SidebarGroupLabel>Navegação</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild className="flex items-center">
-                <Link href={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild className="flex items-center">
+              <Link href={"/dashboard/posts"}>
+                <Rss />
+                Posts
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild className="flex items-center">
+              <Link href={"/dashboard/boards"}>
+                <Table />
+                Boards
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+
+          <OrganizationCollapsible />
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
