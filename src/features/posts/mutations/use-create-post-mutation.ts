@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreatePostInput } from "../schemas/create-post-schema";
+import { AxiosError } from "axios";
 
 export function useCreatePostMutation() {
   const { toast } = useToast();
@@ -20,10 +21,14 @@ export function useCreatePostMutation() {
       });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
     },
-    onError() {
+    onError(err) {
+      const error = err as AxiosError;
+      const response = error.response?.data as { message: string } | undefined;
+      const message = response?.message;
+
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao criar um novo post",
+        description: message || "Erro inesperado ao criar um novo post",
       });
     },
   });
