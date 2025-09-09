@@ -1,4 +1,4 @@
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
 import { UpdateBoard } from "./update-board";
 import { DeleteBoard } from "./delete-board";
 import { Board } from "@/types/board";
+import Link from "next/link";
 
 type Props = {
   board: Board;
@@ -23,6 +24,16 @@ export function BoardActions(props: Props) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem asChild>
+          <Link
+            href={`/dashboard/posts?board=${props.board.id}`}
+            target="_blank"
+            className="flex cursor-pointer items-center gap-2"
+          >
+            <Eye /> Ver posts
+          </Link>
+        </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
           <UpdateBoard board={props.board} />
         </DropdownMenuItem>
