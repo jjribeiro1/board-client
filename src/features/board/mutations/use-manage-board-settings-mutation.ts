@@ -17,7 +17,7 @@ export function useManageBoardSettings(boardId: string) {
       await apiClient.patch(`/boards/${boardId}/settings`, data);
     },
     onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ["organization-boards"] });
+      queryClient.resetQueries({ queryKey: ["organization-boards"] });
       toast({
         title: "Configurações do board atualizadas",
       });
