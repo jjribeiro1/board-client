@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 type MutationFnProps = {
   isPinned?: boolean;
   title?: string;
-  description?: string
+  description?: string;
 };
 
 export function useUpdatePostMutation(postId: string) {
@@ -19,6 +19,7 @@ export function useUpdatePostMutation(postId: string) {
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["post", postId] });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["board-posts"] });
       toast({
         variant: "default",
         description: "Post atualizado com sucesso",
