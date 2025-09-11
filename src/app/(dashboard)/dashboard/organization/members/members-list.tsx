@@ -22,32 +22,29 @@ export function OrganizationMembersList(props: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <h2>Membros da Organização</h2>
-      <ul className="flex flex-col gap-4">
-        {members.map((member) => (
-          <li key={member.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{member.name}</CardTitle>
-                <CardDescription>{member.email}</CardDescription>
-              </CardHeader>
-              <CardContent className="text-accent-foreground">
-                <p className="font-medium">Função: {userRoleLabel(member.role)}</p>
-                <p className="font-medium">{`Entrou ${dayjs(member.createdAt).fromNow()}`}</p>
-              </CardContent>
-              <CardFooter className="flex items-center gap-2">
-                <div>
-                  <p className="font-medium">Permissões:</p>
-                </div>
-                {getRolePermissions(member.role).map((permission) => (
-                  <Badge key={permission}>{permission}</Badge>
-                ))}
-              </CardFooter>
-            </Card>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="flex flex-col gap-4">
+      {members.map((member) => (
+        <li key={member.id}>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">{member.name}</CardTitle>
+              <CardDescription>{member.email}</CardDescription>
+            </CardHeader>
+            <CardContent className="text-accent-foreground">
+              <p className="font-medium">Função: {userRoleLabel(member.role)}</p>
+              <p className="font-medium">{`Entrou ${dayjs(member.createdAt).fromNow()}`}</p>
+            </CardContent>
+            <CardFooter className="flex items-center gap-2">
+              <div>
+                <p className="font-medium">Permissões:</p>
+              </div>
+              {getRolePermissions(member.role).map((permission) => (
+                <Badge key={permission}>{permission}</Badge>
+              ))}
+            </CardFooter>
+          </Card>
+        </li>
+      ))}
+    </ul>
   );
 }

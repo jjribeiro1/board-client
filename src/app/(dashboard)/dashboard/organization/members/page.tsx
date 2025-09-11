@@ -10,9 +10,7 @@ export default async function OrganizationMembersPage() {
         <h1 className="text-xl font-bold">Gerenciar membros</h1>
       </div>
 
-      <div className="flex flex-col gap-12">
-        <OrganizationMembersList organizationId={orgId!} />
-      </div>
+      <OrganizationMembersList organizationId={orgId!} />
     </section>
   );
 }
