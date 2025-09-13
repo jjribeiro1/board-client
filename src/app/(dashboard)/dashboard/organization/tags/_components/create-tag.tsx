@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TagForm } from "./tag-form";
@@ -14,7 +15,10 @@ export function CreateTagDialog(props: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Criar Tag</Button>
+        <Button variant={"secondary"} size={"sm"}>
+          <Plus />
+          Criar Tag
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
