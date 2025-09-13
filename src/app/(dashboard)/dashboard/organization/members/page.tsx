@@ -1,4 +1,4 @@
-import { OrganizationMembersDataTable } from "@/features/organizations/components/data-table/organization-members-data-table";
+import { OrganizationMembersDataTable } from "./_components/data-table/organization-members-data-table";
 import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
 
 export default async function OrganizationMembersPage() {

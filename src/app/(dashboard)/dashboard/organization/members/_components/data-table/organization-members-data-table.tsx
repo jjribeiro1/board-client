@@ -1,7 +1,7 @@
 "use client";
 import { DataTable } from "@/components/ui/data-table";
 import { organizationMembersColumns } from "./organization-members-columns";
-import { useOrganizationMembers } from "../../hooks/use-organization-members";
+import { useOrganizationMembers } from "@/features/organizations/hooks/use-organization-members";
 
 type Props = {
   organizationId: string;

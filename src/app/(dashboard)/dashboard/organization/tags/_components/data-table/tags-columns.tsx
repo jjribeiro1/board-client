@@ -1,8 +1,8 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
+import { TagsRowActions } from "./tags-row-actions";
 import dayjs from "@/lib/dayjs";
 import { Tag } from "@/types/tag";
-import { TagActions } from "../tag-actions";
 
 type ColumnData = Tag;
 
@@ -36,6 +36,6 @@ export const tagsColumns: ColumnDef<ColumnData>[] = [
     id: "id",
     accessorKey: "id",
     header: "Ações",
-    cell: ({ row }) => <TagActions tag={row.original} />,
+    cell: ({ row }) => <TagsRowActions tag={row.original} />,
   },
 ];

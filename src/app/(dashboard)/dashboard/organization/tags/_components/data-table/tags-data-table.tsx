@@ -1,8 +1,8 @@
 "use client";
 
 import { DataTable } from "@/components/ui/data-table";
-import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
 import { tagsColumns } from "./tags-columns";
+import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
 
 export function TagsDataTable(props: { organizationId: string }) {
   const { data, isPending, error } = useOrganizationTags(props.organizationId);

@@ -8,15 +8,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ActionAlert } from "@/components/ui/alert";
-import { UpdateTagDialog } from "./update-tag";
-import { useDeleteTagMutation } from "../mutations/use-delete-tag-mutation";
+import { UpdateTagDialog } from "../update-tag";
+import { useDeleteTagMutation } from "@/features/tags/mutations/use-delete-tag-mutation";
 import { Tag } from "@/types/tag";
 
 type Props = {
   tag: Tag;
 };
 
-export function TagActions(props: Props) {
+export function TagsRowActions(props: Props) {
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
   const { mutate: deleteTagMutation } = useDeleteTagMutation(props.tag.id);
 

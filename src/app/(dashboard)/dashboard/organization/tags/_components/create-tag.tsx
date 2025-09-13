@@ -8,7 +8,7 @@ type Props = {
   organizationId: string;
 };
 
-export function CreateTag(props: Props) {
+export function CreateTagDialog(props: Props) {
   const [open, setOpen] = useState(false);
 
   return (
