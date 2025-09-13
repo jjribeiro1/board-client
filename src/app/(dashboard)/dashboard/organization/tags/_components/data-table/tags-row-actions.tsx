@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ActionAlert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { UpdateTagDialog } from "../update-tag";
 import { useDeleteTagMutation } from "@/features/tags/mutations/use-delete-tag-mutation";
 import { Tag } from "@/types/tag";
@@ -24,7 +25,9 @@ export function TagsRowActions(props: Props) {
     <>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Ellipsis className="cursor-pointer" />
+          <Button size={"icon"} variant={"ghost"}>
+            <Ellipsis className="cursor-pointer" />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onSelect={() => setOpenUpdateDialog(true)} className="cursor-pointer">
@@ -48,11 +51,7 @@ export function TagsRowActions(props: Props) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <UpdateTagDialog
-        open={openUpdateDialog}
-        onOpenChange={setOpenUpdateDialog}
-        tag={props.tag}
-      />
+      <UpdateTagDialog open={openUpdateDialog} onOpenChange={setOpenUpdateDialog} tag={props.tag} />
     </>
   );
 }
