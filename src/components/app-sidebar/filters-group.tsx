@@ -65,13 +65,20 @@ export function FiltersGroup(props: Props) {
               </SidebarMenuBadge>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {boardsData?.map((board) => (
-                    <SidebarMenuSubItem key={board.id}>
-                      <SidebarMenuButton onClick={() => setQueryParam("board", board.id)}>
-                        {board.title}
-                      </SidebarMenuButton>
-                    </SidebarMenuSubItem>
-                  ))}
+                  {boardsData?.map((board) => {
+                    const isActive = getQueryParam("board") === board.id;
+
+                    return (
+                      <SidebarMenuSubItem key={board.id}>
+                        <SidebarMenuButton
+                          onClick={() => setQueryParam("board", board.id)}
+                          className={`flex items-center ${isActive ? "bg-sidebar-accent" : ""}`}
+                        >
+                          {board.title}
+                        </SidebarMenuButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>

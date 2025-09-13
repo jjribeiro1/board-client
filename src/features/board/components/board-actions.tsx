@@ -20,7 +20,7 @@ export function BoardActions(props: Props) {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button size={"icon"} variant={"ghost"}>
-          <Ellipsis className="text-muted-foreground h-3 w-3 cursor-pointer" />
+          <Ellipsis className="cursor-pointer" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
