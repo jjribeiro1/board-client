@@ -27,7 +27,7 @@ export function TagsRowActions(props: Props) {
           <Ellipsis className="cursor-pointer" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onSelect={() => setOpenUpdateDialog(true)}>
+          <DropdownMenuItem onSelect={() => setOpenUpdateDialog(true)} className="cursor-pointer">
             <Pencil />
             Atualizar Tag
           </DropdownMenuItem>
@@ -38,7 +38,7 @@ export function TagsRowActions(props: Props) {
             cancelText="Cancelar"
             description="Tem certeza que deseja excluir esta tag? Esta ação não pode ser desfeita."
             trigger={
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="cursor-pointer">
                 <Trash />
                 Remover tag
               </DropdownMenuItem>
