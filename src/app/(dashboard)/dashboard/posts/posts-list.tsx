@@ -53,8 +53,8 @@ export function PostsList(props: Props) {
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-2">
-            {post.tags.map(({ tag }) => (
-              <Badge key={tag.id} variant={"secondary"} className="text-nowrap">
+            {post.tags.map((tag) => (
+              <Badge key={tag.id} style={{ backgroundColor: tag.color }} className="text-white font-medium">
                 {tag.name}
               </Badge>
             ))}
