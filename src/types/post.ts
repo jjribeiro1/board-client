@@ -14,7 +14,7 @@ export type Post = {
     name: string;
   };
   statusId: string;
-  tagsId: string[];
+  tags: Array<{ id: string; name: string; color: string }>;
   status: Status;
   createdAt: Date;
   updatedAt: Date;
