@@ -14,6 +14,7 @@ export const createPostSchema = z.object({
   isLocked: z.boolean().optional(),
   boardId: z.string().uuid({ message: "board inválido" }),
   statusId: z.string().uuid({ message: "status inválido" }),
+  tagIds: z.array(z.string().uuid({ message: "tag inválida" })).optional(),
 });
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;

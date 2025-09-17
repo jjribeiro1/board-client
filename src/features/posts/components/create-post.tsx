@@ -3,14 +3,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Plus } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { MultiSelect } from "@/components/ui/multi-select";
 import { BoardSelector } from "@/components/ui/board-selector";
 import { StatusSelector } from "@/components/ui/status-selector";
 import { CreatePostInput, createPostSchema } from "../schemas/create-post-schema";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
+import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
 import { useOrganizationStatus } from "@/hooks/use-organization-status";
 import { useCreatePostMutation } from "../mutations/use-create-post-mutation";
 
@@ -21,6 +23,7 @@ type Props = {
 
 export function CreatePost(props: Props) {
   const [openDialog, setOpenDialog] = useState(false);
+
   const form = useForm<CreatePostInput>({
     defaultValues: {
       boardId: "",
@@ -30,12 +33,13 @@ export function CreatePost(props: Props) {
       isPrivate: false,
       statusId: "",
       title: "",
+      tagIds: [],
     },
     resolver: zodResolver(createPostSchema),
   });
-
   const { data: boards } = useOrganizationBoards(props.organizationId);
   const { data: statuses } = useOrganizationStatus();
+  const { data: tags } = useOrganizationTags(props.organizationId);
   const { mutate: createPostMutation, isPending } = useCreatePostMutation();
 
   function onSubmit(values: CreatePostInput) {
@@ -61,7 +65,7 @@ export function CreatePost(props: Props) {
           {props.title || "Novo Post"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-(--breakpoint-md)">
+      <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle>Novo Post</DialogTitle>
         </DialogHeader>
@@ -126,6 +130,26 @@ export function CreatePost(props: Props) {
                 )}
               />
             </div>
+            <FormField
+              control={form.control}
+              name="tagIds"
+              render={({ field }) => (
+                <FormItem className="w-[60%]">
+                  <FormLabel className="text-sm">Tags</FormLabel>
+                  <FormControl>
+                    <MultiSelect
+                      options={tags?.map((t) => ({ value: t.id, label: t.name })) || []}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="Selecionar tags"
+                      responsive={true}
+                      maxCount={2}
+                      modalPopover={true}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           </form>
         </Form>
         <DialogFooter>
