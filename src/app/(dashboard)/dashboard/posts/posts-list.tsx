@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
-import { MessageCircleMore, Tag } from "lucide-react";
+import { MessageCircleMore, Table, Tag } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CreatePost } from "@/features/posts/components/create-post";
@@ -52,18 +52,23 @@ export function PostsList(props: Props) {
           <PinPost post={post} />
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-2">
-            {post.tags.map((tag) => (
-              <Badge key={tag.id} style={{ backgroundColor: tag.color }} className="text-white font-medium">
-                {tag.name}
-              </Badge>
-            ))}
-          </div>
+          {post.tags.length > 0 ? (
+            <div className="flex items-center gap-2">
+              <Tag className="h-4 w-4" />
+              <div className="flex items-center gap-2">
+                {post.tags.map((tag) => (
+                  <Badge key={tag.id} style={{ backgroundColor: tag.color }} className="font-medium text-white">
+                    {tag.name}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </CardContent>
         <CardFooter className="justify-between">
           <div className="flex items-center gap-x-3">
             <div className="flex items-center gap-2">
-              <Tag className="h-4 w-4" /> <span>{post.board.title}</span>
+              <Table className="h-4 w-4" /> <span>{post.board.title}</span>
             </div>
             <p className="text-muted-foreground">{`- ${dayjs(post.createdAt).fromNow()}`}</p>
           </div>
