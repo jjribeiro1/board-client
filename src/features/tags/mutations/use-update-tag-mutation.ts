@@ -15,6 +15,7 @@ export function useUpdateTagMutation(tagId: string) {
     },
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["organization-tags"] });
+      queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
       toast({
         variant: "default",
         description: "Tag atualizada com sucesso",
