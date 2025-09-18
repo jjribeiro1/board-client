@@ -1,4 +1,4 @@
-import { Link, Ellipsis, Pencil } from "lucide-react";
+import { Link, Ellipsis, Pencil, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import {
@@ -15,10 +15,10 @@ import { Post } from "@/types/post";
 type Props = {
   post: Post;
   setEditPostIsEnabled: (value: boolean) => void;
+  setEditPostTagsEnabled: (value: boolean) => void;
 };
 
 export function PostActions(props: Props) {
-
   return (
     <div className="flex items-center gap-x-1">
       <PinPost post={props.post} />
@@ -44,6 +44,11 @@ export function PostActions(props: Props) {
           <DropdownMenuItem className="cursor-pointer" onClick={() => props.setEditPostIsEnabled(true)}>
             <Pencil />
             Editar título/descrição
+          </DropdownMenuItem>
+
+          <DropdownMenuItem className="cursor-pointer" onClick={() => props.setEditPostTagsEnabled(true)}>
+            <Tag />
+            Editar tags
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
