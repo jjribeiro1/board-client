@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { userRoleLabel } from "@/utils/user-role-info";
+import dayjs from "@/lib/dayjs";
 
 type ColumnData = {
   id: string;
@@ -27,5 +28,13 @@ export const organizationMembersColumns: ColumnDef<ColumnData>[] = [
     accessorKey: "role",
     header: "Função",
     cell: ({ row }) => <div>{userRoleLabel(row.getValue("role"))}</div>,
+  },
+  {
+    id: "createdAt",
+    accessorKey: "createdAt",
+    header: "Membro desde",
+    cell: ({ row }) => {
+      return <div>{dayjs(row.getValue("createdAt")).format("DD/MM/YYYY")}</div>;
+    },
   },
 ];
