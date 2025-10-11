@@ -20,6 +20,7 @@ export type BoardPostData = {
   };
   _count: {
     comments: number;
+    votes: number
   };
 };
 
