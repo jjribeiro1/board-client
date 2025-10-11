@@ -8,6 +8,7 @@ export type BoardPostData = {
   isPinned: boolean;
   isPrivate: boolean;
   description: string;
+  userHasVoted: boolean;
   createdAt: string;
   author: {
     id: string;
