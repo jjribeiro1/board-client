@@ -6,11 +6,11 @@ type StatusFromOrgResponse = {
   data: Array<Status>;
 };
 
-export function useOrganizationStatus() {
+export function useOrganizationStatus(organizationId: string) {
   return useQuery({
-    queryKey: ["organization-status"],
+    queryKey: ["organization-status", organizationId],
     queryFn: async () => {
-      const res = await apiClient.get<StatusFromOrgResponse>("/status");
+      const res = await apiClient.get<StatusFromOrgResponse>(`/organizations/${organizationId}/status`);
       return res.data.data;
     },
     staleTime: 1000 * 60 * 5,

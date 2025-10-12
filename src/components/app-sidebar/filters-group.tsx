@@ -38,7 +38,7 @@ export function FiltersGroup(props: Props) {
   const [openStatusCollapsible, setOpenStatusCollapsible] = useState(false);
 
   const { data: boardsData } = useOrganizationBoards(props.organizationId);
-  const { data: statusData } = useOrganizationStatus();
+  const { data: statusData } = useOrganizationStatus(props.organizationId);
   const { getQueryParam, setQueryParam } = useQueryParams();
 
   function onResetFilters() {
