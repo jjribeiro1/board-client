@@ -23,15 +23,6 @@ type Props = {
   organizationId: string;
 };
 
-const icons: { [key: number]: React.ReactNode } = {
-  1: <Circle />,
-  2: <Circle className="text-purple-500" />,
-  3: <Circle className="text-yellow-500" />,
-  4: <Circle className="text-blue-500" />,
-  5: <Circle className="text-green-500" />,
-  6: <Circle className="text-red-500" />,
-};
-
 export function FiltersGroup(props: Props) {
   const pathName = usePathname();
   const [openBoardsCollapsible, setOpenBoardsCollapsible] = useState(false);
@@ -94,7 +85,7 @@ export function FiltersGroup(props: Props) {
               </SidebarMenuBadge>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {statusData?.map((status, idx) => {
+                  {statusData?.map((status) => {
                     const isActive = getQueryParam("status") === status.id;
                     return (
                       <SidebarMenuSubItem key={status.id}>
@@ -102,7 +93,7 @@ export function FiltersGroup(props: Props) {
                           onClick={() => setQueryParam("status", status.id)}
                           className={`flex items-center ${isActive ? "bg-sidebar-accent" : ""}`}
                         >
-                          {icons[idx + 1]}
+                          <Circle style={{ color: status.color }} fill={status.color} />
                           {status.name}
                         </SidebarMenuButton>
                       </SidebarMenuSubItem>
