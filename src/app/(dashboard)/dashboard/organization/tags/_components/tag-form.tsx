@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { DialogTrigger } from "@/components/ui/dialog";
-import { CreateTagInput, createTagSchema } from "../../../../../../features/tags/schemas/create-tag-schema";
-import { UpdateTagInput, updateTagSchema } from "../../../../../../features/tags/schemas/update-tag-schema";
-import { useCreateTagMutation } from "../../../../../../features/tags/mutations/use-create-tag-mutation";
-import { useUpdateTagMutation } from "../../../../../../features/tags/mutations/use-update-tag-mutation";
+import { CreateTagInput, createTagSchema } from "@/features/tags/schemas/create-tag-schema";
+import { UpdateTagInput, updateTagSchema } from "@/features/tags/schemas/update-tag-schema";
+import { useCreateTagMutation } from "@/features/tags/mutations/use-create-tag-mutation";
+import { useUpdateTagMutation } from "@/features/tags/mutations/use-update-tag-mutation";
 import { Tag } from "@/types/tag";
 
 type Props = {
