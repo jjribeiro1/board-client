@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Ellipsis, Pencil } from "lucide-react";
+import { Ellipsis, Pencil, Trash } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +10,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Status } from "@/types/status";
 import { UpdateStatusDialog } from "../update-status";
+import { ActionAlert } from "@/components/ui/alert";
+import { useDeleteStatusMutation } from "@/features/status/mutations/use-delete-status-mutation";
 
 type Props = {
   status: Status;
@@ -17,6 +19,7 @@ type Props = {
 
 export function StatusRowActions(props: Props) {
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
+  const { mutate: deleteStatusMutation } = useDeleteStatusMutation(props.status.id);
 
   return (
     <>
@@ -31,6 +34,20 @@ export function StatusRowActions(props: Props) {
             <Pencil />
             Atualizar Status
           </DropdownMenuItem>
+
+          <ActionAlert
+            title="Excluir Status"
+            actionText="Excluir"
+            cancelText="Cancelar"
+            description="Tem certeza que deseja excluir esse status? Esta ação não pode ser desfeita."
+            trigger={
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="cursor-pointer">
+                <Trash />
+                Remover status
+              </DropdownMenuItem>
+            }
+            onAction={deleteStatusMutation}
+          />
         </DropdownMenuContent>
       </DropdownMenu>
 
