@@ -2,7 +2,7 @@ export type Status = {
   id: string;
   name: string;
   color: string;
-  organizationId: StringConstructor
+  organizationId: string;
   createdAt: Date;
   updatedAt: Date;
 };
