@@ -42,6 +42,14 @@ export function OrganizationCollapsible() {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuSubItem>
+
+            <SidebarMenuSubItem>
+              <SidebarMenuButton>
+                <Link href={"/dashboard/organization/status"} className="w-full">
+                  Status
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuSubItem>
           </SidebarMenuSub>
         </CollapsibleContent>
       </SidebarMenuItem>
