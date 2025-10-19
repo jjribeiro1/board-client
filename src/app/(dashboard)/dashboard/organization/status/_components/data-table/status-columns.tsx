@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import dayjs from "@/lib/dayjs";
 import { Status } from "@/types/status";
+import { StatusRowActions } from "./status-row-actions";
 
 type ColumnData = Status;
 
@@ -25,4 +26,10 @@ export const statusColumns: ColumnDef<ColumnData>[] = [
     header: "Criada em",
     cell: ({ row }) => <div>{dayjs(row.original.createdAt).format("DD/MM/YYYY")}</div>,
   },
+   {
+     id: "id",
+     accessorKey: "id",
+     header: "Ações",
+     cell: ({ row }) => <StatusRowActions status={row.original} />,
+   },
 ];
