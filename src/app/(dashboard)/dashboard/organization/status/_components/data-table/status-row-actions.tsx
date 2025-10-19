@@ -8,10 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Status } from "@/types/status";
-import { UpdateStatusDialog } from "../update-status";
 import { ActionAlert } from "@/components/ui/alert";
+import { UpdateStatusDialog } from "../update-status";
 import { useDeleteStatusMutation } from "@/features/status/mutations/use-delete-status-mutation";
+import { Status } from "@/types/status";
 
 type Props = {
   status: Status;
