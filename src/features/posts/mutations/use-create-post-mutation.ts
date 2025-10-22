@@ -20,6 +20,7 @@ export function useCreatePostMutation() {
         description: "Post criado com sucesso",
       });
       queryClient.invalidateQueries({ queryKey: ["organization-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["board-posts"] });
     },
     onError(err) {
       const error = err as AxiosError;
