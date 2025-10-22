@@ -10,7 +10,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { BoardSelector } from "@/components/ui/board-selector";
 import { StatusSelector } from "@/components/ui/status-selector";
-import { CreatePostInput, createPostSchema } from "../schemas/create-post-schema";
+import {
+  CreatePostInput,
+  createPostUserSchema,
+  createPostAdminSchema,
+} from "../schemas/create-post-schema";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
 import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
 import { useOrganizationStatus } from "@/hooks/use-organization-status";
@@ -28,19 +32,28 @@ export function CreatePost(props: Props) {
 
   const { isAdminOrOwnerFromOrg } = useUserPermission(props.organizationId);
 
+  const schema = isAdminOrOwnerFromOrg ? createPostAdminSchema : createPostUserSchema;
+
   const form = useForm<CreatePostInput>({
-    defaultValues: {
-      boardId: props?.boardId || "",
-      description: "",
-      isLocked: false,
-      isPinned: false,
-      isPrivate: false,
-      statusId: undefined,
-      title: "",
-      tagIds: [],
-    },
-    resolver: zodResolver(createPostSchema),
+    defaultValues: isAdminOrOwnerFromOrg
+      ? {
+          boardId: props?.boardId || "",
+          description: "",
+          title: "",
+          statusId: "",
+          tagIds: [],
+          isLocked: false,
+          isPinned: false,
+          isPrivate: false,
+        }
+      : {
+          boardId: props.boardId || "",
+          description: "",
+          title: "",
+        },
+    resolver: zodResolver(schema),
   });
+
   const { data: boards } = useOrganizationBoards(props.organizationId);
   const { data: statuses } = useOrganizationStatus(props.organizationId);
   const { data: tags } = useOrganizationTags(props.organizationId);
