@@ -8,7 +8,7 @@ import { Status } from "@/types/status";
 
 type Props = {
   statuses: Status[] | undefined;
-  value: string;
+  value: string | undefined;
   onChange: (statusId: string) => void;
 };
 

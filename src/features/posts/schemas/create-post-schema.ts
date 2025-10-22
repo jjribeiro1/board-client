@@ -13,7 +13,7 @@ export const createPostSchema = z.object({
   isPinned: z.boolean().optional(),
   isLocked: z.boolean().optional(),
   boardId: z.string().uuid({ message: "board inválido" }),
-  statusId: z.string().uuid({ message: "status inválido" }),
+  statusId: z.string().uuid({ message: "status inválido" }).optional(),
   tagIds: z.array(z.string().uuid({ message: "tag inválida" })).optional(),
 });
 
