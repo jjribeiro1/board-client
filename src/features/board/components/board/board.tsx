@@ -1,6 +1,6 @@
-import { useBoardPosts } from "../../hooks/use-board-posts";
-import { Button } from "@/components/ui/button";
 import { BoardPostCard } from "./board-post-card";
+import { useBoardPosts } from "../../hooks/use-board-posts";
+import { CreatePost } from "@/features/posts/components/create-post";
 import type { Board } from "@/types/board";
 
 type Props = {
@@ -26,7 +26,7 @@ export function Board(props: Props) {
           <p className="text-muted-foreground text-sm font-medium">{props.board.description}</p>
         </div>
 
-        <Button>Novo post</Button>
+        <CreatePost organizationId={props.board.organizationId} boardId={props.board.id} />
       </div>
 
       <div className="flex flex-col gap-y-8">
