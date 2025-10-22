@@ -14,7 +14,7 @@ type Props = {
 export function SidebarHeader(props: Props) {
   const { data: loggedUser } = useLoggedUserInfo();
   const organizations = loggedUser?.organizations;
-  const activeOrganization = organizations?.find((org) => org.organizationId === props.organizationId);
+  const activeOrganization = organizations?.find((org) => org.id === props.organizationId);
 
   return (
     <SidebarHeaderUI>
@@ -28,7 +28,7 @@ export function SidebarHeader(props: Props) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href={`/organization/${activeOrganization?.organizationId}`}
+                    href={`/organization/${activeOrganization?.id}`}
                     target="_blank"
                     className={buttonVariants({ size: "icon", variant: "ghost" })}
                   >

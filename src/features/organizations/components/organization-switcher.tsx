@@ -13,7 +13,7 @@ import {
 import { selectOrganizationAction } from "../actions/select-organization-action";
 
 type Props = {
-  organizations: Array<{ organizationId: string; name: string; role: string }>;
+  organizations: Array<{ id: string; name: string; role: string }>;
 };
 
 export function OrganizationSwitcher(props: Props) {
@@ -38,8 +38,8 @@ export function OrganizationSwitcher(props: Props) {
         <DropdownMenuSeparator />
         {props.organizations?.map((org) => (
           <DropdownMenuItem
-            key={org.organizationId}
-            onClick={() => handleOrganizationChange(org.organizationId)}
+            key={org.id}
+            onClick={() => handleOrganizationChange(org.id)}
             className="cursor-pointer"
           >
             {org.name}
