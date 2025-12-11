@@ -30,7 +30,7 @@ export async function refreshToken() {
   const cookieStore = await cookies();
   const refreshToken = cookieStore.get("refresh-token")?.value;
   try {
-    const res = await fetch(`${process.env.API_BASE_URL}/auth/refresh`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_UR}/auth/refresh`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
