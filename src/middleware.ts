@@ -9,6 +9,7 @@ export default async function middleware(req: NextRequest) {
 
   const tokenPayload = await verifyAccessToken();
   if (!tokenPayload && !isPublicRoute) {
+    console.error("No valid access token found.");
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -22,6 +23,7 @@ export default async function middleware(req: NextRequest) {
       await refreshToken();
     }
     if (timeUntilExpiration <= 0) {
+      console.error("Access token has expired.");
       return NextResponse.redirect(new URL("/login", req.url));
     }
   }
