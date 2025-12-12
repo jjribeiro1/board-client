@@ -11,6 +11,8 @@ export async function verifyAccessToken() {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("access-token")?.value;
     if (!accessToken) {
+      console.error("No access token found in cookies.");
+      console.log(`cookie token value: ${JSON.stringify(cookieStore.get("access-token")?.value)}`);
       return null;
     }
     const alg = "RS256";
