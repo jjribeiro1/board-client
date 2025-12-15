@@ -44,7 +44,7 @@ export async function refreshToken() {
     cookieStore.set("access-token", data.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 60 * 60,
       path: "/",
     });
@@ -52,7 +52,7 @@ export async function refreshToken() {
     cookieStore.set("refresh-token", data.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 60 * 60 * 24 * 7,
       path: "/",
     });
