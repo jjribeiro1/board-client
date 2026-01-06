@@ -7,7 +7,7 @@ export async function selectOrganizationAction(orgId: string) {
   cookieStore.set("org-id", orgId, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production" ? true : false,
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 60 * 60 * 24 * 30,
   });
 
