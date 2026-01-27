@@ -54,7 +54,7 @@ export const organizationInvitesColumns: ColumnDef<ColumnData>[] = [
     accessorKey: "createdAt",
     header: "Criado em",
     cell: ({ row }) => {
-      return <div>{dayjs(row.getValue("createdAt")).format("DD/MM/YYYY HH:mm")}</div>;
+      return <div>{dayjs(row.getValue("createdAt")).format("DD/MM/YYYY - HH:mm")}</div>;
     },
   },
   {
@@ -62,7 +62,7 @@ export const organizationInvitesColumns: ColumnDef<ColumnData>[] = [
     accessorKey: "expiresAt",
     header: "Expira em",
     cell: ({ row }) => {
-      return <div>{dayjs(row.getValue("expiresAt")).format("DD/MM/YYYY HH:mm")}</div>;
+      return <div>{dayjs(row.getValue("expiresAt")).format("DD/MM/YYYY - HH:mm")}</div>;
     },
   },
   {
@@ -71,7 +71,7 @@ export const organizationInvitesColumns: ColumnDef<ColumnData>[] = [
     header: "Aceito em",
     cell: ({ row }) => {
       const acceptedAt = row.getValue("acceptedAt") as Date | null;
-      return <div>{acceptedAt ? dayjs(acceptedAt).format("DD/MM/YYYY HH:mm") : "-"}</div>;
+      return <div>{acceptedAt ? dayjs(acceptedAt).format("DD/MM/YYYY - HH:mm") : "-"}</div>;
     },
   },
 ];
