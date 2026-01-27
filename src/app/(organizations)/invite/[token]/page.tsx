@@ -29,10 +29,9 @@ export default function AcceptInvitePage() {
       </div>
     );
   }
-
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <AcceptInviteDialog data={data} />
+      <AcceptInviteDialog invite={data} token={token} />
     </div>
   );
 }

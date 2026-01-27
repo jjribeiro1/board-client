@@ -14,9 +14,11 @@ import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
 import { InviteStatus } from "@/types/invite";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useAcceptInviteMutation } from "@/features/organizations/mutations/use-accept-invite-mutation";
 
 type Props = {
-  data: {
+  invite: {
     id: string;
     email: string;
     createdAt: Date;
@@ -30,11 +32,16 @@ type Props = {
       name: string;
     };
   };
+  token: string;
 };
 
 export function AcceptInviteDialog(props: Props) {
   const [open, setOpen] = useState(true);
+
+  const router = useRouter();
+
   const { isPending, error, isError } = useLoggedUserInfo();
+  const { mutate: acceptInviteMutation } = useAcceptInviteMutation(props.token);
 
   if (isPending) {
     return null;
@@ -42,7 +49,14 @@ export function AcceptInviteDialog(props: Props) {
 
   const shouldShowLoginButton = isError || error;
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    acceptInviteMutation(undefined, {
+      onSuccess() {
+        setOpen(false);
+        router.replace("/select-org");
+      },
+    });
+  }
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -50,10 +64,11 @@ export function AcceptInviteDialog(props: Props) {
         <AlertDialogHeader>
           <AlertDialogTitle>Convite de Organização</AlertDialogTitle>
           <AlertDialogDescription>
-            {props.data.invitedBy.name} convidou você para a organização <strong>{props.data.organization.name}</strong>
+            {props.invite.invitedBy.name} convidou você para a organização{" "}
+            <strong>{props.invite.organization.name}</strong>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
+        <AlertDialogFooter className="flex flex-row items-center justify-center w-full sm:justify-center">
           {shouldShowLoginButton ? (
             <Link href={"/login"} className={buttonVariants({ variant: "default" })}>
               Fazer login
