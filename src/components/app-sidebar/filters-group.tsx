@@ -16,8 +16,8 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ResetFilters } from "./reset-filters";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
+import { useOrganizationStatus } from "@/features/organizations/hooks/use-organization-status";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { useOrganizationStatus } from "@/hooks/use-organization-status";
 
 type Props = {
   organizationId: string;

@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useUpdatePostStatusMutation } from "@/features/posts/mutations/use-update-post-status-mutation";
-import { useOrganizationStatus } from "@/hooks/use-organization-status";
+import { useOrganizationStatus } from "@/features/organizations/hooks/use-organization-status";
 import { Post } from "@/types/post";
 
 type Props = {

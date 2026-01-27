@@ -17,7 +17,7 @@ import {
 } from "../schemas/create-post-schema";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
 import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
-import { useOrganizationStatus } from "@/hooks/use-organization-status";
+import { useOrganizationStatus } from "@/features/organizations/hooks/use-organization-status";
 import { useUserPermission } from "@/hooks/use-user-permission";
 import { useCreatePostMutation } from "../mutations/use-create-post-mutation";
 
