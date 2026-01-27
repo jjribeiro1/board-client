@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { InviteMemberInput, inviteMemberSchema } from "../schemas/invite-member-schema";
-import { useInviteMemberMutation } from "../mutations/use-invite-member-mutation";
+import { InviteMemberInput, inviteMemberSchema } from "@/features/organizations/schemas/invite-member-schema";
+import { useInviteMemberMutation } from "@/features/organizations/mutations/use-invite-member-mutation";
 
 type Props = {
   organizationId: string;
@@ -40,7 +41,7 @@ export function InviteMemberDialog(props: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Convidar membro</Button>
+        <Button variant={"secondary"} size={"sm"}><Plus /> Convidar membro</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

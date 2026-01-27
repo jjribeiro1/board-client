@@ -1,6 +1,6 @@
 import { OrganizationMembersDataTable } from "./_components/data-table/organization-members-data-table";
 import { getOrganizationId } from "@/features/organizations/services/get-organization-id";
-import { InviteMemberDialog } from "@/features/organizations/components/invite-member-dialog";
+import { InviteMemberDialog } from "@/app/(dashboard)/dashboard/organization/members/_components/invite-member-dialog";
 
 export default async function OrganizationMembersPage() {
   const orgId = await getOrganizationId();
