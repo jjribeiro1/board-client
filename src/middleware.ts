@@ -1,19 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { refreshToken, verifyAccessToken } from "./lib/auth";
 
-const publicRoutes = ["/login", "/register", '/invite'];
+const publicRoutes = ["/login", "/register"];
+
+function isPublicRoute(path: string): boolean {
+  if (publicRoutes.includes(path)) return true;
+  if (path.startsWith("/invite/")) return true;
+  return false;
+}
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isPublicRoute = publicRoutes.includes(path);
+  const isPublicRouteCheck = isPublicRoute(path);
 
   const tokenPayload = await verifyAccessToken();
-  if (!tokenPayload && !isPublicRoute) {
+  if (!tokenPayload && !isPublicRouteCheck) {
     console.error("No valid access token found.");
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (tokenPayload && !isPublicRoute) {
+  if (tokenPayload && !isPublicRouteCheck) {
     const tokenExpirationTime = tokenPayload.exp as number;
     const now = Math.floor(Date.now() / 1000);
     const timeUntilExpiration = tokenExpirationTime - now;
