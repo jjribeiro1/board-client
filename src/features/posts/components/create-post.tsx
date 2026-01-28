@@ -121,7 +121,7 @@ export function CreatePost(props: Props) {
                     name="boardId"
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
-                        <FormLabel className="text-sm">Board</FormLabel>
+                        <FormLabel className="text-sm">Canal</FormLabel>
                         <BoardSelector
                           boards={boards}
                           value={field.value}

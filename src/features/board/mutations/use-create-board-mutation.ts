@@ -21,12 +21,12 @@ export function useCreateBoardMutation() {
       queryClient.invalidateQueries({ queryKey: ["organization-boards"] });
       toast({
         variant: "default",
-        description: "Board criado com sucesso",
+        description: "Canal criado com sucesso",
       });
     },
     onError() {
       toast({
-        description: "Erro inesperado ao remover board",
+        description: "Erro inesperado ao remover canal",
         variant: "destructive",
       });
     },

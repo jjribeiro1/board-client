@@ -49,7 +49,7 @@ export function FiltersGroup(props: Props) {
           <Collapsible open={openBoardsCollapsible} onOpenChange={setOpenBoardsCollapsible}>
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton className="flex items-center">Boards</SidebarMenuButton>
+                <SidebarMenuButton className="flex items-center">Canais</SidebarMenuButton>
               </CollapsibleTrigger>
               <SidebarMenuBadge>
                 <ChevronRight size={14} className={`${openBoardsCollapsible ? "rotate-90 duration-200" : ""}`} />

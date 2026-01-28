@@ -21,15 +21,15 @@ export function BoardSelector(props: Props) {
           role="combobox"
           className={cn("w-[200px] justify-between", !props.value && "text-muted-foreground")}
         >
-          {props.value ? props.boards?.find((board) => board.id === props.value)?.title : "Selecionar board"}
+          {props.value ? props.boards?.find((board) => board.id === props.value)?.title : "Selecionar canal"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Buscar board..." />
+          <CommandInput placeholder="Buscar canal..." />
           <CommandList>
-            <CommandEmpty>Nenhum board encontrado</CommandEmpty>
+            <CommandEmpty>Nenhum canal encontrado</CommandEmpty>
             <CommandGroup>
               {props.boards?.map((board) => (
                 <CommandItem value={board.title} key={board.id} onSelect={() => props.onChange(board.id)}>

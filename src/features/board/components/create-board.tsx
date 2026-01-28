@@ -49,12 +49,12 @@ export function CreateBoard(props: Props) {
       <DialogTrigger asChild>
         <Button variant={"secondary"} size={"sm"}>
           <Plus />
-          Novo Board
+          Novo Canal
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-(--breakpoint-md)">
         <DialogHeader>
-          <DialogTitle>Novo Board</DialogTitle>
+          <DialogTitle>Novo Canal</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -65,7 +65,7 @@ export function CreateBoard(props: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Título do board" {...field} />
+                    <Input placeholder="Título do canal" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -78,7 +78,7 @@ export function CreateBoard(props: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Descrição do board" className="resize-none" rows={7} {...field} />
+                    <Textarea placeholder="Descrição do canal" className="resize-none" rows={7} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

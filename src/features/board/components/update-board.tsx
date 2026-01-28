@@ -51,12 +51,12 @@ export function UpdateBoard(props: Props) {
       <DialogTrigger asChild>
         <div className="hover:bg-secondary focus:bg-accent focus:text-accent-foreground relative flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0">
           <Pencil />
-          Editar board
+          Editar canal
         </div>
       </DialogTrigger>
       <DialogContent className="max-w-(--breakpoint-md)">
         <DialogHeader>
-          <DialogTitle>Editar Board</DialogTitle>
+          <DialogTitle>Editar Canal</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -67,7 +67,7 @@ export function UpdateBoard(props: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Título do board" {...field} />
+                    <Input placeholder="Título do canal" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,7 +80,7 @@ export function UpdateBoard(props: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Descrição do board" className="resize-none" rows={7} {...field} />
+                    <Textarea placeholder="Descrição do canal" className="resize-none" rows={7} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,7 +93,7 @@ export function UpdateBoard(props: Props) {
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                   <div className="space-y-0.5">
-                    <FormLabel>Bloquear board</FormLabel>
+                    <FormLabel>Bloquear canal</FormLabel>
                     <FormDescription>{"Novas postagens estarão bloqueadas"}</FormDescription>
                   </div>
                   <FormControl>

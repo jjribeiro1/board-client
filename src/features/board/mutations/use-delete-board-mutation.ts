@@ -14,14 +14,14 @@ export function useDeleteBoardMutation(boardId: string) {
     onSuccess() {
       toast({
         variant: "default",
-        description: "Board removido com sucesso",
+        description: "Canal removido com sucesso",
       });
       queryClient.invalidateQueries({ queryKey: ["organization-boards"] });
     },
     onError() {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao mudar remover board",
+        description: "Erro inesperado ao mudar remover canal",
       });
     },
   });

@@ -29,7 +29,7 @@ export function NavigationGroup() {
             <SidebarMenuButton asChild className="flex items-center">
               <Link href={"/dashboard/boards"}>
                 <Table />
-                Boards
+                Canais
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -14,7 +14,7 @@ export function BoardsSummary(props: Props) {
       <div className="flex w-full gap-6">
         <div className="flex min-w-3xs flex-col gap-2 rounded-md border p-4">
           <p className="text-lg font-semibold">{boards?.length}</p>
-          <p className="text-secondary-foreground">Total de boards</p>
+          <p className="text-secondary-foreground">Total de canais</p>
         </div>
 
         <div className="flex min-w-3xs flex-col gap-2 rounded-md border p-4">

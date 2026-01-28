@@ -9,7 +9,7 @@ export default async function DashboardBoardsPage() {
   return (
     <section className="flex w-full flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">Gerenciar boards</h1>
+        <h1 className="text-xl font-bold">Gerenciar canais</h1>
         <CreateBoard orgId={orgId!} />
       </div>
 

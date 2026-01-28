@@ -13,16 +13,16 @@ export function BoardsList(props: Props) {
   const { data: boards, isPending, error } = useOrganizationBoards(props.orgId);
 
   if (isPending) {
-    return <div className="leading-none font-semibold tracking-tight">Carregando boards...</div>;
+    return <div className="leading-none font-semibold tracking-tight">Carregando canais...</div>;
   }
 
   if (error) {
-    return <div>Erro ao carregar boards da sua organização</div>;
+    return <div>Erro ao carregar canais da sua organização</div>;
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-lg font-semibold">Boards</h2>
+      <h2 className="text-lg font-semibold">Canais</h2>
 
       <div className="flex flex-col gap-4">
         {boards.map((board) => (

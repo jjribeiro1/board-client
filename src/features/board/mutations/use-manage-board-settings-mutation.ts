@@ -19,12 +19,12 @@ export function useManageBoardSettings(boardId: string) {
     onSuccess() {
       queryClient.resetQueries({ queryKey: ["organization-boards"] });
       toast({
-        title: "Configurações do board atualizadas",
+        title: "Configurações do canal atualizadas",
       });
     },
     onError() {
       toast({
-        title: "Erro ao atualizar configurações do quadro.",
+        title: "Erro ao atualizar configurações do canal.",
         variant: "destructive",
       });
     },
