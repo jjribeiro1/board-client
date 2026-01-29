@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useAcceptInviteMutation(token: string) {
   const { toast } = useToast();
@@ -15,10 +16,10 @@ export function useAcceptInviteMutation(token: string) {
         description: "Convite aceito com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao aceitar o convite",
+        description: getErrorMessage(err),
       });
     },
   });

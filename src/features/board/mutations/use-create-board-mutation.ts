@@ -2,6 +2,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/axios";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationFnProps = {
   title: string;
@@ -24,9 +25,9 @@ export function useCreateBoardMutation() {
         description: "Canal criado com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
-        description: "Erro inesperado ao remover canal",
+        description: getErrorMessage(err),
         variant: "destructive",
       });
     },

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/axios";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationFnProps = {
   title?: string;
@@ -22,9 +23,9 @@ export function useManageBoardSettings(boardId: string) {
         title: "Configurações do canal atualizadas",
       });
     },
-    onError() {
+    onError(err) {
       toast({
-        title: "Erro ao atualizar configurações do canal.",
+        title: getErrorMessage(err),
         variant: "destructive",
       });
     },

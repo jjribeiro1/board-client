@@ -3,6 +3,7 @@ import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreateOrganizationInput } from "../schemas/create-organization-schema";
 import { selectOrganizationAction } from "../actions/select-organization-action";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useCreateOrganizationMutation() {
   const { toast } = useToast();
@@ -18,10 +19,10 @@ export function useCreateOrganizationMutation() {
       });
       selectOrganizationAction(data);
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao criar uma nova organização",
+        description: getErrorMessage(err),
       });
     },
   });

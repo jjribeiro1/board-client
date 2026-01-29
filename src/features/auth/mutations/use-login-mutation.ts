@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationFnProps = {
   email: string;
@@ -22,9 +23,9 @@ export function useLoginMutation() {
       });
       router.replace("/select-org");
     },
-    onError() {
+    onError(err) {
       toast({
-        description: "Credenciais inválidas",
+        description: getErrorMessage(err),
       });
     },
   });

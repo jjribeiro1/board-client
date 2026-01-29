@@ -2,8 +2,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
-import { AxiosError } from "axios";
 import type { BoardPostData } from "@/features/board/hooks/use-board-posts";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationResponse = {
   message: string;
@@ -69,13 +69,9 @@ export function useTogglePostVoteMutation(postId: string) {
         });
       }
 
-      const error = err as AxiosError;
-      const response = error.response?.data as { message: string } | undefined;
-      const message = response?.message;
-
       toast({
         variant: "destructive",
-        description: message || "Erro inesperado ao votar no post",
+        description: getErrorMessage(err),
       });
     },
   });

@@ -2,6 +2,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/axios";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useDeleteBoardMutation(boardId: string) {
   const { toast } = useToast();
@@ -18,10 +19,10 @@ export function useDeleteBoardMutation(boardId: string) {
       });
       queryClient.invalidateQueries({ queryKey: ["organization-boards"] });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao mudar remover canal",
+        description: getErrorMessage(err),
       });
     },
   });

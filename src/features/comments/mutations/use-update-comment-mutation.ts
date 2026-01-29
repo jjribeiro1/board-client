@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { UpdateCommentInput } from "../schemas/update-comment-schema";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useUpdateCommentMutation(commentId: string) {
   const queryClient = useQueryClient();
@@ -20,10 +21,10 @@ export function useUpdateCommentMutation(commentId: string) {
         description: "Comentário editado com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao editar comentário",
+        description: getErrorMessage(err),
       });
     },
   });

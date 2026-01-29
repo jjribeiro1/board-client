@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreateCommentInput } from "../schemas/create-comment-schema";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useCreateCommentMutation() {
   const queryClient = useQueryClient();
@@ -20,10 +21,10 @@ export function useCreateCommentMutation() {
         description: "Comentário criado com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao criar um novo comentário",
+        description: getErrorMessage(err),
       });
     },
   });

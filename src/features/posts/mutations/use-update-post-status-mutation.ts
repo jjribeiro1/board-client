@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { Post } from "@/types/post";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationFnProps = {
   statusId: string;
@@ -39,10 +40,10 @@ export function useUpdatePostStatusMutation(post: Post, orgId: string) {
         };
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao mudar status do post",
+        description: getErrorMessage(err)
       });
     },
   });

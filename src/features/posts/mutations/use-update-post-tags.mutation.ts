@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/axios";
+import { getErrorMessage } from "@/lib/error-message";
 
 type MutationFnProps = {
   tagIds: string[];
@@ -24,9 +25,9 @@ export function useUpdatePostTagsMutation(postId: string) {
         description: "Tags atualizadas com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
-        description: "Erro ao atualizar tags",
+        description: getErrorMessage(err),
         variant: "destructive",
       });
     },

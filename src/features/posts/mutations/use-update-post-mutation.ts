@@ -1,5 +1,6 @@
 import { useToast } from "@/hooks/use-toast";
 import { apiClient } from "@/lib/axios";
+import { getErrorMessage } from "@/lib/error-message";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type MutationFnProps = {
@@ -25,10 +26,10 @@ export function useUpdatePostMutation(postId: string) {
         description: "Post atualizado com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao atualizar post",
+        description: getErrorMessage(err),
       });
     },
   });

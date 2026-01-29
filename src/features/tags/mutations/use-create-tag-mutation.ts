@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreateTagInput } from "../schemas/create-tag-schema";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useCreateTagMutation() {
   const queryClient = useQueryClient();
@@ -20,10 +21,10 @@ export function useCreateTagMutation() {
         description: "Tag criada com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao criar uma nova Tag",
+        description: getErrorMessage(err),
       });
     },
   });

@@ -2,6 +2,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useDeleteCommentMutation(commentId: string) {
   const queryClient = useQueryClient();
@@ -19,10 +20,10 @@ export function useDeleteCommentMutation(commentId: string) {
         description: "Comentário removido com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao remover comentário",
+        description: getErrorMessage(err),
       });
     },
   });

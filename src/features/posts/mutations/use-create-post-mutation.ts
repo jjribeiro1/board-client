@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreatePostInput } from "../schemas/create-post-schema";
-import { AxiosError } from "axios";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useCreatePostMutation() {
   const { toast } = useToast();
@@ -23,13 +23,9 @@ export function useCreatePostMutation() {
       queryClient.invalidateQueries({ queryKey: ["board-posts"] });
     },
     onError(err) {
-      const error = err as AxiosError;
-      const response = error.response?.data as { message: string } | undefined;
-      const message = response?.message;
-
       toast({
         variant: "destructive",
-        description: message || "Erro inesperado ao criar um novo post",
+        description: getErrorMessage(err),
       });
     },
   });

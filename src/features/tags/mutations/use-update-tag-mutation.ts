@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { UpdateTagInput } from "../schemas/update-tag-schema";
+import { getErrorMessage } from "@/lib/error-message";
 
 export function useUpdateTagMutation(tagId: string) {
   const queryClient = useQueryClient();
@@ -21,10 +22,10 @@ export function useUpdateTagMutation(tagId: string) {
         description: "Tag atualizada com sucesso",
       });
     },
-    onError() {
+    onError(err) {
       toast({
         variant: "destructive",
-        description: "Erro inesperado ao atualizar uma Tag",
+        description: getErrorMessage(err),
       });
     },
   });
