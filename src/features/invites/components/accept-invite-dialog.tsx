@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   AlertDialog,
@@ -10,12 +12,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
-import { InviteStatus } from "@/types/invite";
-import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { useAcceptInviteMutation } from "@/features/organizations/mutations/use-accept-invite-mutation";
+import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
+import { useAcceptInviteMutation } from "@/features/invites/mutations/use-accept-invite-mutation";
+import { InviteStatus } from "@/types/invite";
 
 type Props = {
   invite: {

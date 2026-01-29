@@ -8,8 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { InviteMemberInput, inviteMemberSchema } from "@/features/organizations/schemas/invite-member-schema";
-import { useInviteMemberMutation } from "@/features/organizations/mutations/use-invite-member-mutation";
+import { InviteMemberInput, inviteMemberSchema } from "@/features/invites/schemas/invite-member-schema";
+import { useInviteMemberMutation } from "@/features/invites/mutations/use-invite-member-mutation";
 
 type Props = {
   organizationId: string;

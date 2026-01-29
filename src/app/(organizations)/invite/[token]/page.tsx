@@ -1,8 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useInviteByToken } from "@/features/organizations/hooks/use-invite-by-token";
-import { AcceptInviteDialog } from "./_components/accept-invite-dialog";
+import { AcceptInviteDialog } from "@/features/invites/components/accept-invite-dialog";
+import { useInviteByToken } from "@/features/invites/hooks/use-invite-by-token";
 
 export default function AcceptInvitePage() {
   const params = useParams();
