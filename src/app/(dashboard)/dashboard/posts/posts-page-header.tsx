@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import { CreatePost } from "@/features/posts/components/create-post";
 import { useOrganizationPosts } from "@/features/organizations/hooks/use-organization-posts";
 import { useQueryParams } from "@/hooks/use-query-params";
+import { useUserPermission } from "@/hooks/use-user-permission";
 
 type Props = {
   orgId: string;
@@ -21,6 +22,8 @@ export function PostsPageHeader(props: Props) {
     },
   });
 
+  const { isAdminOrOwnerFromOrg } = useUserPermission(props.orgId);
+
   if (isPending) {
     return <div>Carregando...</div>;
   }
@@ -36,7 +39,7 @@ export function PostsPageHeader(props: Props) {
         <span className="text-xl font-bold">{`(${posts.length ?? 0})`}</span>
       </div>
 
-      <CreatePost organizationId={props.orgId} />
+      {isAdminOrOwnerFromOrg ? <CreatePost organizationId={props.orgId} /> : null}
     </div>
   );
 }
