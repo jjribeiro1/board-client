@@ -3,8 +3,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { getErrorMessage } from "@/lib/error-message";
+import { OrganizationPostsData } from "@/types/organization-posts";
 
-export function useDeleteCommentMutation(commentId: string) {
+export function useDeleteCommentMutation({ commentId, postId }: { commentId: string; postId: string }) {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -15,6 +16,22 @@ export function useDeleteCommentMutation(commentId: string) {
     },
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["post-comments"] });
+      queryClient.setQueriesData<OrganizationPostsData[]>({ queryKey: ["organization-posts"] }, (oldData) => {
+        if (!oldData) return oldData;
+
+        return oldData.map((post) => {
+          if (post.id === postId) {
+            return {
+              ...post,
+              _count: {
+                ...post._count,
+                comments: post._count.comments - 1,
+              },
+            };
+          }
+          return post;
+        });
+      });
       toast({
         variant: "default",
         description: "Comentário removido com sucesso",

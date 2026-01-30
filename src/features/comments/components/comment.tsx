@@ -42,7 +42,7 @@ export function Comment(props: Props) {
             <Button onClick={() => setOpenUpdateComment(true)} className="h-6 w-6" variant={"ghost"} size={"icon"}>
               <Pencil className="h-3.5 w-3.5" />
             </Button>
-            <DeleteComment commentId={props.comment.id} />
+            <DeleteComment commentId={props.comment.id} postId={props.comment.postId} />
           </div>
         ) : null}
       </div>

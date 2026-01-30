@@ -5,10 +5,14 @@ import { useDeleteCommentMutation } from "../mutations/use-delete-comment-mutati
 
 type Props = {
   commentId: string;
+  postId: string;
 };
 
 export function DeleteComment(props: Props) {
-  const { mutate: deleteCommentMutation } = useDeleteCommentMutation(props.commentId);
+  const { mutate: deleteCommentMutation } = useDeleteCommentMutation({
+    commentId: props.commentId,
+    postId: props.postId,
+  });
 
   return (
     <ActionAlert
