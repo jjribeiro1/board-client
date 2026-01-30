@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import {
   SidebarMenu,
@@ -16,16 +16,17 @@ import { useQueryParams } from "@/hooks/use-query-params";
 
 export function BoardsGroup() {
   const params = useParams<{ id: string }>();
+  const pathname = usePathname()
   const { getQueryParam, setQueryParam, hasQueryParam } = useQueryParams();
 
   const { data: boards, isLoading } = useOrganizationBoards(params.id);
   const noBoardSelected = !hasQueryParam("board");
 
   useEffect(() => {
-    if (noBoardSelected && boards && boards.length > 0) {
+    if (noBoardSelected && boards && boards.length > 0 && !pathname.includes("posts")) {
       setQueryParam("board", boards[0].id);
     }
-  }, [boards, noBoardSelected]);
+  }, [boards, noBoardSelected, setQueryParam, pathname]);
 
   return (
     <SidebarGroup>
