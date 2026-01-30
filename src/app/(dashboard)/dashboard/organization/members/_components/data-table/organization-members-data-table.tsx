@@ -1,6 +1,6 @@
 "use client";
 import { DataTable } from "@/components/ui/data-table";
-import { organizationMembersColumns } from "./organization-members-columns";
+import { getOrganizationMembersColumns } from "./organization-members-columns";
 import { useOrganizationMembers } from "@/features/organizations/hooks/use-organization-members";
 
 type Props = {
@@ -9,6 +9,8 @@ type Props = {
 
 export function OrganizationMembersDataTable(props: Props) {
   const { data, isPending, error } = useOrganizationMembers(props.organizationId);
+
+  const columns = getOrganizationMembersColumns({ organizationId: props.organizationId });
 
   if (isPending) {
     return <div className="leading-none font-semibold tracking-tight">Carregando informações...</div>;
@@ -19,7 +21,7 @@ export function OrganizationMembersDataTable(props: Props) {
   }
   return (
     <div className="container mx-auto py-10">
-      <DataTable data={data} columns={organizationMembersColumns} />
+      <DataTable data={data} columns={columns} />
     </div>
   );
 }
