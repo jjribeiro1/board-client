@@ -68,7 +68,7 @@ export function AcceptInviteDialog(props: Props) {
             <strong>{props.invite.organization.name}</strong>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="flex flex-row items-center justify-center w-full sm:justify-center">
+        <AlertDialogFooter className="flex w-full flex-row items-center justify-center sm:justify-center">
           {shouldShowLoginButton ? (
             <Link href={"/login"} className={buttonVariants({ variant: "default" })}>
               Fazer login

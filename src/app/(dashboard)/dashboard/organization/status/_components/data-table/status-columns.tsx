@@ -26,10 +26,10 @@ export const statusColumns: ColumnDef<ColumnData>[] = [
     header: "Criada em",
     cell: ({ row }) => <div>{dayjs(row.original.createdAt).format("DD/MM/YYYY")}</div>,
   },
-   {
-     id: "id",
-     accessorKey: "id",
-     header: "Ações",
-     cell: ({ row }) => <StatusRowActions status={row.original} />,
-   },
+  {
+    id: "id",
+    accessorKey: "id",
+    header: "Ações",
+    cell: ({ row }) => <StatusRowActions status={row.original} />,
+  },
 ];

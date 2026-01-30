@@ -16,7 +16,7 @@ import { useQueryParams } from "@/hooks/use-query-params";
 
 export function BoardsGroup() {
   const params = useParams<{ id: string }>();
-  const pathname = usePathname()
+  const pathname = usePathname();
   const { getQueryParam, setQueryParam, hasQueryParam } = useQueryParams();
 
   const { data: boards, isLoading } = useOrganizationBoards(params.id);

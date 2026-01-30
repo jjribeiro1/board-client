@@ -43,7 +43,7 @@ export function useUpdatePostStatusMutation(post: Post, orgId: string) {
     onError(err) {
       toast({
         variant: "destructive",
-        description: getErrorMessage(err)
+        description: getErrorMessage(err),
       });
     },
   });

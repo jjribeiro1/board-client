@@ -41,7 +41,9 @@ export function InviteMemberDialog(props: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant={"secondary"} size={"sm"}><Plus /> Convidar membro</Button>
+        <Button variant={"secondary"} size={"sm"}>
+          <Plus /> Convidar membro
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

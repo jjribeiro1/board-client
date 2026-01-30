@@ -7,7 +7,6 @@ type OrganizationInfoResponse = {
 };
 
 export function useOrganizationInfo(organizationId: string, disabled: boolean = false) {
-
   return useQuery({
     queryKey: ["organization", organizationId],
     queryFn: async () => {
@@ -15,6 +14,6 @@ export function useOrganizationInfo(organizationId: string, disabled: boolean = 
       return res.data.data;
     },
     staleTime: 1000 * 60 * 5,
-    enabled: !!organizationId && disabled === false
+    enabled: !!organizationId && disabled === false,
   });
 }

@@ -37,11 +37,7 @@ export function OrganizationSwitcher(props: Props) {
         <DropdownMenuLabel>Suas organizações</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {props.organizations?.map((org) => (
-          <DropdownMenuItem
-            key={org.id}
-            onClick={() => handleOrganizationChange(org.id)}
-            className="cursor-pointer"
-          >
+          <DropdownMenuItem key={org.id} onClick={() => handleOrganizationChange(org.id)} className="cursor-pointer">
             {org.name}
           </DropdownMenuItem>
         ))}

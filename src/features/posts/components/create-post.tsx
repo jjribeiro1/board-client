@@ -10,11 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { BoardSelector } from "@/components/ui/board-selector";
 import { StatusSelector } from "@/components/ui/status-selector";
-import {
-  CreatePostInput,
-  createPostUserSchema,
-  createPostAdminSchema,
-} from "../schemas/create-post-schema";
+import { CreatePostInput, createPostUserSchema, createPostAdminSchema } from "../schemas/create-post-schema";
 import { useOrganizationBoards } from "@/features/organizations/hooks/use-organization-boards";
 import { useOrganizationTags } from "@/features/organizations/hooks/use-organization-tags";
 import { useOrganizationStatus } from "@/features/organizations/hooks/use-organization-status";

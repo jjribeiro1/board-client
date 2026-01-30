@@ -17,7 +17,7 @@ export function useLogoutMutation() {
         description: "Logout realizado com sucesso",
       });
       router.replace("/login");
-      router.refresh()
+      router.refresh();
     },
     onError(err) {
       toast({

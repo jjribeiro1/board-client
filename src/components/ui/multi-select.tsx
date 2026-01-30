@@ -671,7 +671,9 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
           if (addedLabels.length === 1) {
             announce(`${addedLabels[0]} selecionada. ${selectedCount} de ${totalOptions} opções selecionadas.`);
           } else {
-            announce(`${addedLabels.length} opções selecionadas. ${selectedCount} de ${totalOptions} total selecionadas.`);
+            announce(
+              `${addedLabels.length} opções selecionadas. ${selectedCount} de ${totalOptions} total selecionadas.`,
+            );
           }
         } else if (diff < 0) {
           announce(`Opção removida. ${selectedCount} de ${totalOptions} opções selecionadas.`);
@@ -696,7 +698,9 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
               opt.value.toLowerCase().includes(searchValue.toLowerCase()),
           ).length;
 
-          announce(`${filteredCount} opção${filteredCount === 1 ? "" : "s"} encontrada${filteredCount === 1 ? "" : "s"} para "${searchValue}"`);
+          announce(
+            `${filteredCount} opção${filteredCount === 1 ? "" : "s"} encontrada${filteredCount === 1 ? "" : "s"} para "${searchValue}"`,
+          );
         }
         prevSearchValue.current = searchValue;
       }
