@@ -4,6 +4,7 @@ import { apiClient } from "@/lib/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CreateCommentInput } from "../schemas/create-comment-schema";
 import { getErrorMessage } from "@/lib/error-message";
+import { OrganizationPostsData } from "@/types/organization-posts";
 
 export function useCreateCommentMutation() {
   const queryClient = useQueryClient();
@@ -14,8 +15,29 @@ export function useCreateCommentMutation() {
       const res = await apiClient.post<string>("/comments", data);
       return res.data;
     },
-    onSuccess() {
+    onSuccess(_data, variables) {
       queryClient.invalidateQueries({ queryKey: ["post-comments"] });
+      
+      queryClient.setQueriesData<OrganizationPostsData[]>(
+        { queryKey: ["organization-posts"] },
+        (oldData) => {
+          if (!oldData) return oldData;
+          
+          return oldData.map((post) => {
+            if (post.id === variables.postId) {
+              return {
+                ...post,
+                _count: {
+                  ...post._count,
+                  comments: post._count.comments + 1,
+                },
+              };
+            }
+            return post;
+          });
+        }
+      );
+
       toast({
         variant: "default",
         description: "Comentário criado com sucesso",
