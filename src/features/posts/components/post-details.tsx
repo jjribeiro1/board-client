@@ -58,7 +58,7 @@ export function PostDetails(props: Props) {
         {editPostIsEnabled ? (
           <UpdatePost post={post} onPostUpdate={() => setEditPostIsEnabled(false)} />
         ) : (
-          <div>
+          <div className="flex flex-col gap-y-2">
             <DialogTitle>{post.title}</DialogTitle>
             <DialogDescription>{post.description}</DialogDescription>
           </div>
