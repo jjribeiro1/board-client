@@ -8,15 +8,10 @@ import { BoardPostCard } from "@/features/board/components/board/board-post-card
 export default function PublicOrganizationPage() {
   const { getQueryParam } = useQueryParams();
 
-  const statusId = getQueryParam("status") || "";
   const boardId = getQueryParam("board");
 
   const { data: boardData, isPending: boardDataPending, error: boardsDataError } = useBoardInfo(boardId!);
-  const {
-    data: posts,
-    isPending: postsPending,
-    error: postsError,
-  } = useBoardPosts(boardData?.id!, { filters: { status: statusId } });
+  const { data: posts, isPending: postsPending, error: postsError } = useBoardPosts(boardData?.id!);
 
   if (boardDataPending || postsPending) {
     return <div>Carregando informações...</div>;

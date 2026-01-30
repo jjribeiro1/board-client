@@ -1,7 +1,6 @@
 "use client";
 import { CreatePost } from "@/features/posts/components/create-post";
 import { useOrganizationPosts } from "@/features/organizations/hooks/use-organization-posts";
-import { useQueryParams } from "@/hooks/use-query-params";
 import { useUserPermission } from "@/hooks/use-user-permission";
 
 type Props = {
@@ -9,17 +8,12 @@ type Props = {
 };
 
 export function PostsPageHeader(props: Props) {
-  const { getQueryParam } = useQueryParams();
   const {
     data: posts,
     isPending,
     error,
   } = useOrganizationPosts({
     orgId: props.orgId,
-    filters: {
-      status: getQueryParam("status") as string,
-      board: getQueryParam("board") as string,
-    },
   });
 
   const { isAdminOrOwnerFromOrg } = useUserPermission(props.orgId);

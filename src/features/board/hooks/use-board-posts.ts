@@ -30,23 +30,18 @@ type BoardPostsResponse = {
   data: Array<BoardPostData>;
 };
 
-type Props = {
-  filters: {
-    status: string;
-  };
-};
-
-export function useBoardPosts(boardId: string, props: Props) {
+export function useBoardPosts(boardId: string) {
   const { createQueryString } = useQueryParams();
   const queryString = createQueryString();
 
   return useQuery({
-    queryKey: ["board-posts", boardId, props.filters],
+    queryKey: ["board-posts", boardId, queryString],
     queryFn: async () => {
       const res = await apiClient.get<BoardPostsResponse>(`/boards/${boardId}/posts${queryString}`);
       return res.data.data;
     },
     enabled: !!boardId,
     staleTime: 1000 * 60 * 5,
+    placeholderData: (prev) => prev,
   });
 }

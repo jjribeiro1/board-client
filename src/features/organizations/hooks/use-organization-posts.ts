@@ -9,10 +9,6 @@ type OrganizationPostsResponse = {
 
 type Props = {
   orgId: string;
-  filters: {
-    status: string;
-    board: string;
-  };
 };
 
 export function useOrganizationPosts(props: Props) {
@@ -20,7 +16,7 @@ export function useOrganizationPosts(props: Props) {
   const queryString = createQueryString();
 
   return useQuery({
-    queryKey: ["organization-posts", props.orgId, props.filters],
+    queryKey: ["organization-posts", props.orgId, queryString],
     queryFn: async () => {
       const res = await apiClient.get<OrganizationPostsResponse>(`/organizations/${props.orgId}/posts${queryString}`);
       return res.data.data;

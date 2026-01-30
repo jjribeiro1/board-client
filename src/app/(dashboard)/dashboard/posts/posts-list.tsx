@@ -7,7 +7,6 @@ import { CreatePost } from "@/features/posts/components/create-post";
 import { PostStatusDropdown } from "@/features/posts/components/post-status-dropdown";
 import { PinPost } from "@/features/posts/components/pin-post";
 import { useOrganizationPosts } from "@/features/organizations/hooks/use-organization-posts";
-import { useQueryParams } from "@/hooks/use-query-params";
 import dayjs from "@/lib/dayjs";
 
 type Props = {
@@ -16,13 +15,8 @@ type Props = {
 
 export function PostsList(props: Props) {
   const router = useRouter();
-  const { getQueryParam } = useQueryParams();
   const { data, isPending, error } = useOrganizationPosts({
     orgId: props.orgId,
-    filters: {
-      status: getQueryParam("status") as string,
-      board: getQueryParam("board") as string,
-    },
   });
 
   if (isPending) {
