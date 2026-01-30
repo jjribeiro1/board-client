@@ -2,13 +2,17 @@ import { BoardPostCard } from "./board-post-card";
 import { useBoardPosts } from "../../hooks/use-board-posts";
 import { CreatePost } from "@/features/posts/components/create-post";
 import type { Board } from "@/types/board";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 type Props = {
   board: Board;
 };
 
 export function Board(props: Props) {
-  const { data: posts, isPending, error } = useBoardPosts(props.board.id);
+  const { getQueryParam } = useQueryParams();
+  const statusId = getQueryParam("status") || "";
+
+  const { data: posts, isPending, error } = useBoardPosts(props.board.id, { filters: { status: statusId } });
 
   if (isPending) {
     return <div>carregando posts...</div>;
