@@ -30,7 +30,7 @@ export function FiltersGroup(props: Props) {
 
   const { data: boardsData } = useOrganizationBoards(props.organizationId);
   const { data: statusData } = useOrganizationStatus(props.organizationId);
-  const { getQueryParam, setQueryParam } = useQueryParams();
+  const { getQueryParam, getAllQueryParams, setQueryParam, toggleQueryParam } = useQueryParams();
 
   function onResetFilters() {
     setOpenBoardsCollapsible(false);
@@ -86,11 +86,12 @@ export function FiltersGroup(props: Props) {
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {statusData?.map((status) => {
-                    const isActive = getQueryParam("status") === status.id;
+                    const activeStatuses = getAllQueryParams("status");
+                    const isActive = activeStatuses.includes(status.id);
                     return (
                       <SidebarMenuSubItem key={status.id}>
                         <SidebarMenuButton
-                          onClick={() => setQueryParam("status", status.id)}
+                          onClick={() => toggleQueryParam("status", status.id)}
                           className={`flex items-center ${isActive ? "bg-sidebar-accent" : ""}`}
                         >
                           <Circle style={{ color: status.color }} fill={status.color} />

@@ -15,10 +15,10 @@ import { useQueryParams } from "@/hooks/use-query-params";
 
 export function StatusGroup() {
   const params = useParams<{ id: string }>();
-  const { getQueryParam, setQueryParam } = useQueryParams();
+  const { getAllQueryParams, toggleQueryParam } = useQueryParams();
 
   const { data: statuses, isLoading } = useOrganizationStatus(params.id);
-  const activeStatus = getQueryParam("status");
+  const activeStatuses = getAllQueryParams("status");
 
   return (
     <SidebarGroup>
@@ -36,11 +36,11 @@ export function StatusGroup() {
             </>
           ) : (
             statuses?.map((status) => {
-              const isActive = activeStatus === status.id;
+              const isActive = activeStatuses.includes(status.id);
               return (
                 <SidebarMenuItem key={status.id}>
                   <SidebarMenuButton
-                    onClick={() => setQueryParam("status", status.id)}
+                    onClick={() => toggleQueryParam("status", status.id)}
                     className={`flex items-center gap-2 ${isActive ? "bg-sidebar-accent" : ""}`}
                   >
                     <span className="h-2 w-2 rounded-full" style={{ backgroundColor: status.color }} />
