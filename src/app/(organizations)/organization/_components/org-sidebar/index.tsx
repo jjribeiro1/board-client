@@ -2,8 +2,7 @@
 
 import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sidebar";
 import { BoardsGroup } from "./boards-group";
-import { StatusGroup } from "./status-group";
-import { OrgResetFilters } from "./org-reset-filters";
+import { FiltersGroup } from "./filters-group";
 
 export function OrganizationSidebar({ children }: { children: React.ReactNode }) {
   return (
@@ -12,8 +11,7 @@ export function OrganizationSidebar({ children }: { children: React.ReactNode })
         <Sidebar className="h-full border-r" collapsible="none">
           <SidebarContent>
             <BoardsGroup />
-            <StatusGroup />
-            <OrgResetFilters />
+            <FiltersGroup />
           </SidebarContent>
         </Sidebar>
         <main className="flex-1 overflow-auto px-8 py-6">{children}</main>
