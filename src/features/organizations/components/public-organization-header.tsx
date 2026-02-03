@@ -1,14 +1,12 @@
 "use client";
 import { useParams, usePathname } from "next/navigation";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { UserAvatarDropdown } from "@/components/user-avatar-dropdown";
 import { useOrganizationInfo } from "../hooks/use-organization-info";
-import { useLoggedUserInfo } from "@/features/auth/hooks/use-logged-user-info";
 
 export function PublicOrganizationHeader() {
   const params = useParams<{ id: string }>();
   const pathname = usePathname();
   const { data: organization } = useOrganizationInfo(params.id, pathname.includes("/posts"));
-  const { data: loggedUser } = useLoggedUserInfo();
 
   return (
     <header className="flex items-center justify-between border px-8 py-6">
@@ -17,9 +15,7 @@ export function PublicOrganizationHeader() {
       </div>
 
       <div className="pr-10">
-        <Avatar>
-          <AvatarFallback>{loggedUser?.name.at(0)}</AvatarFallback>
-        </Avatar>
+        <UserAvatarDropdown />
       </div>
     </header>
   );
