@@ -43,7 +43,7 @@ export function FiltersGroup(props: Props) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Filtros rápidos</SidebarGroupLabel>
+      <SidebarGroupLabel>Filtros</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           <Collapsible open={openBoardsCollapsible} onOpenChange={setOpenBoardsCollapsible}>
