@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { MessageCircleMore, Pin, ChevronUp } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { MessageCircleMore, Pin, ChevronUp, Tag } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,22 @@ export function BoardPostCard(props: Props) {
           <CardDescription>{props.post.description}</CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="flex items-center justify-between">
+      <CardContent>
+        {props.post.tags.length > 0 ? (
+          <div className="flex items-center gap-2">
+            <Tag className="h-4 w-4" />
+            <div className="flex items-center gap-2">
+              {props.post.tags.map((tag) => (
+                <Badge key={tag.id} style={{ backgroundColor: tag.color }} className="font-medium text-white">
+                  {tag.name}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </CardContent>
+
+      <CardFooter className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
           <Avatar className="h-7 w-7">
             <AvatarFallback>{props.post.author.name.at(0)}</AvatarFallback>
@@ -63,7 +78,7 @@ export function BoardPostCard(props: Props) {
             <span className="text-sm">{props.post._count.comments}</span>
           </div>
         </div>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }

@@ -20,6 +20,7 @@ export type BoardPostData = {
     name: string;
     color: string;
   };
+  tags: Array<{ id: string; name: string; color: string }>;
   _count: {
     comments: number;
     votes: number;
