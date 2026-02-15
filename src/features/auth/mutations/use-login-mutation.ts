@@ -9,7 +9,7 @@ type MutationFnProps = {
   password: string;
 };
 
-export function useLoginMutation() {
+export function useLoginMutation(callbackUrl: string | null) {
   const router = useRouter();
   const { toast } = useToast();
   return useMutation({
@@ -21,7 +21,7 @@ export function useLoginMutation() {
       toast({
         description: "Usuário logado com sucesso",
       });
-      router.replace("/select-org");
+      router.replace(callbackUrl ?? "/select-org");
     },
     onError(err) {
       toast({

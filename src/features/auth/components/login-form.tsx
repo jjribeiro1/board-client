@@ -8,8 +8,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoginInput, loginSchema } from "../schemas/login-schema";
 import { useLoginMutation } from "../mutations/use-login-mutation";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 export function LoginForm() {
+  const { getQueryParam } = useQueryParams();
+  const callbackUrl = getQueryParam("callbackUrl")
+
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -17,7 +21,7 @@ export function LoginForm() {
       password: "",
     },
   });
-  const { mutate } = useLoginMutation();
+  const { mutate } = useLoginMutation(callbackUrl);
 
   function onSubmit(data: LoginInput) {
     const mutationData = {

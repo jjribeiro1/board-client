@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   AlertDialog,
@@ -39,6 +39,7 @@ export function AcceptInviteDialog(props: Props) {
   const [open, setOpen] = useState(true);
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const { isPending, error, isError } = useLoggedUserInfo();
   const { mutate: acceptInviteMutation } = useAcceptInviteMutation(props.token);
@@ -70,7 +71,10 @@ export function AcceptInviteDialog(props: Props) {
         </AlertDialogHeader>
         <AlertDialogFooter className="flex w-full flex-row items-center justify-center sm:justify-center">
           {shouldShowLoginButton ? (
-            <Link href={"/login"} className={buttonVariants({ variant: "default" })}>
+            <Link
+              href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
+              className={buttonVariants({ variant: "default" })}
+            >
               Fazer login
             </Link>
           ) : (
