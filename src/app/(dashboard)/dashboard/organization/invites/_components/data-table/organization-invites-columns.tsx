@@ -2,11 +2,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import dayjs from "@/lib/dayjs";
 import { Invite, InviteStatus } from "@/types/invite";
 import { userRoleLabel } from "@/utils/user-role-info";
+import { OrganizationInvitesRowActions } from "./organization-invites-row-actions";
 
 type ColumnData = Invite;
 
 const inviteStatusLabel = (status: InviteStatus): string => {
-  console.log(status);
   switch (status) {
     case InviteStatus.PENDING:
       return "Pendente";
@@ -74,4 +74,14 @@ export const organizationInvitesColumns: ColumnDef<ColumnData>[] = [
       return <div>{acceptedAt ? dayjs(acceptedAt).format("DD/MM/YYYY - HH:mm") : "-"}</div>;
     },
   },
+
+  {
+    id: "actions",
+    accessorKey: "id",
+    header: "Ações",
+    cell: ({ row }) => {
+      const invite = row.original;
+      return <OrganizationInvitesRowActions invite={invite} />;
+    },
+  }
 ];
