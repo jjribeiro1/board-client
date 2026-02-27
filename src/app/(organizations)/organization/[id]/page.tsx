@@ -31,7 +31,7 @@ export default function PublicOrganizationPage() {
         </div>
 
         <div className="pr-6">
-          <CreatePost organizationId={boardData.organizationId} />
+          <CreatePost organizationId={boardData.organizationId} boardId={boardData.id} />
         </div>
       </div>
 

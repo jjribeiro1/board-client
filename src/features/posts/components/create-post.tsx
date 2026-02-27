@@ -55,6 +55,8 @@ export function CreatePost(props: Props) {
   const { data: tags } = useOrganizationTags(props.organizationId);
   const { mutate: createPostMutation, isPending } = useCreatePostMutation();
 
+  console.log(form.formState.errors);
+
   function onSubmit(values: CreatePostInput) {
     createPostMutation(values, {
       onSuccess: () => {
