@@ -10,4 +10,6 @@ export type Comment = {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
+  parentId: string | null;
+  replies: Comment[];
 };

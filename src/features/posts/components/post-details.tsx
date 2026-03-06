@@ -70,12 +70,14 @@ export function PostDetails(props: Props) {
 
         <div className="flex flex-col gap-y-8">
           <p className="leading-6 font-medium underline decoration-gray-200 decoration-1 underline-offset-8">
-            {`Comentários (${comments.length})`}
+            {`Comentários (${comments.filter((c) => c.parentId === null).length})`}
           </p>
           <div className="flex flex-col gap-y-10">
-            {comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
-            ))}
+            {comments
+              .filter((comment) => comment.parentId === null)
+              .map((comment) => (
+                <Comment key={comment.id} comment={comment} post={post} />
+              ))}
           </div>
         </div>
 
