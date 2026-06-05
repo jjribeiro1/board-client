@@ -6,6 +6,7 @@ type LoggedUserInfo = {
   id: string;
   name: string;
   email: string;
+  avatarUrl: string | null;
   organizations: Array<{ id: string; name: string; role: Role }>;
   createdAt: Date;
   updatedAt: Date;
