@@ -50,9 +50,7 @@ export function NotificationList() {
         )}
 
         {!isLoading &&
-          notifications?.map((notification) => (
-            <NotificationItem key={notification.id} notification={notification} />
-          ))}
+          notifications?.map((notification) => <NotificationItem key={notification.id} notification={notification} />)}
       </div>
     </div>
   );

@@ -83,5 +83,5 @@ export const organizationInvitesColumns: ColumnDef<ColumnData>[] = [
       const invite = row.original;
       return <OrganizationInvitesRowActions invite={invite} />;
     },
-  }
+  },
 ];

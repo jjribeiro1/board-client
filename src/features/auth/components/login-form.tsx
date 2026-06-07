@@ -12,7 +12,7 @@ import { useQueryParams } from "@/hooks/use-query-params";
 
 export function LoginForm() {
   const { getQueryParam } = useQueryParams();
-  const callbackUrl = getQueryParam("callbackUrl")
+  const callbackUrl = getQueryParam("callbackUrl");
 
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),

@@ -38,7 +38,7 @@ export function useUploadAvatarMutation() {
       queryClient.invalidateQueries({ queryKey: ["logged-user-info"] });
     },
     onError(err) {
-      console.error(err); 
+      console.error(err);
       toast({
         variant: "destructive",
         description: getErrorMessage(err, "Erro ao atualizar foto de perfil"),
