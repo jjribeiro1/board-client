@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { LayoutGrid, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const navLinks = [
   { href: "#features", label: "Funcionalidades" },
@@ -28,9 +28,12 @@ export function LandingNav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link href="/login">Entrar</Link>
-          </Button>
+          <Link
+            href="/login"
+            className={buttonVariants({ variant: "ghost", size: "sm", className: "hidden sm:inline-flex" })}
+          >
+            Entrar
+          </Link>
           <Button asChild size="sm">
             <Link href="/register">
               <Sparkles className="h-4 w-4" />
