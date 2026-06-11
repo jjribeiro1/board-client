@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { refreshToken, verifyAccessToken } from "./lib/auth";
 
-const publicRoutes = ["/login", "/register"];
+const publicRoutes = ["/", "/login", "/register"];
 
 function isPublicRoute(path: string): boolean {
   if (publicRoutes.includes(path)) return true;
