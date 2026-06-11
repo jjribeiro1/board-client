@@ -1,121 +1,52 @@
-# AGENTS.md - Coding Guidelines for board-client
+# AGENTS.md — board-client
 
-## Project Overview
+Next.js 16 App Router (Turbopack), TypeScript strict, Tailwind CSS v4, feature-based architecture.
 
-Next.js 16 App Router application with TypeScript, Tailwind CSS v4, and feature-based architecture.
-
-## Build/Lint/Format Commands
+## Commands
 
 ```bash
-# Development server (Turbopack)
-pnpm dev
-
-# Production build
-pnpm build
-
-# Run ESLint
-pnpm lint
-
-# Format code with Prettier
-pnpm format
+pnpm dev        # dev server on port 4000 (next dev --turbopack --port 4000)
+pnpm build      # production build
+pnpm lint       # ESLint (flat config, next/core-web-vitals + prettier)
+pnpm format     # Prettier (printWidth 120, tailwindcss plugin)
 ```
 
-**Note**: No test framework is currently configured. This project does not have tests.
+No test framework — project has no tests.
 
-## Code Style Guidelines
+## Architecture
 
-### Imports & Module Structure
+- **Feature-first** — each domain under `src/features/<domain>/` owns `components/`, `hooks/`, `mutations/`, `schemas/`. 10 domains: auth, board, comments, invites, notifications, organizations, posts, status, tags, users.
+- **Route groups** — `(auth)`, `(dashboard)`, `(organizations)`. Parallel `@modal` slot for post detail modals.
+- **Shared types** in `src/types/` (e.g. `Role`, `Organization`). UI components in `src/components/ui/` (shadcn-style Radix + Tailwind).
+- **App providers** wrap everything in `src/providers/index.tsx`: React Query + next-themes (default dark) + Toaster.
+- **Auth gating** is done by the file at `src/proxy.ts` (uses Next.js middleware config format but named `proxy.ts` instead of `middleware.ts` — will NOT be auto-picked up as middleware). JWT verification via `jose` in `src/lib/auth.ts`. Public routes: `/login`, `/register`, `/invite/*`.
 
-- Use `@/*` path alias for all imports from `src/` (e.g., `@/lib/axios`, `@/components/ui/button`)
-- Group imports: 1) React/Next, 2) Third-party libs, 3) Internal modules
-- Prefer named exports for hooks and utility functions
-- Use `type` keyword for type-only imports when possible
+## Data Patterns
 
-### Formatting
+- **API client:** `apiClient` from `@/lib/axios` (`withCredentials: true`). Never use axios directly.
+- **Queries:** TanStack Query `useQuery` with `queryKey: ["entity", id]`, 5-min `staleTime`, `enabled` guard. Use `placeholderData: (prev) => prev` for list queries with filters.
+- **Mutations:** `useMutation` with `"use client"`, `useToast()`, `getErrorMessage(err)` on error, `queryClient.invalidateQueries(...)` on success. All user-facing text in Portuguese.
+- **Query params:** Use `useQueryParams` hook from `@/hooks/use-query-params` for search/filter/sort. Include query string in query key.
+- **Forms:** `react-hook-form` + `zodResolver`. Input types inferred from Zod schemas.
+- **Server actions** live under `features/<domain>/actions/`.
 
-- Prettier with `printWidth: 120`
-- Uses `prettier-plugin-tailwindcss` for class sorting
-- No trailing commas preference detected
-- Double quotes for strings
+## Key Files & Utilities
 
-### TypeScript Conventions
+| File | Purpose |
+|------|---------|
+| `@/lib/axios` | Shared Axios client |
+| `@/lib/error-message` | `getErrorMessage(err, fallback)` |
+| `@/lib/dayjs` | dayjs with `pt-br` locale + relativeTime plugin |
+| `@/lib/utils` | `cn()` (clsx + tailwind-merge) |
+| `@/hooks/use-toast` | `useToast()` / `toast()` |
+| `@/hooks/use-query-params` | URL search param CRUD |
+| `@/hooks/use-user-permission` | Role-based access checks within an org |
+| `@/features/organizations/services/get-organization-id` | Reads `org-id` cookie (server-only) |
 
-- Strict mode enabled
-- Use explicit function return types on exported functions
-- Define types for API responses (e.g., `OrganizationInfoResponse`)
-- Prefer `type` over `interface` for object shapes
-- Use `Readonly<>` for props where appropriate
-- Nullable parameters use `string | undefined` pattern
+## Conventions
 
-### Naming Conventions
-
-- **Hooks**: `usePascalCase` (e.g., `useOrganizationInfo`, `useCreatePostMutation`)
-- **Mutations**: `useActionMutation` pattern (e.g., `useCreateBoardMutation`)
-- **Components**: PascalCase files, default exports for pages
-- **Types/Interfaces**: PascalCase with descriptive names
-- **Utilities**: camelCase, descriptive function names
-- **Files**: Use kebab-case for feature folders and filenames (e.g., `use-organization-info.ts`)
-
-### Error Handling
-
-- Use `getErrorMessage()` utility from `@/lib/error-message` for consistent error messages
-- Mutations should have `onError` handlers showing toast notifications
-- API errors are handled via toast with `variant: "destructive"`
-- Fallback error message in Portuguese: "Ocorreu um erro inesperado"
-
-### Architecture Patterns
-
-#### Feature-Based Organization
-
-- Each domain under `src/features/<domain>/` contains:
-  - `components/` - Feature-specific React components
-  - `hooks/` - Query hooks (data fetching)
-  - `mutations/` - TanStack Query mutations
-  - `schemas/` - Zod validation schemas
-
-#### Data Fetching
-
-- Use TanStack Query for all server state
-- Query keys follow pattern: `["entity", id]` or `["entity-list", filters]`
-- Default `staleTime: 1000 * 60 * 5` (5 minutes) for organization data
-- Always use `apiClient` from `@/lib/axios` - never use axios directly
-- Mutations must invalidate/reset related queries on success
-
-#### Forms & Validation
-
-- Use `react-hook-form` with `zodResolver`
-- Define input types from schema (e.g., `CreateXInput`)
-- Form inputs typed from Zod schemas
-
-### UI Components
-
-- Base components from `src/components/ui/` (Radix + Tailwind)
-- Use `cn()` utility from `@/lib/utils` for conditional classes
-- Toast notifications via `useToast()` hook
-- Icons from `lucide-react`
-
-### Styling
-
-- Tailwind CSS v4 with `@tailwindcss/postcss`
-- Use `class-variance-authority` for component variants
-- Dark mode support via `next-themes`
-- Color scheme: Default Tailwind palette
-
-### Authentication
-
-- JWT-based auth with cookie handling
-- proxy at `src/proxy.ts` protects routes
-- Public routes: `/login`, `/register`
-- Auth utilities in `src/lib/auth.ts`
-
-## Environment Variables
-
-- `NEXT_PUBLIC_API_BASE_URL` - API endpoint base URL
-
-## Key Conventions
-
-1. Keep feature code in relevant `src/features/<domain>/` folder
-2. Reuse shared UI from `src/components/ui`
-3. Prefer query hooks + mutations over direct `apiClient` calls in components
-4. All user-facing text is in Portuguese
-5. Always handle mutation errors with toast notifications
+- Named exports for hooks/utils, default exports for pages. Files in kebab-case. Feature folders in kebab-case.
+- `type` keyword for type-only imports. Explicit return types on exported functions.
+- All user-facing strings in Portuguese. Mutation error fallback: `"Ocorreu um erro inesperado"`.
+- `NEXT_PUBLIC_API_BASE_URL=http://localhost:4001/api` (in `.env` for dev).
+- pnpm overrides `@types/react` and `@types/react-dom` to `19.2.10`.
