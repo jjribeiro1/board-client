@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Bell, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LandingBoardPreview } from "./landing-board-preview";
 
 export function LandingHero() {
   return (
@@ -49,8 +49,20 @@ export function LandingHero() {
         </div>
 
         <div className="mt-16 sm:mt-20 lg:mt-24">
-          <div className="mx-auto max-w-5xl">
-            <LandingBoardPreview />
+          <div className="relative mx-auto max-w-5xl">
+            <div className="from-primary/15 via-primary/5 to-transparent absolute -inset-6 rounded-[2rem] bg-gradient-to-br opacity-80 blur-3xl" />
+            <div className="bg-primary/10 absolute -top-6 -right-6 h-36 w-36 animate-pulse rounded-full blur-3xl" />
+            <div className="bg-primary/5 absolute -bottom-8 -left-8 h-48 w-48 rounded-full blur-3xl" />
+            <div className="border-border/40 relative overflow-hidden rounded-xl border shadow-2xl">
+              <Image
+                src="/feature-flow-home.png"
+                alt="Feature Flow - Plataforma de feedback"
+                width={1200}
+                height={675}
+                className="relative"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
