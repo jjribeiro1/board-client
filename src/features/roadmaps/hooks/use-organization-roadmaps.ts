@@ -10,9 +10,7 @@ export function useOrganizationRoadmaps(organizationId: string) {
   return useQuery({
     queryKey: ["organization-roadmaps", organizationId],
     queryFn: async () => {
-      const res = await apiClient.get<OrganizationRoadmapsResponse>(
-        `/organizations/${organizationId}/roadmaps`,
-      );
+      const res = await apiClient.get<OrganizationRoadmapsResponse>(`/organizations/${organizationId}/roadmaps`);
       return res.data.data;
     },
     enabled: !!organizationId,
