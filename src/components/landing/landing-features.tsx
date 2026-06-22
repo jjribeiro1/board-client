@@ -17,8 +17,7 @@ const features: Feature[] = [
   {
     icon: ListChecks,
     title: "Status transparente",
-    description:
-      "Mostre à sua comunidade o que está em análise, em construção ou concluído. Zero caixa-preta.",
+    description: "Mostre à sua comunidade o que está em análise, em construção ou concluído. Zero caixa-preta.",
   },
   {
     icon: Tag,

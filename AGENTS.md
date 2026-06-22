@@ -32,16 +32,16 @@ No test framework — project has no tests.
 
 ## Key Files & Utilities
 
-| File | Purpose |
-|------|---------|
-| `@/lib/axios` | Shared Axios client |
-| `@/lib/error-message` | `getErrorMessage(err, fallback)` |
-| `@/lib/dayjs` | dayjs with `pt-br` locale + relativeTime plugin |
-| `@/lib/utils` | `cn()` (clsx + tailwind-merge) |
-| `@/hooks/use-toast` | `useToast()` / `toast()` |
-| `@/hooks/use-query-params` | URL search param CRUD |
-| `@/hooks/use-user-permission` | Role-based access checks within an org |
-| `@/features/organizations/services/get-organization-id` | Reads `org-id` cookie (server-only) |
+| File                                                    | Purpose                                         |
+| ------------------------------------------------------- | ----------------------------------------------- |
+| `@/lib/axios`                                           | Shared Axios client                             |
+| `@/lib/error-message`                                   | `getErrorMessage(err, fallback)`                |
+| `@/lib/dayjs`                                           | dayjs with `pt-br` locale + relativeTime plugin |
+| `@/lib/utils`                                           | `cn()` (clsx + tailwind-merge)                  |
+| `@/hooks/use-toast`                                     | `useToast()` / `toast()`                        |
+| `@/hooks/use-query-params`                              | URL search param CRUD                           |
+| `@/hooks/use-user-permission`                           | Role-based access checks within an org          |
+| `@/features/organizations/services/get-organization-id` | Reads `org-id` cookie (server-only)             |
 
 ## Conventions
 

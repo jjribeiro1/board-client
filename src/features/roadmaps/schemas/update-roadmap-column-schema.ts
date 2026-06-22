@@ -1,11 +1,7 @@
 import { z } from "zod";
 
 export const updateRoadmapColumnSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Nome é obrigatório")
-    .max(100, "Nome deve ter no máximo 100 caracteres")
-    .optional(),
+  name: z.string().min(1, "Nome é obrigatório").max(100, "Nome deve ter no máximo 100 caracteres").optional(),
   color: z
     .string()
     .min(1, "Cor é obrigatória")
