@@ -3,11 +3,11 @@
 import { useOrganizationRoadmaps } from "@/features/roadmaps/hooks/use-organization-roadmaps";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-type RoadmapsListProps = {
+type Props = {
   organizationId: string;
 };
 
-export function RoadmapsList({ organizationId }: RoadmapsListProps) {
+export function RoadmapsList({ organizationId }: Props) {
   const { data: roadmaps, isLoading } = useOrganizationRoadmaps(organizationId);
 
   if (isLoading) {
